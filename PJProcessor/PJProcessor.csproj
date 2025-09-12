@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<UserSecretsId>9a8e21cb-c544-44cb-a361-860950e194ef</UserSecretsId>
+	<UserSecretsId>a6fb63cc-5868-4e65-86a6-ea693a0db153</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
