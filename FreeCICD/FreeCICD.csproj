@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<UserSecretsId>d8abf971-f1d8-4a28-be0a-946b8445b463</UserSecretsId>
+	<UserSecretsId>0eb4d2eb-a2c9-4ee5-8d4b-7fc20b67c181</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,12 +17,12 @@
     <ProjectReference Include="..\FreeCICD.Client\FreeCICD.Client.csproj" />
     <ProjectReference Include="..\FreeCICD.Plugins\FreeCICD.Plugins.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="9.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
   </ItemGroup>
 
   <ItemGroup>
