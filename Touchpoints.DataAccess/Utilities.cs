@@ -1,6 +1,6 @@
 namespace Touchpoints;
 
-public static class Utilities
+public static partial class Utilities
 {
     public static string AddContentToSection(string source, string itemStart, string itemEnd, List<string> contentToAdd)
     {
