@@ -4014,6 +4014,34 @@ public static partial class Helpers
     }
 
     /// <summary>
+    /// Navigates to the login page.
+    /// </summary>
+    /// <param name="forceReload">Option to force a full reload on navigate.</param>
+    public static void NavigateToLogin(bool forceReload = false)
+    {
+        string loginUrl = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(Model.Tenant.TenantSettings.ApplicationUrl)) {
+            loginUrl = Model.Tenant.TenantSettings.ApplicationUrl;
+            if (!loginUrl.EndsWith("/")) {
+                loginUrl += "/";
+            }
+
+            if (Model.UseTenantCodeInUrl) {
+                loginUrl += Model.Tenant.TenantCode + "/";
+            }
+
+            loginUrl += "Login";
+        }
+
+        if (String.IsNullOrWhiteSpace(loginUrl)) {
+            loginUrl = Model.ApplicationUrlFull + "Login";
+        }
+
+        NavManager.NavigateTo(loginUrl, forceReload);
+    }
+
+    /// <summary>
     /// Navigates to the root of the application.
     /// </summary>
     /// <param name="forceReload">Option to force a full reload on navigate.</param>
@@ -4021,6 +4049,16 @@ public static partial class Helpers
     {
         _validatingUrl = false;
         NavManager.NavigateTo(Model.ApplicationUrlFull, forceReload);
+    }
+
+    /// <summary>
+    /// Navigates to the root of the application, regardless of any tenant-specific ApplicationUrl setting.
+    /// </summary>
+    /// <param name="forceReload">Option to force a full reload on navigate.</param>
+    public static void NavigateToRootDefault(bool forceReload = false)
+    {
+        _validatingUrl = false;
+        NavManager.NavigateTo(Model.ApplicationUrlFullDefault, forceReload);
     }
 
     /// <summary>
@@ -4577,6 +4615,8 @@ public static partial class Helpers
     {
         DataObjects.BlazorDataModelLoader? blazorDataModelLoader = null;
 
+        string currentUrl = Helpers.BaseUri;
+
         if(Model.User.Enabled && Model.User.UserId != Guid.Empty) {
             blazorDataModelLoader = await GetOrPost<DataObjects.BlazorDataModelLoader>("api/Data/GetBlazorDataModel/" + Model.User.UserId.ToString());
         }else if (!String.IsNullOrWhiteSpace(Model.TenantCodeFromUrl)) {
@@ -4672,11 +4712,27 @@ public static partial class Helpers
 
             // Set the current tenant
             var tenant = Model.Tenants.FirstOrDefault(x => x.TenantId == Model.User.TenantId);
+            
             if(tenant == null && !String.IsNullOrWhiteSpace(Model.TenantCodeFromUrl)) {
                 tenant = Model.Tenants.FirstOrDefault(x => x.TenantCode.ToLower() == Model.TenantCodeFromUrl.ToLower());
             }
 
-            if(tenant != null) {
+            if(tenant == null) {
+                // See if we can match the current tenant based on the current URL and the ApplicationUrl setting for the tenant.
+                var tenantMatches = Model.Tenants.Where(x => !String.IsNullOrWhiteSpace(x.TenantSettings.ApplicationUrl) && x.TenantSettings.ApplicationUrl.ToLower() == currentUrl.ToLower()).ToList();
+                if (tenantMatches != null && tenantMatches.Count > 0) {
+                    if (Model.UseTenantCodeInUrl) {
+                        var firstTenantMatch = tenantMatches.FirstOrDefault(x => x.TenantCode.ToLower() == StringLower(Model.TenantCodeFromUrl));
+                        if (firstTenantMatch != null) {
+                            tenant = firstTenantMatch;
+                        }
+                    } else if (tenantMatches.Count == 1) {
+                        tenant = tenantMatches.First();
+                    }
+                }
+            }
+
+            if (tenant != null) {
                 Model.Tenant = tenant;
                 if (Model.TenantId != tenant.TenantId) {
                     Model.TenantId = tenant.TenantId;
@@ -4690,6 +4746,24 @@ public static partial class Helpers
 
             if (!Model.Loaded) {
                 Model.Loaded = true;
+            }
+
+            // If the current tenant has a specific ApplicationUrl, and we are not in that URL space, then redirect.
+            if (Model.User.ActionResponse.Result && tenant != null && !String.IsNullOrWhiteSpace(tenant.TenantSettings.ApplicationUrl)) {
+                string baseUrl = BaseUri.ToLower();
+
+                if (!tenant.TenantSettings.ApplicationUrl.ToLower().Contains(baseUrl)) {
+                    var redirectUrl = tenant.TenantSettings.ApplicationUrl;
+                    if (!redirectUrl.EndsWith("/")) {
+                        redirectUrl += "/";
+                    }
+
+                    if (Model.UseTenantCodeInUrl) {
+                        redirectUrl += Model.Tenant.TenantCode + "/";
+                    }
+
+                    await NavigateToViaJavascript(redirectUrl);
+                }
             }
         }
     }
@@ -5110,8 +5184,22 @@ public static partial class Helpers
 
         Model.TenantId = TenantId;
 
+        string tenantUrl = String.Empty;
+
         if(tenant != null) {
             Model.Tenant = tenant;
+
+            if (!String.IsNullOrWhiteSpace(tenant.TenantSettings.ApplicationUrl)) {
+                tenantUrl = tenant.TenantSettings.ApplicationUrl;
+
+                if (!tenantUrl.EndsWith("/")) {
+                    tenantUrl += "/";
+                }
+
+                if (Model.UseTenantCodeInUrl) {
+                    tenantUrl += tenant.TenantCode + "/";
+                }
+            }
         }
 
         DataObjects.Language? language = null;
@@ -5138,7 +5226,12 @@ public static partial class Helpers
         ForceModelUpdates();
 
         if(user != null) {
-            NavigateToRoot(true);
+            if (!String.IsNullOrWhiteSpace(tenantUrl)) {
+                // Need to do a full redirect to this tenant's URL.
+                await NavigateToViaJavascript(tenantUrl);
+            } else {
+                NavigateToRootDefault(true);
+            }
         }
 
         Model.NotifyTenantChanged();

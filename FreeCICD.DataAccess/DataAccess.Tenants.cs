@@ -681,5 +681,6 @@ public partial class DataAccess
 
         // Clear the cache
         CacheStore.SetCacheItem(TenantId, "FullTenant", null);
+        CacheStore.SetCacheItem(TenantId, "ApplicationUrl", settings.ApplicationUrl);
     }
 }
