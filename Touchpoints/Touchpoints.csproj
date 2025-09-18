@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<UserSecretsId>afd1cac8-23f7-40c7-b717-8ff33cb4d689</UserSecretsId>
+	<UserSecretsId>98a6bf13-12bb-4a4b-9f07-09ca8b514b48</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,12 +17,12 @@
     <ProjectReference Include="..\Touchpoints.Client\Touchpoints.Client.csproj" />
     <ProjectReference Include="..\Touchpoints.Plugins\Touchpoints.Plugins.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="9.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
   </ItemGroup>
 
   <ItemGroup>
