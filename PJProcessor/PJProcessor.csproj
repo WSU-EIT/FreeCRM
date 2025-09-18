@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<UserSecretsId>c4892529-afec-4b65-bb7f-32ba8bd6b89e</UserSecretsId>
+	<UserSecretsId>058b2fe1-4fe2-4bae-9188-6445b31f4917</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,12 +17,12 @@
     <ProjectReference Include="..\PJProcessor.Client\PJProcessor.Client.csproj" />
     <ProjectReference Include="..\PJProcessor.Plugins\PJProcessor.Plugins.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="9.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
   </ItemGroup>
 
   <ItemGroup>
