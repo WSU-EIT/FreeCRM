@@ -2098,7 +2098,7 @@ public static partial class Helpers
     )
     {
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("GeneratePassword");
+            Title = Text("GeneratePassword");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -3027,7 +3027,7 @@ public static partial class Helpers
         string? instructions = "")
     {
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("EditHTML");
+            Title = Text("EditHTML");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -4379,7 +4379,7 @@ public static partial class Helpers
     public static async Task PdfViewer(Guid FileId, string? Title = "", string width = "", string height = "", bool AllowDownload = true)
     {
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("PDFViewer");
+            Title = Text("PDFViewer");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -4929,7 +4929,7 @@ public static partial class Helpers
     public static async Task SelectFile(Action<Guid> OnFileSelected, string Title = "", bool ImagesOnly = false, bool ShowCancelButton = true, bool ShowRefreshButton = true)
     {
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("SelectFile");
+            Title = Text("SelectFile");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -4965,7 +4965,7 @@ public static partial class Helpers
         bool PreventDeselctingSelectedTags = false){
 
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("SelectTags");
+            Title = Text("SelectTags");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -5215,6 +5215,8 @@ public static partial class Helpers
 
             if (!String.IsNullOrWhiteSpace(user.AuthToken)) {
                 await CookieWrite("user-token", user.AuthToken);
+            } else {
+                await CookieWrite("user-token", "");
             }
         }else {
             Model.User = new DataObjects.User();
@@ -5562,7 +5564,7 @@ public static partial class Helpers
         string UploadInstructions = "", List<string>? SupportedFileTypes = null, bool AllowMultipleUploads = false)
     {
         if (String.IsNullOrWhiteSpace(Title)) {
-            Title = IconAndText("UploadFile");
+            Title = Text("UploadFile");
         }
 
         Dictionary<string, object> parameters = new Dictionary<string, object>();
