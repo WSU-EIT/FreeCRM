@@ -1,48 +1,66 @@
-# FreeCRM 
+# FreeCRM Base Application Template
 
-An open-source CRM solution built in C# Blazor WebAssembly using .NET 9. You can use this project as-is,
-or customize it to fit your needs. Or, just grab code that you need to use in your project.
+FreeCRM is a Blazor WebAssembly CRM starter kit built on .NET 9 that is designed to be renamed, branded, and extended into bespoke line-of-business applications. It combines a feature-rich baseline with a carefully curated set of customization points so you can merge upstream updates without constantly re-applying local patches.
 
-If you want to rename things, you can use the "Rename FreeCRM.exe" console application.
-This will rename the project files, create new GUIDs for each project in the solution,
-and rename namespaces to match your project name.
+## Key ideas
 
-The rename tool now supports adding the rename value as a command-line argument. For example:
+- **Modular solution structure** – Server, client, data access, data objects, and plugin projects are kept separate so you can replace or extend them independently.
+- **Partial class customizations** – Every project ships with matching `*.App.*` partial files that are intended to contain your overrides and app-specific logic. Keep your edits in these files and merging new releases becomes a matter of resolving the few intentional touchpoints.
+- **Upgrade-friendly pages** – Place custom Razor pages inside `CRM.Client/Pages/App` (and subfolders) so future migration tooling can pick them up automatically.
+- **Extensible plugin model** – Drop compiled or source-based plugins into the `CRM/Plugins` folder and they will be loaded at runtime.
 
-`"Rename FreeCRM.exe" MyNewProjectName`
+## Solution layout
 
-If you want to remove one or more of the optional components from the application
-(Appointments, EmailTemplates, Invoices, Locations, Payments, Services, or Tags)
-you can use the "Remove Modules from FreeCRM.exe" console application.
-This utility may still leave remnants of the removed modules in the code.
-If you find any items that are not removed that you believe should be,
-please open an issue on GitHub. Please include the name of the file and the line number
-where the item is located.
+| Project | Purpose | Customization points |
+| --- | --- | --- |
+| `CRM` | ASP.NET Core host that serves the Blazor WebAssembly client, configures dependency injection, and exposes API controllers. | `Program.App.cs`, `Controllers/*.App.cs`, `Classes/ConfigurationHelper.App.cs` for server-side hooks and configuration helpers. |
+| `CRM.Client` | WebAssembly front end that contains layouts, pages, and UI helpers. | `Helpers.App.cs`, `DataModel.App.cs`, and pages inside `Pages/App` for UI-specific behavior and data shaping. |
+| `CRM.DataAccess` | Data access layer that coordinates EF Core contexts and business logic. | `DataAccess.App.cs`, `RandomPasswordGenerator.App.cs`, `Utilities.App.cs`, etc. for data-layer extensions and overrides. |
+| `CRM.DataObjects` | Shared DTOs, enums, and helper models referenced by both client and server. | `DataObjects.App.cs`, `GlobalSettings.App.cs` for app-specific fields and configuration defaults. |
+| `CRM.Plugins` | Runtime plugin loader and helpers. | Implement `IPlugin` and drop assemblies or source files in `CRM/Plugins`; they are discovered during startup. |
 
-The removal tool now supports two command-line options. They are:
+## Getting started
 
-`remove:Module1,Module2,etc.`
+1. **Install prerequisites**
+   - .NET 9 SDK
+   - (Optional) Visual Studio 2022 17.10+ or VS Code with C# Dev Kit for an IDE experience
+2. **Clone and restore**
+   ```bash
+   git clone https://github.com/your-org/FreeCRM.git
+   cd FreeCRM
+   dotnet restore CRM.sln
+   ```
+3. **Run the app**
+   ```bash
+   dotnet run --project CRM
+   ```
+   The server project hosts the WebAssembly client; browse to the indicated URL once the application starts.
 
-This removes any named modules.
+## Customization workflow
 
-`keep:Module1,Module2,etc.`
+1. **Keep local code in `*.App.*` files** – Each partial file is empty (or filled with templates) so you can add overrides without touching the base implementation. Examples include startup hooks in `Program.App.cs`, custom SignalR handling in `Helpers.App.cs`, and bespoke data queries in `DataAccess.App.cs`.
+2. **Add UI to `Pages/App`** – Organize custom Razor components beneath `CRM.Client/Pages/App` so they are easy to track during upgrades.
+3. **Extend shared models** – Use `CRM.DataObjects/DataObjects.App.cs` to add DTO properties or helper methods that the client and server understand.
+4. **Augment configuration helpers** – `CRM/Classes/ConfigurationHelper.App.cs` lets you register additional configuration values and computed defaults without editing the base helper.
+5. **Deliver dynamic behavior with plugins** – Implement `IPlugin`, compile to DLL, or provide source snippets and place them in the `CRM/Plugins` folder. Startup logic registers each plugin and makes it available through dependency injection.
 
-This removes any modules not named. For example, to remove all optional modules except
-the Tags module, you would use:
+## Built-in tooling
 
-`keep:Tags`
+- **Rename utility** – Run the `Rename FreeCRM.exe` console application to rename projects, regenerate GUIDs, and update namespaces to match your brand. It also accepts a command-line argument for the new name (`"Rename FreeCRM.exe" MyNewProjectName`).
+- **Module trimmer** – Use `Remove Modules from FreeCRM.exe` to remove optional features (Appointments, EmailTemplates, Invoices, Locations, Payments, Services, Tags). Specify `remove:Module1,Module2` to drop specific modules, `keep:Module1` to retain only certain modules, or `remove:all` to strip every optional module.
 
-You can also remove all optional modules without having to list them all by using:
+## Configuration highlights
 
-`remove:all`
+- Environment settings live in `appsettings.json` and `appsettings.Development.json`, including module toggles, SignalR mode, analytics codes, and feature flags used during startup.
+- The application registers standard and app-specific authorization policies. Add new policy names by returning them from `AuthenticationPoliciesApp` in `Program.App.cs`.
+- Plugin namespaces can be expanded through the `PluginUsingStatements` section in configuration; they are loaded into the dynamic compilation context on startup.
 
-Do not use any spaces in the command line options. The names of the modules that can be
-kept or removed are:
+## Upgrading to new releases
 
-- Appointments
-- EmailTemplates
-- Invoices
-- Locations
-- Payments
-- Services
-- Tags
+1. Pull the latest upstream changes.
+2. Resolve merge conflicts, focusing primarily on your curated `*.App.*` and `Pages/App` files.
+3. Run the rename/module trimming utilities again if project naming or module selection changes.
+4. Rebuild and smoke-test your instance to verify integrations and plugins still load.
+
+Because your custom logic is isolated to dedicated partials and app folders, upgrades typically require reconciling only a handful of files instead of the entire solution.
+
