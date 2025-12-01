@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FreeAI.DataAccess\FreeAI.DataAccess.csproj" />
-    <ProjectReference Include="..\..\FreeAI.Plugins\FreeAI.Plugins.csproj" />
+    <ProjectReference Include="..\FreeAI.DataAccess\FreeAI.DataAccess.csproj" />
+    <ProjectReference Include="..\FreeAI.Plugins\FreeAI.Plugins.csproj" />
     <ProjectReference Include="..\FreeAI.Client\FreeAI.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.0" />

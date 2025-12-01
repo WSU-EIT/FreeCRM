@@ -15,7 +15,6 @@ using FreeAI.Client.Pages.Settings.Tags;
 using FreeAI.Client.Pages.Settings.Users;
 using FreeAI.Client.Shared;
 using Humanizer;
-using Humanizer.Localisation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
