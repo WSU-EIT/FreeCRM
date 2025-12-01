@@ -15,7 +15,6 @@ using Touchpoints.Client.Pages.Settings.Tags;
 using Touchpoints.Client.Pages.Settings.Users;
 using Touchpoints.Client.Shared;
 using Humanizer;
-using Humanizer.Localisation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
