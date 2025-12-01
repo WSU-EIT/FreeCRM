@@ -15,7 +15,6 @@ using PJProcessor.Client.Pages.Settings.Tags;
 using PJProcessor.Client.Pages.Settings.Users;
 using PJProcessor.Client.Shared;
 using Humanizer;
-using Humanizer.Localisation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
