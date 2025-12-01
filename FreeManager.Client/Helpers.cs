@@ -15,7 +15,6 @@ using FreeManager.Client.Pages.Settings.Tags;
 using FreeManager.Client.Pages.Settings.Users;
 using FreeManager.Client.Shared;
 using Humanizer;
-using Humanizer.Localisation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
