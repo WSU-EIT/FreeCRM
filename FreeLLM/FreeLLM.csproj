@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FreeLLM.DataAccess\FreeLLM.DataAccess.csproj" />
-    <ProjectReference Include="..\..\FreeLLM.Plugins\FreeLLM.Plugins.csproj" />
+    <ProjectReference Include="..\FreeLLM.DataAccess\FreeLLM.DataAccess.csproj" />
+    <ProjectReference Include="..\FreeLLM.Plugins\FreeLLM.Plugins.csproj" />
     <ProjectReference Include="..\FreeLLM.Client\FreeLLM.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.0" />

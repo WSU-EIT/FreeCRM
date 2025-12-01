@@ -15,7 +15,6 @@ using FreeLLM.Client.Pages.Settings.Tags;
 using FreeLLM.Client.Pages.Settings.Users;
 using FreeLLM.Client.Shared;
 using Humanizer;
-using Humanizer.Localisation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
