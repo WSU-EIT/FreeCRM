@@ -1,6 +1,8 @@
 using FreeManager.Client.Pages;
 using FreeManager.Components;
 using FreeManager.Server.Hubs;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 
 namespace FreeManager
@@ -17,6 +19,21 @@ namespace FreeManager
             if (!isDevelopment) {
 
             }
+
+            // Try to get the application name.
+            string cookiePrefix = String.Empty;
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            try {
+                cookiePrefix += assembly.FullName;
+
+                if (cookiePrefix.Contains(",")) { 
+                    cookiePrefix = cookiePrefix.Substring(0, cookiePrefix.IndexOf(",")).Trim();
+                }
+
+                if (!String.IsNullOrWhiteSpace(cookiePrefix)) {
+                    cookiePrefix = new string(cookiePrefix.Where(Char.IsLetter).ToArray()).ToLower() + "_";
+                }
+            } catch { }
 
             // Attempts to read the AzureSignalRurl setting from appsettings.json.
             string azureSignalRUrl = String.Empty + builder.Configuration.GetValue<string>("AzureSignalRurl");
@@ -83,7 +100,7 @@ namespace FreeManager
             string _localModeUrl = String.Empty + builder.Configuration.GetValue<string>("LocalModeUrl");
             string _connectionString = String.Empty + builder.Configuration.GetConnectionString("AppData");
             string _databaseType = String.Empty + builder.Configuration.GetValue<string>("DatabaseType");
-            builder.Services.AddTransient<IDataAccess>(x => ActivatorUtilities.CreateInstance<DataAccess>(x, _connectionString, _databaseType, _localModeUrl, x.GetRequiredService<IServiceProvider>()));
+            builder.Services.AddTransient<IDataAccess>(x => ActivatorUtilities.CreateInstance<DataAccess>(x, _connectionString, _databaseType, _localModeUrl, x.GetRequiredService<IServiceProvider>(), cookiePrefix));
 
             var useAuthorization = CustomAuthenticationProviders.UseAuthorization(builder);
             builder.Services.AddTransient<ICustomAuthentication>(x => ActivatorUtilities.CreateInstance<CustomAuthentication>(x, useAuthorization));
@@ -123,6 +140,7 @@ namespace FreeManager
 
             var configurationHelperLoader = ConfigurationHelpersLoadApp(new ConfigurationHelperLoader {
                 AnalyticsCode = analyticsCode,
+                CookiePrefix = cookiePrefix,
                 BasePath = basePath,
                 ConnectionStrings = new ConfigurationHelperConnectionStrings {
                     AppData = builder.Configuration.GetConnectionString("AppData"),

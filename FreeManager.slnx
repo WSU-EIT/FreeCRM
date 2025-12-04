@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeFreeManager.exe" />
+    <File Path="Rename FreeFreeManager.exe" />
+  </Folder>
+  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="E04845D6-AA13-443C-9DAA-0158790507CE" />
+  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="AF39CB9C-DD07-46A2-950D-C34534E96704" />
+  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="B8ACBBFA-4D93-41BC-96A2-2DAD23A3C1FF" />
+  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="1D6B00F3-1C14-46E4-8A39-FF21B2579AA8" />
+  <Project Path="FreeManager.Client/FreeManager.Client.csproj" />
+  <Project Path="FreeManager/FreeManager.csproj" />
+</Solution>

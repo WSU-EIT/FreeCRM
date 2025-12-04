@@ -65,9 +65,6 @@ public partial class BlazorDataModel
     private List<DataObjects.DepartmentGroup> _DepartmentGroups = new List<DataObjects.DepartmentGroup>();
     private List<DataObjects.Department> _Departments = new List<DataObjects.Department>();
     private List<string> _DotNetHelperMessages = new List<string>();
-    // {{ModuleItemStart:EmailTemplates}}
-    private List<DataObjects.EmailTemplate> _EmailTemplates = new List<DataObjects.EmailTemplate>();
-    // {{ModuleItemEnd:EmailTemplates}}
     private string _Fingerprint = "";
     private List<string>? _GloballyDisabledModules = null;
     private List<string>? _GloballyEnabledModules = null;
@@ -75,9 +72,6 @@ public partial class BlazorDataModel
     private DataObjects.Language _Language = new DataObjects.Language();
     private List<DataObjects.Language> _Languages = new List<DataObjects.Language>();
     private bool _Loaded = false;
-    // {{ModuleItemStart:Locations}}
-    private List<DataObjects.Location> _Locations = new List<DataObjects.Location>();
-    // {{ModuleItemEnd:Locations}}
     private bool _LoggedIn = false;
     private List<Message> _Messages = new List<Message>();
     private DateTime _ModelUpdated = DateTime.UtcNow;
@@ -85,23 +79,14 @@ public partial class BlazorDataModel
     private List<Plugins.Plugin> _Plugins = new List<Plugins.Plugin>();
     private string _QuickAction = "";
     private Delegate? _QuickActionOnComplete;
-    // {{ModuleItemStart:Appointments}}
-    private DataObjects.AppointmentNote _QuickAddAppointmentNote = new DataObjects.AppointmentNote();
-    // {{ModuleItemEnd:Appointments}}
     private DataObjects.User _QuickAddUser = new DataObjects.User();
     private DateOnly _Released = DateOnly.FromDateTime(DateTime.MinValue);
-    // {{ModuleItemStart:Services}}
-    private List<DataObjects.Service> _Services = new List<DataObjects.Service>();
-    // {{ModuleItemEnd:Services}}
     private bool _ShowTenantListingWhenMissingTenantCode = false;
     private List<string> _StartupErrors = new List<string>();
     private bool _StartupValidated = false;
     private List<string> _Subscribers_OnChange = new List<string>();
     private List<string> _Subscribers_OnDotNetHelperHandler = new List<string>();
     private List<string> _Subscribers_OnSignalRUpdate = new List<string>();
-    // {{ModuleItemStart:Tags}}
-    private List<DataObjects.Tag> _Tags = new List<DataObjects.Tag>();
-    // {{ModuleItemEnd:Tags}}
     private DataObjects.Tenant _Tenant = new DataObjects.Tenant();
     private string? _TenantCodeFromUrl;
     private Guid _TenantId = Guid.Empty;
@@ -240,14 +225,6 @@ public partial class BlazorDataModel
         get { return FeatureEnabledEmployeeId && AllowUsersToManageAFeature("employeeid"); }
     }
 
-    // {{ModuleItemStart:Locations}}
-    /// <summary>
-    /// Indicates if users can edit their location.
-    /// </summary>
-    public bool AllowUsersToManageLocation {
-        get { return FeatureEnabledLocation && AllowUsersToManageAFeature("location"); }
-    }
-    // {{ModuleItemEnd:Locations}}
 
     /// <summary>
     /// Indicates if users can edit their name.
@@ -528,23 +505,7 @@ public partial class BlazorDataModel
         get { return FeatureEnabled("departments"); }
     }
 
-    // {{ModuleItemStart:Invoices}}
-    /// <summary>
-    /// Indicates if the Invoices feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledInvoices {
-        get { return FeatureEnabled("invoices"); }
-    }
-    // {{ModuleItemEnd:Invoices}}
 
-    // {{ModuleItemStart:EmailTemplates}}
-    /// <summary>
-    /// Indicates if the EmailTemplates feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledEmailTemplates {
-        get { return FeatureEnabled("emailtemplates"); }
-    }
-    // {{ModuleItemEnd:EmailTemplates}}
 
     /// <summary>
     /// Indicates if the EmployeeId feature is enabled.
@@ -560,41 +521,9 @@ public partial class BlazorDataModel
         get { return FeatureEnabled("files"); }
     }
 
-    // {{ModuleItemStart:Locations}}
-    /// <summary>
-    /// Indicates if the Location feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledLocation {
-        get { return FeatureEnabled("location"); }
-    }
-    // {{ModuleItemEnd:Locations}}
 
-    // {{ModuleItemStart:Appointments}}
-    /// <summary>
-    /// Indicates if the Scheduling feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledScheduling {
-        get { return FeatureEnabled("scheduling"); }
-    }
-    // {{ModuleItemEnd:Appointments}}
 
-    // {{ModuleItemStart:Services}}
-    /// <summary>
-    /// Indicates if the Services feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledServices {
-        get { return FeatureEnabled("services"); }
-    }
-    // {{ModuleItemEnd:Services}}
 
-    // {{ModuleItemStart:Tags}}
-    /// <summary>
-    /// Indicates if the Tags feature is enabled.
-    /// </summary>
-    public bool FeatureEnabledTags {
-        get { return FeatureEnabled("tags"); }
-    }
-    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Indicates if the Themes feature is enabled.
@@ -704,21 +633,6 @@ public partial class BlazorDataModel
         }
     }
 
-    // {{ModuleItemStart:EmailTemplates}}
-    /// <summary>
-    /// The list of email templates
-    /// </summary>
-    public List<DataObjects.EmailTemplate> EmailTemplates {
-        get { return _EmailTemplates; }
-        set {
-            if (!ObjectsAreEqual(_EmailTemplates, value)) {
-                _EmailTemplates = value;
-                _ModelUpdated = DateTime.UtcNow;
-                NotifyDataChanged();
-            }
-        }
-    }
-    // {{ModuleItemEnd:EmailTemplates}}
 
     /// <summary>
     /// Shows a Toast with an error message.
@@ -844,26 +758,9 @@ public partial class BlazorDataModel
             bool output = false;
 
             if (
-                // {{ModuleItemStart:Appointments}}
-                DeletedRecordCounts.AppointmentNotes > 0 ||
-                DeletedRecordCounts.Appointments > 0 ||
-                DeletedRecordCounts.AppointmentServices > 0 ||
-                // {{ModuleItemEnd:Appointments}}
                 DeletedRecordCounts.DepartmentGroups > 0 ||
                 DeletedRecordCounts.Departments > 0 ||
-                // {{ModuleItemStart:EmailTemplates}}
-                DeletedRecordCounts.EmailTemplates > 0 ||
-                // {{ModuleItemEnd:EmailTemplates}}
                 DeletedRecordCounts.FileStorage > 0 ||
-                // {{ModuleItemStart:Locations}}
-                DeletedRecordCounts.Locations > 0 ||
-                // {{ModuleItemEnd:Locations}}
-                // {{ModuleItemStart:Services}}
-                DeletedRecordCounts.Services > 0 ||
-                // {{ModuleItemEnd:Services}}
-                // {{ModuleItemStart:Tags}}
-                DeletedRecordCounts.Tags > 0 ||
-                // {{ModuleItemEnd:Tags}}
                 DeletedRecordCounts.UserGroups > 0 ||
                 DeletedRecordCounts.Users > 0
             ) {
@@ -931,25 +828,7 @@ public partial class BlazorDataModel
             var output = new List<string> {
                 "departments",
                 "employeeid",
-                // {{ModuleItemStart:EmailTemplates}}
-                "emailtemplates",
-                // {{ModuleItemEnd:EmailTemplates}}
                 "files",
-                // {{ModuleItemStart:Invoices}}
-                "invoices",
-                // {{ModuleItemEnd:Invoices}}
-                // {{ModuleItemStart:Locations}}
-                "location",
-                // {{ModuleItemEnd:Locations}}
-                // {{ModuleItemStart:Appointments}}
-                "scheduling",
-                // {{ModuleItemEnd:Appointments}}
-                // {{ModuleItemStart:Services}}
-                "services",
-                // {{ModuleItemEnd:Services}}
-                // {{ModuleItemStart:Tags}}
-                "tags",
-                // {{ModuleItemEnd:Tags}}
                 "themes",
                 "udf",
                 "usergroups",
@@ -1018,21 +897,6 @@ public partial class BlazorDataModel
         }
     }
 
-    // {{ModuleItemStart:Locations}}
-    /// <summary>
-    /// The list of locations for the current tenant.
-    /// </summary>
-    public List<DataObjects.Location> Locations {
-        get { return _Locations; }
-        set {
-            if (!ObjectsAreEqual(_Locations, value)) {
-                _Locations = value;
-                _ModelUpdated = DateTime.UtcNow;
-                NotifyDataChanged();
-            }
-        }
-    }
-    // {{ModuleItemEnd:Locations}}
 
     /// <summary>
     /// Indicates if a user is logged in.
@@ -1345,21 +1209,6 @@ public partial class BlazorDataModel
         }
     }
 
-    // {{ModuleItemStart:Appointments}}
-    /// <summary>
-    /// The AppointmentNote object used when adding a note via the quick action menu.
-    /// </summary>
-    public DataObjects.AppointmentNote QuickAddAppointmentNote {
-        get { return _QuickAddAppointmentNote; }
-        set {
-            if (!ObjectsAreEqual(_QuickAddAppointmentNote, value)) {
-                _QuickAddAppointmentNote = value;
-                _ModelUpdated = DateTime.UtcNow;
-                NotifyDataChanged();
-            }
-        }
-    }
-    // {{ModuleItemEnd:Appointments}}
 
     /// <summary>
     /// The user object used when adding a user via the quick action menu.
@@ -1460,21 +1309,6 @@ public partial class BlazorDataModel
         return output;
     }
 
-    // {{ModuleItemStart:Services}}
-    /// <summary>
-    /// The list of available services.
-    /// </summary>
-    public List<DataObjects.Service> Services {
-        get { return _Services; }
-        set {
-            if (!ObjectsAreEqual(_Services, value)) {
-                _Services = value;
-                _ModelUpdated = DateTime.UtcNow;
-                NotifyDataChanged();
-            }
-        }
-    }
-    // {{ModuleItemEnd:Services}}
 
     /// <summary>
     /// Gets or sets the option to show the tenant listing when missing the tenant code.
@@ -1584,21 +1418,6 @@ public partial class BlazorDataModel
         }
     }
 
-    // {{ModuleItemStart:Tags}}
-    /// <summary>
-    /// The list of Tag objects.
-    /// </summary>
-    public List<DataObjects.Tag> Tags {
-        get { return _Tags; }
-        set {
-            if (!ObjectsAreEqual(_Tags, value)) {
-                _Tags = value;
-                _ModelUpdated = DateTime.UtcNow;
-                NotifyDataChanged();
-            }
-        }
-    }
-    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// The current Tenant object.
