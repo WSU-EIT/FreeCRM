@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeTouchpoints.exe" />
+    <File Path="Rename FreeTouchpoints.exe" />
+  </Folder>
+  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="A70D854F-74DF-4A13-97AE-9DEC96C7109A" />
+  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="5F301AEB-6172-40C4-9A77-01A69ED6684B" />
+  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="7786D7A7-8B56-4702-B8C5-034BE70696F7" />
+  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="C5E33629-70B4-468F-B395-F92CA39FB085" />
+  <Project Path="Touchpoints.Client/Touchpoints.Client.csproj" />
+  <Project Path="Touchpoints/Touchpoints.csproj" />
+</Solution>
