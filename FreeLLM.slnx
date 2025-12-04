@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeFreeLLM.exe" />
+    <File Path="Rename FreeFreeLLM.exe" />
+  </Folder>
+  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="6501C8EF-3D01-464C-9072-883EC225E658" />
+  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="8D2A8DC5-B87C-4528-9B96-EB8BC130D064" />
+  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="5E3590CD-62A5-4EDD-B913-2D568B903A78" />
+  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="85B9BEAB-4B7D-4B20-9CA6-19460035568C" />
+  <Project Path="FreeLLM.Client/FreeLLM.Client.csproj" />
+  <Project Path="FreeLLM/FreeLLM.csproj" />
+</Solution>
