@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreePJProcessor.exe" />
+    <File Path="Rename FreePJProcessor.exe" />
+  </Folder>
+  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="F7B138C6-52AA-4272-A141-23A44D9F6FD6" />
+  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="C67CDAA9-743D-4FB9-AFF0-C269AADE73A0" />
+  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="C98C9E85-E24D-4796-B94B-3E376B2A8527" />
+  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="0E47E4B5-EBC5-4732-823B-86E8CEEE41CC" />
+  <Project Path="PJProcessor.Client/PJProcessor.Client.csproj" />
+  <Project Path="PJProcessor/PJProcessor.csproj" />
+</Solution>
