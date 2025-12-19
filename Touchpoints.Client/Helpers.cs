@@ -1194,18 +1194,19 @@ public static partial class Helpers
         }
 
         if (String.IsNullOrWhiteSpace(width)) {
-            width = "95%";
-            top = "80px";
+            width = "98%";
+            //top = "1%";
         }
 
         if (String.IsNullOrWhiteSpace(height)) {
-            height = "calc(100vh - 120px)";
-            top = "80px";
+            //height = "calc(100vh - 120px)";
+            //top = "10px";
+            height = "98%";
+            //top = "1%";
         }
 
         await DialogService.OpenAsync<Touchpoints.Client.Pages.Settings.Users.EditUser>(title, parameters, new DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             Width = width,
             Height = height,
@@ -2029,7 +2030,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<GetInputDialog>(Title, parameters, new DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             Width = width,
             Height = height,
@@ -2115,7 +2115,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<GeneratePasswordDialog>(Title, parameters, new Radzen.DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             CloseDialogOnEsc = true,
             ShowClose = false,
@@ -2449,7 +2448,11 @@ public static partial class Helpers
                     }
 
                     if (!String.IsNullOrWhiteSpace(Model.User.AuthToken)) {
-                        Http.DefaultRequestHeaders.Add("Token", Model.User.AuthToken);
+                        if (Model.User.AuthToken != "na") {
+                            Http.DefaultRequestHeaders.Add("Token", Model.User.AuthToken);
+                        }
+                    } else {
+                        Model.User.AuthToken = "na";
                     }
 
                     if (!String.IsNullOrWhiteSpace(Model.Fingerprint)) {
@@ -3071,7 +3074,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<HtmlEditorDialog>(Title, parameters, new DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             Width = width,
             Height = height,
@@ -3980,7 +3982,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<ModalMessage>(title, parameters, new Radzen.DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             CloseDialogOnEsc = !DisableClose,
             ShowClose = !DisableClose,
@@ -4398,7 +4399,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<PDF_Viewer>(Title, parameters, new DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             Width = width,
             Height = height,
@@ -4559,7 +4559,7 @@ public static partial class Helpers
 
         if (blazorDataModelLoader != null) {
             string cultureCode = blazorDataModelLoader.CultureCode;
-            DataObjects.Language modelLanguage = Model.DefaultLanguage;
+            DataObjects.Language modelLanguage = blazorDataModelLoader.DefaultLanguage;
 
             // Preferred or saved culture code.
             bool cultureCodeSet = false;
@@ -4618,7 +4618,6 @@ public static partial class Helpers
             Model.Language = modelLanguage;
             Model.Languages = blazorDataModelLoader.Languages;
 
-
             if (Model.LoggedIn != blazorDataModelLoader.LoggedIn) {
                 Model.LoggedIn = blazorDataModelLoader.LoggedIn;
             }
@@ -4673,6 +4672,8 @@ public static partial class Helpers
                 Model.Tenant = new DataObjects.Tenant();
                 Model.TenantId = Guid.Empty;
             }
+
+            Model.UseBackgroundService = blazorDataModelLoader.UseBackgroundService;
 
             await ReloadModelApp(blazorDataModelLoader);
 
@@ -4872,7 +4873,6 @@ public static partial class Helpers
 
         await DialogService.OpenAsync<SelectFile>(Title, parameters, new DialogOptions() {
             AutoFocusFirstElement = false,
-            Resizable = false,
             Draggable = false,
             Width = "95%",
             Height = "calc(100vh - 120px)",
@@ -5348,13 +5348,11 @@ public static partial class Helpers
         if (AllowMultipleUploads) {
             await DialogService.OpenAsync<UploadFile<IReadOnlyList<IBrowserFile>>>(Title, parameters, new Radzen.DialogOptions() {
                 AutoFocusFirstElement = false,
-                Resizable = false,
                 Draggable = false,
             });
         } else {
             await DialogService.OpenAsync<UploadFile<IBrowserFile>>(Title, parameters, new Radzen.DialogOptions() {
                 AutoFocusFirstElement = false,
-                Resizable = false,
                 Draggable = false,
             });
         }
