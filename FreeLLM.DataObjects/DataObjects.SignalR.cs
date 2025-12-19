@@ -15,28 +15,9 @@ public partial class DataObjects
         public const string Undelete = "Undelete";
         public const string Unknown = "Unknown";
         public const string User = "User";
-        public const string UserAttendance = "UserAttendance";
         public const string UserGroup = "UserGroup";
         public const string UserPreferences = "UserPreferences";
     }
-
-    //public enum SignalRUpdateType
-    //{
-    //    Department,
-    //    DepartmentGroup,
-    //    File,
-    //    Language,
-    //    LastAccessTime,
-    //    Setting,
-    //    Tenant,
-    //    UDF,
-    //    Undelete,
-    //    Unknown,
-    //    User,
-    //    UserAttendance,
-    //    UserGroup,
-    //    UserPreferences,
-    //}
 
     public partial class SignalRUpdate
     {
@@ -44,7 +25,6 @@ public partial class DataObjects
         public Guid? ItemId { get; set; }
         public Guid? UserId { get; set; }
         public string? UserDisplayName { get; set; }
-        //public SignalRUpdateType UpdateType { get; set; }
         public string UpdateType { get; set; } = "Unknown";
         public string Message { get; set; } = "";
         public object? Object { get; set; }
