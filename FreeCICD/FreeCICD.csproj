@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>1459ccfa-dbd6-4620-8fb7-0945292e8a9a</UserSecretsId>
+    <UserSecretsId>938bdab9-66a0-47d2-a0fc-5a63d7823406</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,19 +14,19 @@
     <ProjectReference Include="..\FreeCICD.Plugins\FreeCICD.Plugins.csproj" />
     <ProjectReference Include="..\FreeCICD.Client\FreeCICD.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.1" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Update="Plugins\ExampleBackgroundProcess.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Plugins\Example1.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

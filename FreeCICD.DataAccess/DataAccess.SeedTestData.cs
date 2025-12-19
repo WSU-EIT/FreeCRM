@@ -81,9 +81,7 @@ public partial class DataAccess
         adminUser.LastModified = now;
         adminUser.PreventPasswordChange = false;
         adminUser.Admin = true;
-        adminUser.CanBeScheduled = false;
         adminUser.ManageFiles = true;
-        adminUser.ManageAppointments = true;
         adminUser.Deleted = false;
         adminUser.DeletedAt = null;
         if (String.IsNullOrEmpty(adminUser.Password)) {
@@ -173,9 +171,8 @@ public partial class DataAccess
                 }
 
                 tenantAdmin.PreventPasswordChange = false;
-                tenantAdmin.CanBeScheduled = false;
+
                 tenantAdmin.ManageFiles = true;
-                tenantAdmin.ManageAppointments = true;
 
                 if (newRecord) {
                     data.Users.Add(tenantAdmin);
