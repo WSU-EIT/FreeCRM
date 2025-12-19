@@ -10,6 +10,9 @@ public partial class DataObjects
         public const string Language = "Language";
         public const string LastAccessTime = "LastAccessTime";
         public const string Setting = "Setting";
+        // {{ModuleItemStart:Tags}}
+        public const string Tag = "Tag";
+        // {{ModuleItemEnd:Tags}}
         public const string Tenant = "Tenant";
         public const string UDF = "UDF";
         public const string Undelete = "Undelete";

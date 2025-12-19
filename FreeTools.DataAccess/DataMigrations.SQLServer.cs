@@ -136,6 +136,47 @@ public partial class DataMigrations
             END
             """);
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            IF OBJECT_ID(N'[TagItems]') IS NULL
+            BEGIN
+                CREATE TABLE [dbo].[TagItems](
+                    [TagItemId] [uniqueidentifier] NOT NULL,
+                    [TagId] [uniqueidentifier] NOT NULL,
+                    [TenantId] [uniqueidentifier] NOT NULL,
+                    [ItemId] [uniqueidentifier] NOT NULL,
+                    CONSTRAINT [PK_TagItems] PRIMARY KEY CLUSTERED ([TagItemId] ASC)
+                    WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+                ) ON [PRIMARY]
+            END
+            """);
+
+        m1.Add(
+            """
+            IF OBJECT_ID(N'[Tags]') IS NULL
+            BEGIN
+                CREATE TABLE [dbo].[Tags](
+                    [TagId] [uniqueidentifier] NOT NULL,
+                    [TenantId] [uniqueidentifier] NOT NULL,
+                    [Name] [nvarchar](200) NOT NULL,
+                    [Style] [nvarchar](max) NULL,
+                    [Enabled] [bit] NOT NULL,
+                    [UseInAppointments] [bit] NOT NULL,
+                    [UseInEmailTemplates] [bit] NOT NULL,
+                    [UseInServices] [bit] NOT NULL,
+                    [Added] [datetime] NOT NULL,
+                    [AddedBy] [nvarchar](100) NULL,
+                    [LastModified] [datetime] NOT NULL,
+                    [LastModifiedBy] [nvarchar](100) NULL,
+                    [Deleted] [bit] NOT NULL,
+                    [DeletedAt] [datetime] NULL,
+                    CONSTRAINT [PK_Tags] PRIMARY KEY CLUSTERED ([TagId] ASC)
+                    WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+                ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+            END
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """
@@ -284,6 +325,17 @@ public partial class DataMigrations
 
 
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_NAME='FK_TagItems_Tags')
+            BEGIN
+            	ALTER TABLE [dbo].[TagItems]  WITH CHECK ADD  CONSTRAINT [FK_TagItems_Tags] FOREIGN KEY([TagId])
+                REFERENCES [dbo].[Tags] ([TagId])
+                ALTER TABLE [dbo].[TagItems] CHECK CONSTRAINT [FK_TagItems_Tags]
+            END
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """

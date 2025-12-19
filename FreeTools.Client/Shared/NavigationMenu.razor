@@ -297,6 +297,18 @@
             }
 
             
+            // {{ModuleItemStart:Tags}}
+            if (Model.User.Admin && Model.FeatureEnabledTags) {
+                output.Add(new DataObjects.MenuItem {
+                    Title = Helpers.Text("Tags"),
+                    Icon = "Tags",
+                    PageNames = new List<string> { "edittag", "tags" },
+                    url = Helpers.BuildUrl("Settings/Tags"),
+                    SortOrder = 1000,
+                    AppAdminOnly = false,
+                });
+            }
+            // {{ModuleItemEnd:Tags}}
 
             if (Model.User.AppAdmin) {
                 output.Add(new DataObjects.MenuItem {

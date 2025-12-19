@@ -98,6 +98,30 @@ public partial class DataAccess
             { "TestPlugin", "Test Plugin" },
 
 
+            // {{ModuleItemStart:Tags}}
+            // Tags
+            { "AddNewTag", "Add a New Tag" },
+            { "AddTag", "Add a Tag" },
+            { "CurrentTags", "Current Tags" },
+            { "EditTag", "Edit Tag" },
+            { "ManageTags", "Manage Tags" },
+            { "NoTagsSelected", "No Tags Have Been Selected" },
+            { "SelectTags", "Select Tags" },
+            { "SelectTagsToAdd", "Select Tags to Add" },
+            { "Tag", "Tag" },
+            { "TagCustomStyle", "Or Write Your Own Custom CSS" },
+            { "TagModules", "Modules" },
+            { "TagMustBeEnabledForAtLeastOneModule", "A tag must be enabled for at least one module." },
+            { "TagName", "Name" },
+            { "TagPreview", "Preview" },
+            { "Tags", "Tags" },
+            { "TagSelectColor", "Select a Color" },
+            { "TagStyle", "Style" },
+            { "TagStyleInfo", "Enter any HTML style info without the style name (eg: background-color:red; color:#fff;)" },
+            { "TagUseInAppointments", "Use in Appointments" },
+            { "TagUseInEmailTemplates", "Use in Email Templates" },
+            { "TagUseInServices", "Use in Services" },
+            // {{ModuleItemEnd:Tags}}
 
             // UDF Labels
             { "FeatureOptInUdf", "Use the User-Defined Fields" },

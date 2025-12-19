@@ -546,6 +546,11 @@
                     }
                     break;
 
+                // {{ModuleItemStart:Tags}}
+                case DataObjects.SignalRUpdateType.Tag:
+                    await Helpers.LoadTags();
+                    break;
+                // {{ModuleItemEnd:Tags}}
 
                 case DataObjects.SignalRUpdateType.Tenant:
                     switch (message) {
@@ -604,6 +609,11 @@
 
 
 
+                        // {{ModuleItemStart:Tags}}
+                        case "tag":
+                            await Helpers.LoadTags();
+                            break;
+                        // {{ModuleItemEnd:Tags}}
 
                         case "user":
                             await Helpers.ReloadTenantUsers();
