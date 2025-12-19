@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeFreeTools.exe" />
+    <File Path="Rename FreeFreeTools.exe" />
+  </Folder>
+  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="6E0D8FD9-4CCC-4CB8-B203-DC150EDA6BCE" />
+  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="ECD74EC9-1AE2-405A-8216-C1080F8098E5" />
+  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="D2EE6B54-A12F-4AE0-8C57-69D398A1F0F6" />
+  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="0C54B8C8-393E-4986-A7FE-9776E7019350" />
+  <Project Path="FreeTools.Client/FreeTools.Client.csproj" />
+  <Project Path="FreeTools/FreeTools.csproj" />
+</Solution>
