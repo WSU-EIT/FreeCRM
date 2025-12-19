@@ -22,6 +22,7 @@ public partial interface IDataAccess
     bool BooleanValue(bool? value);
     string BytesToFileSizeLabel(long? bytes, List<string>? labels = null);
     string CleanHtml(string? html);
+    IConfigurationHelper? ConfigurationHelper { get; }
     string ConnectionString(bool full = false);
     string ConnectionStringReport(string input);
     string CookiePrefix { get; }
@@ -31,6 +32,7 @@ public partial interface IDataAccess
     string CultureCodeDisplay(string cc);
     Guid? CurrentUserId(DataObjects.User? user);
     string? CurrentUserIdString(DataObjects.User? user);
+    EFDataModel Data { get; }
     string DatabaseType { get; }
     DateTime? DateOnlyToDateTime(DateOnly? dateOnly);
     public DateOnly? DateTimeToDateOnly(DateTime? dateTime);
@@ -91,6 +93,7 @@ public partial interface IDataAccess
     void UpdateApplicationURL(string? url);
     string UrlDecode(string? input);
     string UrlEncode(string? input);
+    bool UseBackgroundService { get; }
     bool UseTenantCodeInUrl { get; }
     string Version { get; }
     DataObjects.VersionInfo VersionInfo { get; }
@@ -204,13 +207,15 @@ public partial class DataAccess
     private DataObjects.ApplicationSettingsUpdate AppSettings
     {
         get {
-            return new DataObjects.ApplicationSettingsUpdate {
+            var output = new DataObjects.ApplicationSettingsUpdate {
                 ApplicationURL = ApplicationURL,
                 DefaultTenantCode = DefaultTenantCode,
                 MaintenanceMode = MaintenanceMode,
                 ShowTenantListingWhenMissingTenantCode = ShowTenantListingWhenMissingTenantCode,
                 UseTenantCodeInUrl = UseTenantCodeInUrl,
             };
+
+            return GetApplicationSettingsUpdateApp(output);
         }
     }
 
@@ -277,6 +282,18 @@ public partial class DataAccess
             }
         }
         return output;
+    }
+
+    public IConfigurationHelper? ConfigurationHelper {
+        get {
+            IConfigurationHelper? output = null;
+
+            if (_serviceProvider != null) {
+                output = _serviceProvider.GetRequiredService<IConfigurationHelper>();
+            }
+
+            return output;
+        }
     }
 
     private List<string> ConcatenateErrorMessages(DataObjects.User ReportedBy,
@@ -448,6 +465,12 @@ public partial class DataAccess
         return user != null ? user.UserId.ToString() : null;
     }
 
+    public EFDataModel Data {
+        get {
+            return data;
+        }
+    }
+
     public string DatabaseType {
         get {
             return _databaseType;
@@ -543,7 +566,7 @@ public partial class DataAccess
         try {
 
             // Other items need to call their delete method to get all related data.
-            var departmentGroups = await data.DepartmentGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt > OlderThan)).ToListAsync();
+            var departmentGroups = await data.DepartmentGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(departmentGroups != null && departmentGroups.Any()) {
                 foreach(var rec in departmentGroups) {
                     var result = await DeleteDepartmentGroup(rec.DepartmentGroupId, null, true);
@@ -554,7 +577,7 @@ public partial class DataAccess
                 }
             }
 
-            var departments = await data.Departments.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt > OlderThan)).ToListAsync();
+            var departments = await data.Departments.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(departments != null && departments.Any()) {
                 foreach(var rec in departments) {
                     var result = await DeleteDepartment(rec.DepartmentId, null, true);
@@ -566,7 +589,7 @@ public partial class DataAccess
             }
 
 
-            var fileStorage = await data.FileStorages.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt > OlderThan)).ToListAsync();
+            var fileStorage = await data.FileStorages.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if (fileStorage != null && fileStorage.Any()) {
                 foreach (var rec in fileStorage) {
                     var result = await DeleteFileStorage(rec.FileId, null, true);
@@ -580,7 +603,7 @@ public partial class DataAccess
 
 
 
-            var userGroups = await data.UserGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt > OlderThan)).ToListAsync();
+            var userGroups = await data.UserGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(userGroups != null &&  userGroups.Any()) {
                 foreach (var rec in userGroups) {
                     var result = await DeleteUserGroup(rec.GroupId, null, true);
@@ -591,7 +614,7 @@ public partial class DataAccess
                 }
             }
 
-            var users = await data.Users.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt > OlderThan)).ToListAsync();
+            var users = await data.Users.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(users != null && users.Any()) {
                 foreach(var rec in users) { 
                     var result = await DeleteUser(rec.UserId, null, true);
@@ -863,6 +886,7 @@ public partial class DataAccess
         output.TenantId = Guid.Empty;
         output.Tenants = new List<DataObjects.Tenant>();
         output.UseCustomAuthenticationProviderFromAdminAccount = UseCustomAuthenticationProviderFromAdminAccount;
+        output.UseBackgroundService = _useBackgroundService;
         output.User = new DataObjects.User();
         output.Users = new List<DataObjects.User>();
         output.UseTenantCodeInUrl = UseTenantCodeInUrl;
@@ -933,6 +957,7 @@ public partial class DataAccess
             output.TenantId = CurrentUser.TenantId;
             output.Tenants = tenants;
             output.UseCustomAuthenticationProviderFromAdminAccount = UseCustomAuthenticationProviderFromAdminAccount;
+            output.UseBackgroundService = _useBackgroundService;
             output.User = CurrentUser;
             output.Users = users;
             output.UseTenantCodeInUrl = UseTenantCodeInUrl;
@@ -975,6 +1000,7 @@ public partial class DataAccess
             output.TenantId = tenant.TenantId;
             output.Tenants = new List<DataObjects.Tenant>{ tenant };
             output.UseCustomAuthenticationProviderFromAdminAccount = UseCustomAuthenticationProviderFromAdminAccount;
+            output.UseBackgroundService = _useBackgroundService;
             output.User = new DataObjects.User();
             output.Users = new List<DataObjects.User>();
             output.UseTenantCodeInUrl = UseTenantCodeInUrl;
@@ -2092,6 +2118,12 @@ public partial class DataAccess
         }
 
         return output;
+    }
+
+    public bool UseBackgroundService {
+        get {
+            return _useBackgroundService;
+        }
     }
 
     public bool UseTenantCodeInUrl

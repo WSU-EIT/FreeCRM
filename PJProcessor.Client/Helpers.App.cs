@@ -43,6 +43,9 @@ public static partial class Helpers
             //case "this":
             //    output = deletedRecords.That;
             //    break;
+
+            default:
+                break;
         }
 
         return output;
@@ -61,6 +64,9 @@ public static partial class Helpers
             //case "this":
             //    output = "That";
             //    break;
+
+            default:
+                break;
         }
 
         return output;
