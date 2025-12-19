@@ -35,11 +35,9 @@ public partial class User
 
     public bool Admin { get; set; }
 
-    public bool CanBeScheduled { get; set; }
 
     public bool ManageFiles { get; set; }
 
-    public bool ManageAppointments { get; set; }
 
     public string? Password { get; set; }
 
