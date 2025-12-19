@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>173279c3-ba93-4803-b8a1-e48875213d42</UserSecretsId>
+    <UserSecretsId>16d65a3c-5099-4e35-b4c2-a1bcdbdde611</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,19 +14,19 @@
     <ProjectReference Include="..\FreeManager.Plugins\FreeManager.Plugins.csproj" />
     <ProjectReference Include="..\FreeManager.Client\FreeManager.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.1" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Update="Plugins\ExampleBackgroundProcess.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Plugins\Example1.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

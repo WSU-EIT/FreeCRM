@@ -141,7 +141,7 @@ public partial class DataMigrations
 
 
 
-        m1.Add(
+        var usersTable =
             """
             CREATE TABLE IF NOT EXISTS "Users" (
                 "UserId" uuid NOT NULL,
@@ -159,9 +159,13 @@ public partial class DataMigrations
                 "LastLogin" TIMESTAMP,
                 "LastLoginSource" character varying(50),
                 "Admin" boolean NOT NULL,
-                "CanBeScheduled" boolean NOT NULL,
+            
+            """;
+
+
+        usersTable +=
+            """
                 "ManageFiles" boolean NOT NULL,
-                "ManageAppointments" boolean NOT NULL,
                 "Password" text,
                 "PreventPasswordChange" boolean NOT NULL,
                 "FailedLoginAttempts" integer,
@@ -188,7 +192,9 @@ public partial class DataMigrations
                 CONSTRAINT "IX_Users_DepartmentId" FOREIGN KEY ("DepartmentId") REFERENCES "Departments" ("DepartmentId"),
                 CONSTRAINT "IX_Users_TenantId" FOREIGN KEY ("TenantId") REFERENCES "Tenants" ("TenantId")
             );
-            """);
+            """;
+
+        m1.Add(usersTable);
 
 
         m1.Add(
