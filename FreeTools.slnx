@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFreeTools.exe" />
     <File Path="Rename FreeFreeTools.exe" />
   </Folder>
-  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="A021050D-EAC6-4CA1-B629-ED25CBC2047D" />
-  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="58EC82DA-C9ED-4039-B6BE-21B492D5ABA6" />
-  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="B296E1DB-7423-4C96-AAC3-A46BA84F7C40" />
-  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="5E833594-C929-4BF0-9A7C-7C797115E5C9" />
+  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="6F2E7739-2196-4D47-A6CA-41F42E6F6E76" />
+  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="04D31F42-EFD0-40B5-AC9B-B41A4B68F97D" />
+  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="67FE36AB-F4D3-48B1-9D96-002A00E5383F" />
+  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="74046EDB-1F46-4F2D-B616-84E7499FE830" />
   <Project Path="FreeTools.Client/FreeTools.Client.csproj" />
   <Project Path="FreeTools/FreeTools.csproj" />
 </Solution>
