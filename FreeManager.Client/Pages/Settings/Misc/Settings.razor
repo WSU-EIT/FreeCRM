@@ -322,6 +322,14 @@
                     
 
 
+                    <!-- {{ModuleItemStart:Tags}} -->
+                    @if (_availableOptInOptions.Contains("tags")) {
+                        <div class="mb-2 form-check form-switch">
+                            <input type="checkbox" role="switch" class="form-check-input" id="opt-in-tags" @bind="_optInTags" />
+                            <label for="opt-in-tags" class="form-check-label"><Language Tag="FeatureOptInTags" /></label>
+                        </div>
+                    }
+                    <!-- {{ModuleItemEnd:Tags}} -->
 
                     @if (_availableOptInOptions.Contains("themes")) {
                         <div class="mb-2 form-check form-switch">
@@ -523,6 +531,9 @@
     protected bool _optInEmailTemplates = false;
     protected bool _optInEmployeeId = false;
     protected bool _optInFiles = false;
+    // {{ModuleItemStart:Tags}}
+    protected bool _optInTags = false;
+    // {{ModuleItemEnd:Tags}}
     protected bool _optInThemes = false;
     protected bool _optInUDF = false;
     protected bool _optInUserGroups = false;
@@ -700,6 +711,9 @@
                 _optInEmailTemplates = _tenant.TenantSettings.ModuleOptInElements.Contains("emailtemplates");
                 _optInEmployeeId = _tenant.TenantSettings.ModuleOptInElements.Contains("employeeid");
                 _optInFiles = _tenant.TenantSettings.ModuleOptInElements.Contains("files");
+                // {{ModuleItemStart:Tags}}
+                _optInTags = _tenant.TenantSettings.ModuleOptInElements.Contains("tags");
+                // {{ModuleItemEnd:Tags}}
                 _optInThemes = _tenant.TenantSettings.ModuleOptInElements.Contains("themes");
                 _optInUDF = _tenant.TenantSettings.ModuleOptInElements.Contains("udf");
                 _optInUserGroups = _tenant.TenantSettings.ModuleOptInElements.Contains("usergroups");
@@ -752,6 +766,9 @@
         if (_availableOptInOptions.Contains("emailtemplates") && _optInEmailTemplates) { optIn.Add("emailtemplates"); }
         if (_availableOptInOptions.Contains("employeeid") && _optInEmployeeId) { optIn.Add("employeeid"); }
         if (_availableOptInOptions.Contains("files") && _optInFiles) { optIn.Add("files"); }
+        // {{ModuleItemStart:Tags}}
+        if (_availableOptInOptions.Contains("tags") && _optInTags) { optIn.Add("tags"); }
+        // {{ModuleItemEnd:Tags}}
         if (_availableOptInOptions.Contains("themes") && _optInThemes) { optIn.Add("themes"); }
         if (_availableOptInOptions.Contains("udf") && _optInUDF) { optIn.Add("udf"); }
         if (_availableOptInOptions.Contains("usergroups") && _optInUserGroups) { optIn.Add("usergroups"); }

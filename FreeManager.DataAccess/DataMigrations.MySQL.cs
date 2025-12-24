@@ -88,6 +88,25 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE TABLE IF NOT EXISTS `Tags` (
+                `TagId` char(36) NOT NULL,
+                `TenantId` char(36) NOT NULL,
+                `Name` varchar(200) NOT NULL,
+                `Style` longtext NULL,
+                `Enabled` tinyint(1) NOT NULL,
+                `Added` datetime NOT NULL,
+                `AddedBy` varchar(100) NULL,
+                `LastModified` datetime NOT NULL,
+                `LastModifiedBy` varchar(100) NULL,
+                `Deleted` tinyint(1) NOT NULL,
+                `DeletedAt` datetime NULL,
+                PRIMARY KEY (`TagId`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """
@@ -140,6 +159,19 @@ public partial class DataMigrations
             """);
 
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE TABLE IF NOT EXISTS `TagItems` (
+                `TagItemId` char(36) NOT NULL,
+                `TagId` char(36) NOT NULL,
+                `TenantId` char(36) NOT NULL,
+                `ItemId` char(36) NOT NULL,
+                PRIMARY KEY (`TagItemId`),
+                CONSTRAINT `FK_TagItems_Tags` FOREIGN KEY (`TagId`) REFERENCES `Tags` (`TagId`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         var usersTable =
             """
@@ -243,6 +275,12 @@ public partial class DataMigrations
 
 
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE INDEX `IX_TagItems_TagId` ON `TagItems` (`TagId`);
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """

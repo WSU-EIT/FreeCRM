@@ -170,6 +170,9 @@ public partial class DataObjects
         public int DepartmentGroups { get; set; }
         public int Departments { get; set; }
         public int FileStorage { get; set; }
+        // {{ModuleItemStart:Tags}}
+        public int Tags { get; set; }
+        // {{ModuleItemEnd:Tags}}
         public int UserGroups { get; set; }
         public int Users { get; set; }
     }
@@ -187,6 +190,9 @@ public partial class DataObjects
         public List<DeletedRecordItem> DepartmentGroups { get; set; } = new List<DeletedRecordItem>();
         public List<DeletedRecordItem> Departments { get; set; } = new List<DeletedRecordItem>();
         public List<DeletedRecordItem> FileStorage { get; set; } = new List<DeletedRecordItem>();
+        // {{ModuleItemStart:Tags}}
+        public List<DeletedRecordItem> Tags { get; set; } = new List<DeletedRecordItem>();
+        // {{ModuleItemEnd:Tags}}
         public List<DeletedRecordItem> UserGroups { get; set; } = new List<DeletedRecordItem>();
         public List<DeletedRecordItem> Users { get; set; } = new List<DeletedRecordItem>();
     }

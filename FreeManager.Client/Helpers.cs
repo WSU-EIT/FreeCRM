@@ -1,5 +1,8 @@
 using BlazorBootstrap;
 using Blazored.LocalStorage;
+// {{ModuleItemStart:Tags}}
+using FreeManager.Client.Pages.Settings.Tags;
+// {{ModuleItemEnd:Tags}}
 using FreeManager.Client.Pages.Settings.Users;
 using FreeManager.Client.Shared;
 using Humanizer;
@@ -1877,6 +1880,9 @@ public static partial class Helpers
 
 
 
+        // {{ModuleItemStart:Tags}}
+        Model.DeletedRecordCounts.Tags = output.Tags.Count();
+        // {{ModuleItemEnd:Tags}}
 
         Model.DeletedRecordCounts.UserGroups = output.UserGroups.Count();
         Model.DeletedRecordCounts.Users = output.Users.Count();
@@ -1896,6 +1902,9 @@ public static partial class Helpers
             "Department",
             "DepartmentGroup",
             "FileStorage",
+            // {{ModuleItemStart:Tags}}
+            "Tag",
+            // {{ModuleItemEnd:Tags}}
             "User",
             "UserGroup"
         };
@@ -2784,6 +2793,31 @@ public static partial class Helpers
         return output;
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Gets a Tag by its unique id.
+    /// </summary>
+    /// <param name="tagId">The unique id of the Tag.</param>
+    /// <returns>A nullable Tag object.</returns>
+    public static async Task<DataObjects.Tag?> GetTag(Guid? tagId)
+    {
+        DataObjects.Tag? output = null;
+
+        if (tagId.HasValue) {
+            output = Model.Tags.FirstOrDefault(x => x.TagId == tagId);
+
+            if (output == null) {
+                output = await GetOrPost<DataObjects.Tag>("api/Data/GetTag/" + tagId.ToString());
+
+                if (output != null) {
+                    Model.Tags.Add(output);
+                }
+            }
+        }
+
+        return output;
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Gets a User object for the given unique user id.
@@ -3702,6 +3736,16 @@ public static partial class Helpers
 
 
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Loads the Tags from the API endpoint.
+    /// </summary>
+    public async static Task LoadTags()
+    {
+        var items = await GetOrPost<List<DataObjects.Tag>>("api/Data/GetTags");
+        Model.Tags = items != null && items.Any() ? items : new List<DataObjects.Tag>();
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Loads the Tenant List from the API endpoint.
@@ -4539,6 +4583,67 @@ public static partial class Helpers
         return output;
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Renders a tag as HTML.
+    /// </summary>
+    /// <param name="tag">The tag to render.</param>
+    /// <returns>The HTML for the tag.</returns>
+    public static string RenderTag(DataObjects.Tag tag)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(tag.Name)) {
+            if (!String.IsNullOrWhiteSpace(tag.Style)) {
+                string style = tag.Style;
+
+                if (TagColors.Contains(style)) {
+                    output += "<div class=\"tag tag-" + style.ToLower() + "\">" + tag.Name + "</div>";
+                } else {
+                    output += "<div class=\"tag\"" + (!String.IsNullOrWhiteSpace(tag.Style) ? " style=\"" + tag.Style + "\"" : "") + ">" +
+                    tag.Name +
+                    "</div>";
+                }
+            } else {
+                output += "<div class=\"tag\">" +
+                tag.Name +
+                "</div>";
+            }
+
+
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Renders a collection of tags as HTML.
+    /// </summary>
+    /// <param name="TagIds">The collection of tag ids.</param>
+    /// <param name="SortAlphabetically">Option to sort the results alphabetically.</param>
+    /// <returns>The rendered HTML for the tags.</returns>
+    public static string RenderTags(List<Guid>? TagIds, bool SortAlphabetically = true)
+    {
+        string output = String.Empty;
+
+        if (SortAlphabetically) {
+            TagIds = SortTagList(TagIds);
+        }
+
+        if (TagIds != null && TagIds.Any()) {
+            List<DataObjects.OptionPair> tags = new List<DataObjects.OptionPair>();
+
+            foreach (var tagId in TagIds) {
+                var tag = Model.Tags.FirstOrDefault(x => x.TagId == tagId);
+                if (tag != null) {
+                    output += RenderTag(tag);
+                }
+            }
+        }
+
+        return output;
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Reloads the entire data model for the selected user id.
@@ -4880,6 +4985,47 @@ public static partial class Helpers
         });
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Shows a dialog to select tags.
+    /// </summary>
+    /// <param name="OnComplete">The Delegate that will be invoked and received the selected tags.</param>
+    /// <param name="Title">An optional title for the dialog.</param>
+    /// <param name="ExistingTags">An optional collection of any existing selected tags.</param>
+    /// <param name="ShowCurrentTags">An option to show the currently-selected tags.</param>
+    /// <param name="PreventDeselctingSelectedTags">An option to prevent the user from deselecting existing tags.</param>
+    public static async Task SelectTags(Delegate OnComplete,
+        string Title = "",
+        DataObjects.TagModule? Module = null,
+        List<Guid>? ExistingTags = null,
+        bool ShowCurrentTags = true,
+        bool PreventDeselctingSelectedTags = false)
+    {
+
+        if (String.IsNullOrWhiteSpace(Title)) {
+            Title = Text("SelectTags");
+        }
+
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("OnComplete", OnComplete);
+
+        if (Module != null) {
+            parameters.Add("Module", Module);
+        }
+
+        if (ExistingTags != null) {
+            parameters.Add("SelectedTags", ExistingTags);
+        }
+
+        parameters.Add("ShowCurrentTags", ShowCurrentTags);
+        parameters.Add("PreventDeselctingSelectedTags", PreventDeselctingSelectedTags);
+
+        await DialogService.OpenAsync<TagSelector>(Title, parameters, new Radzen.DialogOptions() {
+            AutoFocusFirstElement = false,
+            Draggable = false,
+        });
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Serializes an object to JSON using the System.Text.Json.JsonSerializer.
@@ -4975,6 +5121,38 @@ public static partial class Helpers
         null, millisecondsDelay, System.Threading.Timeout.Infinite);
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Sorts a list of tag by their names.
+    /// </summary>
+    /// <param name="TagIds">A list of Guids representing tags.</param>
+    /// <returns>The list of Guids sorted by the name of the tags.</returns>
+    public static List<Guid>? SortTagList(List<Guid>? TagIds)
+    {
+        var output = TagIds;
+
+        if (TagIds != null && TagIds.Any()) {
+            List<DataObjects.OptionPair> items = new List<DataObjects.OptionPair>();
+            foreach (var tagId in TagIds) {
+                var tag = Model.Tags.FirstOrDefault(x => x.TagId == tagId);
+                if (tag != null) {
+                    items.Add(new DataObjects.OptionPair {
+                        Id = tag.Name,
+                        Value = tag.TagId.ToString(),
+                    });
+                }
+            }
+
+            output = items
+                .OrderBy(x => x.Id)
+                .ToList()
+                .Select(x => new Guid(String.Empty + x.Value)).ToList();
+        }
+
+
+        return output;
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Returns a spacer image with a given width.
@@ -5114,6 +5292,116 @@ public static partial class Helpers
         _switchingTenant = false;
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// The list of colors for tags.
+    /// </summary>
+    public static List<string> TagColors {
+        get {
+            return new List<string> {
+                "LIGHTCORAL", "SALMON", "DARKSALMON", "LIGHTSALMON", "CRIMSON",
+                "RED", "FIREBRICK", "DARKRED", "PINK", "LIGHTPINK", "HOTPINK",
+                "DEEPPINK", "MEDIUMVIOLETRED", "PALEVIOLETRED",
+                "CORAL", "TOMATO", "ORANGERED", "DARKORANGE", "ORANGE",
+                "GOLD", "YELLOW", "LIGHTYELLOW", "LEMONCHIFFON",
+                "LIGHTGOLDENRODYELLOW", "PAPAYAWHIP", "MOCCASIN", "PEACHPUFF",
+                "PALEGOLDENROD", "KHAKI", "DARKKHAKI", "LAVENDER", "THISTLE",
+                "PLUM", "VIOLET", "ORCHID", "FUCHSIA", "MAGENTA", "MEDIUMORCHID",
+                "MEDIUMPURPLE", "REBECCAPURPLE", "BLUEVIOLET", "DARKVIOLET",
+                "DARKORCHID", "DARKMAGENTA", "PURPLE", "INDIGO", "SLATEBLUE",
+                "DARKSLATEBLUE", "MEDIUMSLATEBLUE", "GREENYELLOW", "CHARTREUSE",
+                "LAWNGREEN", "LIME", "LIMEGREEN", "PALEGREEN", "LIGHTGREEN",
+                "MEDIUMSPRINGGREEN", "SPRINGGREEN", "MEDIUMSEAGREEN", "SEAGREEN",
+                "FORESTGREEN", "GREEN", "DARKGREEN", "YELLOWGREEN", "OLIVEDRAB",
+                "OLIVE", "DARKOLIVEGREEN", "MEDIUMAQUAMARINE", "DARKSEAGREEN",
+                "LIGHTSEAGREEN", "DARKCYAN", "TEAL", "AQUA", "CYAN", "LIGHTCYAN",
+                "PALETURQUOISE", "AQUAMARINE", "TURQUOISE", "MEDIUMTURQUOISE",
+                "DARKTURQUOISE", "CADETBLUE", "STEELBLUE", "LIGHTSTEELBLUE",
+                "POWDERBLUE", "LIGHTBLUE", "SKYBLUE", "LIGHTSKYBLUE", "DEEPSKYBLUE",
+                "DODGERBLUE", "CORNFLOWERBLUE", "ROYALBLUE",
+                "BLUE", "MEDIUMBLUE", "DARKBLUE", "NAVY", "MIDNIGHTBLUE",
+                "CORNSILK", "BLANCHEDALMOND", "BISQUE", "NAVAJOWHITE", "WHEAT",
+                "BURLYWOOD", "TAN", "ROSYBROWN", "SANDYBROWN", "GOLDENROD",
+                "DARKGOLDENROD", "PERU", "CHOCOLATE", "SADDLEBROWN", "SIENNA",
+                "BROWN", "MAROON", "MISTYROSE", "GAINSBORO", "LIGHTGRAY",
+                "SILVER", "DARKGRAY", "GRAY", "DIMGRAY", "LIGHTSLATEGRAY",
+                "SLATEGRAY", "DARKSLATEGRAY", "BLACK" };
+        }
+    }
+
+    /// <summary>
+    /// Converts a CSV list of tag ids to a list of tag names.
+    /// </summary>
+    /// <param name="TagsAsCsvString">A string containing a CSV list of tag ids.</param>
+    /// <returns>A list of tag names.</returns>
+    public static async Task<string> TagsListFromIds(string? TagsAsCsvString)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(TagsAsCsvString)) {
+            var list = TagsAsCsvString.Split(',').Select(x => x.Trim()).ToList();
+            output = await TagsListFromIds(list);
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Converts a list of strings containing tag id to a list of tag names.
+    /// </summary>
+    /// <param name="Tags">The list of strings of tag ids.</param>
+    /// <returns>A list of tag names.</returns>
+    public static async Task<string> TagsListFromIds(List<string>? Tags)
+    {
+        string output = String.Empty;
+
+        if (Tags != null && Tags.Any()) {
+            if (!Model.Tags.Any()) {
+                await LoadTags();
+            }
+
+            foreach (var tagId in Tags) {
+                var tag = Model.Tags.FirstOrDefault(x => x.TagId.ToString() == tagId);
+                if (tag != null && !String.IsNullOrWhiteSpace(tag.Name)) {
+                    if (!String.IsNullOrEmpty(output)) {
+                        output += ", ";
+                    }
+                    output += tag.Name;
+                }
+            }
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Converts a list of tag ids to a list of tag names.
+    /// </summary>
+    /// <param name="Tags">The list of tag ids.</param>
+    /// <returns>A list of tag names.</returns>
+    public static async Task<string> TagsListFromIds(List<Guid>? Tags)
+    {
+        string output = String.Empty;
+
+        if (Tags != null && Tags.Any()) {
+            if (!Model.Tags.Any()) {
+                await LoadTags();
+            }
+
+            foreach (var tagId in Tags) {
+                var tag = Model.Tags.FirstOrDefault(x => x.TagId == tagId);
+                if (tag != null && !String.IsNullOrWhiteSpace(tag.Name)) {
+                    if (!String.IsNullOrEmpty(output)) {
+                        output += ", ";
+                    }
+                    output += tag.Name;
+                }
+            }
+        }
+
+        return output;
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Gets the name of a tenant from the unique id.

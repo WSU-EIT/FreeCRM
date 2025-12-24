@@ -45,6 +45,13 @@ public partial class DataAccess
 
                 var users = data.Users.Where(x => x.TenantId == TenantId).Select(o => o.UserId).ToList();
 
+                // {{ModuleItemStart:Tags}}
+                data.TagItems.RemoveRange(data.TagItems.Where(x => x.TenantId == TenantId));
+                await data.SaveChangesAsync();
+
+                data.Tags.RemoveRange(data.Tags.Where(x => x.TenantId == TenantId));
+                await data.SaveChangesAsync();
+                // {{ModuleItemEnd:Tags}}
 
 
 

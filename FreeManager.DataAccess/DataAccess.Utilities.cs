@@ -602,6 +602,22 @@ public partial class DataAccess
 
 
 
+            // {{ModuleItemStart:Tags}}
+            // For tags, remove any related items first, then delete the tags.
+            var tags = await data.Tags.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
+            if(tags != null && tags.Any()) {
+                foreach(var rec in tags) {
+                    await data.Database.ExecuteSqlRawAsync("DELETE FROM TagItems WHERE TagId={0}", rec.TagId);
+                    await data.SaveChangesAsync();
+
+                    var result = await DeleteTag(rec.TagId, null, true);
+                    if (!result.Result) {
+                        output.Messages = result.Messages;
+                        return output;
+                    }
+                }
+            }
+            // {{ModuleItemEnd:Tags}}
 
             var userGroups = await data.UserGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(userGroups != null &&  userGroups.Any()) {
@@ -689,6 +705,11 @@ public partial class DataAccess
 
 
 
+                // {{ModuleItemStart:Tags}}
+                case "tag":
+                    output = await DeleteTag(RecordId, CurrentUser, true);
+                    break;
+                // {{ModuleItemEnd:Tags}}
 
                 case "usergroup":
                     output = await DeleteUserGroup(RecordId, CurrentUser, true);
@@ -1019,6 +1040,9 @@ public partial class DataAccess
         var departmentGroups = await data.DepartmentGroups.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
         var departments = await data.Departments.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
         var fileStorage = await data.FileStorages.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
+        // {{ModuleItemStart:Tags}}
+        var tags = await data.Tags.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
+        // {{ModuleItemEnd:Tags}}
         var userGroups = await data.UserGroups.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
         var users = await data.Users.CountAsync(x => x.TenantId == TenantId && x.Deleted == true);
 
@@ -1026,6 +1050,9 @@ public partial class DataAccess
             DepartmentGroups = departmentGroups,
             Departments = departments,
             FileStorage = fileStorage,
+            // {{ModuleItemStart:Tags}}
+            Tags = tags,
+            // {{ModuleItemEnd:Tags}}
             UserGroups = userGroups,
             Users = users,
         };
@@ -1089,6 +1116,23 @@ public partial class DataAccess
 
 
 
+        // {{ModuleItemStart:Tags}}
+        List<DataObjects.DeletedRecordItem> tags = new List<DataObjects.DeletedRecordItem>();
+        var tagRecords = await data.Tags
+            .Where(x => x.TenantId == TenantId && x.Deleted == true)
+            .Select(x => new { x.DeletedAt, x.LastModified, x.LastModifiedBy, x.Name, x.TagId})
+            .ToListAsync();
+        if(tagRecords != null && tagRecords.Any()) {
+            foreach(var item in tagRecords) {
+                tags.Add(new DataObjects.DeletedRecordItem {
+                    DeletedAt = item.DeletedAt.HasValue ? (DateTime)item.DeletedAt : DateTime.Now,
+                    DeletedBy = LastModifiedDisplayName(item.LastModifiedBy),
+                    Display = item.Name,
+                    ItemId = item.TagId,
+                });
+            }
+        }
+        // {{ModuleItemEnd:Tags}}
 
         List<DataObjects.DeletedRecordItem> userGroups = new List<DataObjects.DeletedRecordItem>();
         var userGroupRecords = await data.UserGroups
@@ -1126,6 +1170,9 @@ public partial class DataAccess
             DepartmentGroups = departmentGroups,
             Departments = departments,
             FileStorage = fileStorage,
+            // {{ModuleItemStart:Tags}}
+            Tags = tags,
+            // {{ModuleItemEnd:Tags}}
             UserGroups = userGroups,
             Users = users,
         };
@@ -1992,6 +2039,22 @@ public partial class DataAccess
 
 
 
+                    // {{ModuleItemStart:Tags}}
+                    case "tag":
+                        var recTag = await data.Tags.FirstOrDefaultAsync(x => x.TagId == RecordId);
+                        if (recTag != null) {
+                            recTag.Deleted = false;
+                            recTag.DeletedAt = null;
+                            await data.SaveChangesAsync();
+                            output.Result = true;
+                            sendSignalRUpdate = true;
+
+                            obj = await GetTag(RecordId, CurrentUser);
+                        } else {
+                            output.Messages.Add(Type + " Record '" + RecordId.ToString() + "' Not Found");
+                        }
+                        break;
+                    // {{ModuleItemEnd:Tags}}
 
                     case "usergroup":
                         var recUserGroup = await data.UserGroups.FirstOrDefaultAsync(x => x.GroupId == RecordId);

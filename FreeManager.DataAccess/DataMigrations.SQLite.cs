@@ -83,6 +83,24 @@ public partial class DataMigrations
             )
             """);
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE TABLE IF NOT EXISTS "Tags" (
+                "TagId" TEXT NOT NULL CONSTRAINT "PK_Tags" PRIMARY KEY,
+                "TenantId" TEXT NOT NULL,
+                "Name" TEXT NOT NULL,
+                "Style" TEXT NULL,
+                "Enabled" INTEGER NOT NULL,
+                "Added" datetime NOT NULL,
+                "AddedBy" TEXT NULL,
+                "LastModified" datetime NOT NULL,
+                "LastModifiedBy" TEXT NULL,
+                "Deleted" INTEGER NOT NULL,
+                "DeletedAt" datetime NULL
+            );
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """
@@ -132,6 +150,18 @@ public partial class DataMigrations
             """);
 
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE TABLE IF NOT EXISTS "TagItems" (
+                "TagItemId" TEXT NOT NULL CONSTRAINT "PK_TagItems" PRIMARY KEY,
+                "TagId" TEXT NOT NULL,
+                "TenantId" TEXT NOT NULL,
+                "ItemId" TEXT NOT NULL,
+                CONSTRAINT "FK_TagItems_Tags" FOREIGN KEY ("TagId") REFERENCES "Tags" ("TagId")
+            );
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         var usersTable =
             """
@@ -233,6 +263,12 @@ public partial class DataMigrations
 
 
 
+        // {{ModuleItemStart:Tags}}
+        m1.Add(
+            """
+            CREATE INDEX "IX_TagItems_TagId" ON "TagItems" ("TagId");
+            """);
+        // {{ModuleItemEnd:Tags}}
 
         m1.Add(
             """

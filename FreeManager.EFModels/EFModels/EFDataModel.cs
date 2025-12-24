@@ -31,6 +31,11 @@ public partial class EFDataModel : DbContext
 
     public virtual DbSet<Setting> Settings { get; set; }
 
+    // {{ModuleItemStart:Tags}}
+    public virtual DbSet<Tag> Tags { get; set; }
+
+    public virtual DbSet<TagItem> TagItems { get; set; }
+    // {{ModuleItemEnd:Tags}}
 
     public virtual DbSet<Tenant> Tenants { get; set; }
 
@@ -127,6 +132,28 @@ public partial class EFDataModel : DbContext
             entity.Property(e => e.SettingType).HasMaxLength(100);
         });
 
+        // {{ModuleItemStart:Tags}}
+        modelBuilder.Entity<Tag>(entity =>
+        {
+            entity.Property(e => e.TagId).ValueGeneratedNever();
+            entity.Property(e => e.Added).HasColumnType("datetime");
+            entity.Property(e => e.AddedBy).HasMaxLength(100);
+            entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+            entity.Property(e => e.LastModified).HasColumnType("datetime");
+            entity.Property(e => e.LastModifiedBy).HasMaxLength(100);
+            entity.Property(e => e.Name).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<TagItem>(entity =>
+        {
+            entity.Property(e => e.TagItemId).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Tag).WithMany(p => p.TagItems)
+                .HasForeignKey(d => d.TagId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_TagItems_Tags");
+        });
+        // {{ModuleItemEnd:Tags}}
 
         modelBuilder.Entity<Tenant>(entity =>
         {

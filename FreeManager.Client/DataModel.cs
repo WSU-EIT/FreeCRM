@@ -87,6 +87,9 @@ public partial class BlazorDataModel
     private List<string> _Subscribers_OnChange = new List<string>();
     private List<string> _Subscribers_OnDotNetHelperHandler = new List<string>();
     private List<string> _Subscribers_OnSignalRUpdate = new List<string>();
+    // {{ModuleItemStart:Tags}}
+    private List<DataObjects.Tag> _Tags = new List<DataObjects.Tag>();
+    // {{ModuleItemEnd:Tags}}
     private DataObjects.Tenant _Tenant = new DataObjects.Tenant();
     private string? _TenantCodeFromUrl;
     private Guid _TenantId = Guid.Empty;
@@ -525,6 +528,14 @@ public partial class BlazorDataModel
 
 
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// Indicates if the Tags feature is enabled.
+    /// </summary>
+    public bool FeatureEnabledTags {
+        get { return FeatureEnabled("tags"); }
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// Indicates if the Themes feature is enabled.
@@ -762,6 +773,9 @@ public partial class BlazorDataModel
                 DeletedRecordCounts.DepartmentGroups > 0 ||
                 DeletedRecordCounts.Departments > 0 ||
                 DeletedRecordCounts.FileStorage > 0 ||
+                // {{ModuleItemStart:Tags}}
+                DeletedRecordCounts.Tags > 0 ||
+                // {{ModuleItemEnd:Tags}}
                 DeletedRecordCounts.UserGroups > 0 ||
                 DeletedRecordCounts.Users > 0
             ) {
@@ -830,6 +844,9 @@ public partial class BlazorDataModel
                 "departments",
                 "employeeid",
                 "files",
+                // {{ModuleItemStart:Tags}}
+                "tags",
+                // {{ModuleItemEnd:Tags}}
                 "themes",
                 "udf",
                 "usergroups",
@@ -1419,6 +1436,21 @@ public partial class BlazorDataModel
         }
     }
 
+    // {{ModuleItemStart:Tags}}
+    /// <summary>
+    /// The list of Tag objects.
+    /// </summary>
+    public List<DataObjects.Tag> Tags {
+        get { return _Tags; }
+        set {
+            if (!ObjectsAreEqual(_Tags, value)) {
+                _Tags = value;
+                _ModelUpdated = DateTime.UtcNow;
+                NotifyDataChanged();
+            }
+        }
+    }
+    // {{ModuleItemEnd:Tags}}
 
     /// <summary>
     /// The current Tenant object.
