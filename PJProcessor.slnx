@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreePJProcessor.exe" />
     <File Path="Rename FreePJProcessor.exe" />
   </Folder>
-  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="49E24C02-272F-48C8-96A2-B216EB3FA19A" />
-  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="B8C9E32E-8BA0-44EF-A722-2DCC9CED4B22" />
-  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="78C89534-912B-4733-A5FC-28AD4A953A32" />
-  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="CC8B2FE0-3977-4FAA-92E3-E31E00A23CB6" />
+  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="6D442DB2-737E-4EE4-9FBE-4D5D90C8F718" />
+  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="815FBCE0-A13C-4337-9702-BB8ED818CCE7" />
+  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="1DDA824F-1578-4279-91F0-CD10368A8251" />
+  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="B8915101-4723-44DA-9909-24013F5147EF" />
   <Project Path="PJProcessor.Client/PJProcessor.Client.csproj" />
   <Project Path="PJProcessor/PJProcessor.csproj" />
 </Solution>
