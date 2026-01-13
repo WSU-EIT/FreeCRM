@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFreePlugins.exe" />
     <File Path="Rename FreeFreePlugins.exe" />
   </Folder>
-  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="953AD0F6-915A-484B-8F07-4643781F8880" />
-  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="E8909FA4-B5E6-4B00-A6A8-8FCB64CB2C75" />
-  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="F7735FB4-3F84-4B3D-987B-084D485CE441" />
-  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="3C4AA7A1-39F5-4F1D-91A6-56BF06D3D45E" />
+  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="DC974487-8D36-48CD-96FB-54E641E2CE0C" />
+  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="834A3027-9F7D-46E8-A8C4-598CB8AEE933" />
+  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="E769DE81-394D-4AC3-8E7B-B413A07033B6" />
+  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="E08FF8F8-F099-4AAD-BA64-56A35B927AEB" />
   <Project Path="FreePlugins.Client/FreePlugins.Client.csproj" />
   <Project Path="FreePlugins/FreePlugins.csproj" />
 </Solution>
