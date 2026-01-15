@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFreeGLBA.exe" />
     <File Path="Rename FreeFreeGLBA.exe" />
   </Folder>
-  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="8E25DF6C-CD3B-4AF6-90F6-7BB34612B38E" />
-  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="B6185A98-E100-4122-9932-AFB6A816E19D" />
-  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="B6F85570-2B91-4A22-A36D-5261292EC8EA" />
-  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="69161A0C-42F1-4B11-B697-9965A16FE0E8" />
+  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="D3CE81F4-6841-46DE-B907-116D20DBAC90" />
+  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="1CAF8D20-1951-40B9-A5DF-9C099E6E4A77" />
+  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="20D6D99F-5B81-489E-9F16-CD3287E6EAD6" />
+  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="F1836820-6182-4B69-BA1E-88D74B1B545D" />
   <Project Path="FreeGLBA.Client/FreeGLBA.Client.csproj" />
   <Project Path="FreeGLBA/FreeGLBA.csproj" />
 </Solution>
