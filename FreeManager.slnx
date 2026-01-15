@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFreeManager.exe" />
     <File Path="Rename FreeFreeManager.exe" />
   </Folder>
-  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="A66B34D5-9F91-4381-86A3-DD4E655F341C" />
-  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="94502297-B965-4DB0-AB2E-9DC7B34EBA2B" />
-  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="6341BBAF-5314-44CC-A9EE-60AF259DEB3D" />
-  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="14094C99-49EE-42A2-8D86-3AD84BE15BBE" />
+  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="01963FB0-7C31-4E9C-9D03-5336CB259D7D" />
+  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="17FBE7CC-1CE4-4995-899D-46C017E8C069" />
+  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="10ADF5A9-DA74-4E2B-8AB3-2F7EEA01ABF0" />
+  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="1EF26342-405D-4AD7-9C03-4247091DCEDC" />
   <Project Path="FreeManager.Client/FreeManager.Client.csproj" />
   <Project Path="FreeManager/FreeManager.csproj" />
 </Solution>
