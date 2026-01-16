@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeAcademicCalendarPetitions.exe" />
     <File Path="Rename FreeAcademicCalendarPetitions.exe" />
   </Folder>
-  <Project Path="AcademicCalendarPetitions.DataAccess/AcademicCalendarPetitions.DataAccess.csproj" Id="EA72C9A3-DC29-48C1-8FC3-26C68150469C" />
-  <Project Path="AcademicCalendarPetitions.DataObjects/AcademicCalendarPetitions.DataObjects.csproj" Id="54858C92-9B46-4FDE-B5AB-0368CF5FC771" />
-  <Project Path="AcademicCalendarPetitions.EFModels/AcademicCalendarPetitions.EFModels.csproj" Id="A9DF7288-D8C1-47DC-8E10-1651BB6226C4" />
-  <Project Path="AcademicCalendarPetitions.Plugins/AcademicCalendarPetitions.Plugins.csproj" Id="96E31A8B-38D6-418C-B5F5-F2AF81180094" />
+  <Project Path="AcademicCalendarPetitions.DataAccess/AcademicCalendarPetitions.DataAccess.csproj" Id="E4189E69-8AEB-4F47-AD8F-1E984A3BB3F6" />
+  <Project Path="AcademicCalendarPetitions.DataObjects/AcademicCalendarPetitions.DataObjects.csproj" Id="DACCCB46-D356-4511-95C6-D9AAEDB8C38C" />
+  <Project Path="AcademicCalendarPetitions.EFModels/AcademicCalendarPetitions.EFModels.csproj" Id="2532241D-EBAF-4F0D-8AE0-42C78BBC177E" />
+  <Project Path="AcademicCalendarPetitions.Plugins/AcademicCalendarPetitions.Plugins.csproj" Id="014C5BFC-210B-4F41-A66C-E603CBAB69F0" />
   <Project Path="AcademicCalendarPetitions.Client/AcademicCalendarPetitions.Client.csproj" />
   <Project Path="AcademicCalendarPetitions/AcademicCalendarPetitions.csproj" />
 </Solution>
