@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFlexCRM.exe" />
     <File Path="Rename FreeFlexCRM.exe" />
   </Folder>
-  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="AE322E5D-DA12-4114-B337-A5A26B831FB6" />
-  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="9D72ABC9-D8AE-42EA-93E3-E01C107BC282" />
-  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="033DDE75-0E2C-4A84-8FDF-27FD56389B96" />
-  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="B6E5DC42-43E3-4CA2-85BB-D6A22A3B1B75" />
+  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="DDE6F9D0-24BF-4702-99B8-10D01538C80C" />
+  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="E11E2302-A5D9-4B21-93FF-BAC3E54CED25" />
+  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="BC0E56DF-4763-4338-BFD5-D9A4DC6C84AF" />
+  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="526E9258-8104-49FB-9DFA-E08D9949BAE9" />
   <Project Path="FlexCRM.Client/FlexCRM.Client.csproj" />
   <Project Path="FlexCRM/FlexCRM.csproj" />
 </Solution>
