@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>8eca5c8a-a39f-4133-a755-fe7856706231</UserSecretsId>
+    <UserSecretsId>5d4818d0-a885-4801-ad9e-302680bcea34</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
