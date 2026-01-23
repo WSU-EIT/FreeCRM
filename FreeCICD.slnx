@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeFreeCICD.exe" />
     <File Path="Rename FreeFreeCICD.exe" />
   </Folder>
-  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="7FC93D4F-2A9B-439F-88DF-9AA69F72A563" />
-  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="0B44A22F-9313-45BF-8A6D-DBDA7F830912" />
-  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="870F1243-AE22-4ADC-92A5-97B9032AD1D6" />
-  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="64A93273-170E-491B-8CE1-885C7A2475BC" />
+  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="459DDA43-D86D-4D86-B119-17104C203BB8" />
+  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="A6FFB36B-A162-4B05-AB93-60E5CF27264D" />
+  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="267FE78A-8178-4534-B255-29A7C4E7A32B" />
+  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="298F69E8-3375-47DC-A159-BFD077D6742A" />
   <Project Path="FreeCICD.Client/FreeCICD.Client.csproj" />
   <Project Path="FreeCICD/FreeCICD.csproj" />
 </Solution>
