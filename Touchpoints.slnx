@@ -7,10 +7,10 @@
     <File Path="Remove Modules from FreeTouchpoints.exe" />
     <File Path="Rename FreeTouchpoints.exe" />
   </Folder>
-  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="FAA04685-F938-44F3-8C1C-F8FAF774190B" />
-  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="BEEFF17A-1E2F-4848-8A44-FB2F6B107F16" />
-  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="C3938FD2-1105-4F25-8C8B-31E53003DB1D" />
-  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="4FE34E5C-0419-4453-BD6B-3B25E70ADEE9" />
+  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="95B26E0A-95EC-40C5-B1DA-8194738DDF0B" />
+  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="5C304AAE-1F6F-4199-B843-7A084F17BA38" />
+  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="0AAD1212-3156-4C03-8FC0-2AAF09C797F5" />
+  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="701A8BD2-318B-497E-A99E-DD4400B3E5E5" />
   <Project Path="Touchpoints.Client/Touchpoints.Client.csproj" />
   <Project Path="Touchpoints/Touchpoints.csproj" />
 </Solution>
