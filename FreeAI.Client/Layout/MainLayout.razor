@@ -1,6 +1,7 @@
 @using Blazored.LocalStorage
 @using System.Globalization
 @using Microsoft.AspNetCore.SignalR.Client
+@using FluentValidation
 @implements IAsyncDisposable
 @inherits LayoutComponentBase
 @inject IJSRuntime jsRuntime
@@ -10,6 +11,7 @@
 @inject BlazorDataModel Model
 @inject Radzen.DialogService DialogService
 @inject Radzen.TooltipService TooltipService
+@inject Try.Core.CompilationService _compilationService
 <PageTitle>@Helpers.Text("AppTitle")</PageTitle>
 
 @if (IncludeCustomCss) { // For clients that are using custom theme CSS and font settings that gets rendered here.
@@ -199,6 +201,8 @@
     protected DataObjects.VersionInfo versionInfo = new DataObjects.VersionInfo();
     protected bool versionInfoLoaded = false;
 
+    protected bool _precompiledBlazorPlugins = false;
+
     protected DotNetObjectReference<MainLayout>? dotNetHelper;
 
     public void Dispose() {
@@ -236,10 +240,40 @@
             await ValidateLogin();
         }
 
+        // Pass the GetOrPost delegate to the Compilation Service so
+        // cached data can be retrieved or saved for Blazor plugins.
+        _compilationService.SetGetOrPostDelegate(Helpers.GetOrPostBlazorCachedPluginBinary);
+
         timer = new System.Threading.Timer(async (object? stateInfo) => {
             await ThemeWatcher();
             MessageWatcher();
             await SavePendingUserPreferences();
+
+            // If we have a logged in user or any loaded plugins, and we are going to make
+            // sure that all plugins are pre-compiled, then do so here.
+            if (Model.PrecompileBlazorPlugins && !_precompiledBlazorPlugins && (Model.LoggedIn || Model.Plugins.Any())) {
+                _precompiledBlazorPlugins = true;
+
+                var plugins = Model.Plugins
+                    .Where(x => x.Type.ToLower() == "blazor")
+                    .ToList();
+
+                if (plugins != null && plugins.Count > 0) {
+                    Model.AddMessage(Helpers.Text("PreCompilingBlazorPlugins"), MessageType.Warning, false, true);
+
+                    await Helpers.ConsoleLog("Pre-Compiling and Caching Blazor Plugins...");
+
+                    foreach (var plugin in plugins) {
+                        await _compilationService.CompileRazorCodeToBlazorComponentType(plugin.Code, async msg => {
+                            await Helpers.ConsoleLog("Pre-Compiling and Caching Blazor Plugin '" + plugin.Name + "' : " + msg);
+                        });
+                    }
+
+                    await Helpers.ConsoleLog("Pre-Compiling and Caching of Blazor Plugins Completed");
+
+                    Model.ClearMessages();
+                }
+            }
         }, new System.Threading.AutoResetEvent(false), 0, 500);
 
         updateTimer = new System.Threading.Timer(async (object? stateInfo) => {

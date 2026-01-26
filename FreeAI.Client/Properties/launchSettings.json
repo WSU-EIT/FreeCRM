@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FreeAI.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
