@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Touchpoints.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
