@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FreeTools.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
