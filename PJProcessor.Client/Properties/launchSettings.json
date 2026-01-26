@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PJProcessor.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
