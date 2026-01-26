@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AcademicCalendarPetitions.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
