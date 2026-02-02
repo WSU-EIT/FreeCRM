@@ -1,6 +1,7 @@
 using FreeCICD.Client.Pages;
 using FreeCICD.Components;
 using FreeCICD.Server.Hubs;
+using Microsoft.AspNetCore.Components;
 using Radzen;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ namespace FreeCICD
             var builder = AppModifyBuilderStart(WebApplication.CreateBuilder(args));
 
             builder.Services.AddControllersWithViews();
+
 
             builder.Services.AddRadzenComponents();
             builder.Services.AddScoped<Radzen.DialogService>();
@@ -80,6 +82,7 @@ namespace FreeCICD
             try { serverReferences.Add(typeof(Microsoft.Extensions.Primitives.StringValues).Assembly.Location); } catch { }
             try { serverReferences.Add(typeof(Plugins.Plugin).Assembly.Location); } catch { }
             try { serverReferences.Add(typeof(IPlugin).Assembly.Location); } catch { }
+            try { serverReferences.Add(typeof(RenderFragment).Assembly.Location); } catch { }
             plugins.ServerReferences = serverReferences;
 
             // Get the using statements from the appsettings.json file.
@@ -95,7 +98,7 @@ namespace FreeCICD
             }
             plugins.UsingStatements = usingStatements;
 
-            string pluginsPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
+            string pluginsPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PluginFiles");
             plugins.Load(pluginsPath);
             builder.Services.AddTransient<Plugins.IPlugins>(x => plugins);
 
@@ -179,6 +182,7 @@ namespace FreeCICD
                 },
                 GloballyDisabledModules = disabled,
                 GloballyEnabledModules = enabled,
+                ServerReferences = serverReferences,
             }, builder);
 
             builder.Services.AddTransient<IConfigurationHelper>(x => ActivatorUtilities.CreateInstance<ConfigurationHelper>(x, configurationHelperLoader));
@@ -198,6 +202,15 @@ namespace FreeCICD
 
             var app = AppModifyStart(AppModifyBuilderEnd(builder).Build());
 
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment()) {
+                app.UseWebAssemblyDebugging();
+            } else {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
             bool openIdForceHttps = false;
             try {
                 openIdForceHttps = builder.Configuration.GetValue<bool>("AuthenticationProviders:OpenId:ForceHttps");
@@ -208,15 +221,6 @@ namespace FreeCICD
                     context.Response.Headers.Append("Content-Security-Policy", "frame-ancestors 'self' login.wsu.edu cms.em.wsu.edu futurecoug.wsu.edu");
                     return next(context);
                 });
-            }
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment()) {
-                app.UseWebAssemblyDebugging();
-            } else {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
             app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);

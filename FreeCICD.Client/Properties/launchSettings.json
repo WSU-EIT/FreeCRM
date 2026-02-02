@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FreeCICD.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
