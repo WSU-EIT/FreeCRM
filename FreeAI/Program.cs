@@ -17,6 +17,7 @@ namespace FreeAI
 
             builder.Services.AddControllersWithViews();
 
+
             builder.Services.AddRadzenComponents();
             builder.Services.AddScoped<Radzen.DialogService>();
             builder.Services.AddScoped<Radzen.NotificationService>();
