@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeCICD.exe" />
   </Folder>
   <Project Path="FreeCICD.Client/FreeCICD.Client.csproj" />
-  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="E42FF5BA-9E57-499D-AC3B-5E007E978A40" />
-  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="9C096BA2-55B0-49F3-BDD7-9DFD95775B68" />
-  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="185F6CB8-E466-45D0-996A-B1762ADDE4DC" />
-  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="1579C52A-3CD7-4F4C-AB8F-E689E0F2BC91" />
+  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="804AEA6B-825E-4918-966D-1554F7226A96" />
+  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="38CBB18D-E92D-4C73-BE43-87C60E3CEB7C" />
+  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="ACDC7E42-7106-4B41-AA5A-F859D9C751E1" />
+  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="C986A56D-12D9-4E4B-A54E-AABEA7D1D773" />
   <Project Path="FreeCICD/FreeCICD.csproj" />
 </Solution>
