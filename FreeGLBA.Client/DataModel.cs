@@ -231,7 +231,6 @@ public partial class BlazorDataModel
         get { return FeatureEnabledEmployeeId && AllowUsersToManageAFeature("employeeid"); }
     }
 
-
     /// <summary>
     /// Indicates if users can edit their name.
     /// </summary>
@@ -543,8 +542,6 @@ public partial class BlazorDataModel
         get { return FeatureEnabled("departments"); }
     }
 
-
-
     /// <summary>
     /// Indicates if the EmployeeId feature is enabled.
     /// </summary>
@@ -558,9 +555,6 @@ public partial class BlazorDataModel
     public bool FeatureEnabledFiles {
         get { return FeatureEnabled("files"); }
     }
-
-
-
 
     // {{ModuleItemStart:Tags}}
     /// <summary>
@@ -678,7 +672,6 @@ public partial class BlazorDataModel
             }
         }
     }
-
 
     /// <summary>
     /// Shows a Toast with an error message.
@@ -948,7 +941,6 @@ public partial class BlazorDataModel
             return "<div><div class=\"me-2 spinner-border loading-spinner text-primary\" role=\"status\"></div>" + Helpers.Text("LoadingWait") + "</div>";
         }
     }
-
 
     /// <summary>
     /// Indicates if a user is logged in.
@@ -1261,7 +1253,6 @@ public partial class BlazorDataModel
         }
     }
 
-
     /// <summary>
     /// The user object used when adding a user via the quick action menu.
     /// </summary>
@@ -1360,7 +1351,6 @@ public partial class BlazorDataModel
 
         return output;
     }
-
 
     /// <summary>
     /// Gets or sets the option to show the tenant listing when missing the tenant code.
@@ -1634,8 +1624,6 @@ public partial class BlazorDataModel
             _User.UserPreferences.LastView = _View;
         }
     }
-
-
 
     /// <summary>
     /// The options for a given User-Defined Field.

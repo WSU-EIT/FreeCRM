@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeGLBA.exe" />
   </Folder>
   <Project Path="FreeGLBA.Client/FreeGLBA.Client.csproj" />
-  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="B407EEB2-3F78-413E-8CB6-B711D9AF4A0A" />
-  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="256F156A-4C04-429D-8536-C05E41DDDE5E" />
-  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="69A0BC3E-70DE-4298-97E3-6DD83C772B94" />
-  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="F9B3AEDD-B9A2-4179-904D-6CC22ADB9CB1" />
+  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="1083AC18-CD22-4BEA-B007-71D8CECF5C47" />
+  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="EBDA3850-9C19-480A-92E4-BD23C2CE1DA1" />
+  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="3878CC91-E275-41F4-9C0D-03BB6E88E01C" />
+  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="0302F58C-03D7-498B-8443-654C0382AE95" />
   <Project Path="FreeGLBA/FreeGLBA.csproj" />
 </Solution>
