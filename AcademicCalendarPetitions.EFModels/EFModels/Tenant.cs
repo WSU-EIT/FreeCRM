@@ -21,7 +21,5 @@ public partial class Tenant
 
     public string? LastModifiedBy { get; set; }
 
-
-
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

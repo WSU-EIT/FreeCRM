@@ -72,7 +72,6 @@ public partial class DataAccess
             { "ActiveDirectoryNames", "Active Directory Names" },
             { "ActiveDirectoryNamesInfo", "Bracket-separated names of AD groups to match for this department (eg: {Enrollment IT]{Admissions}, etc.)" },
 
-
             // Departments
             { "Department", "Department" },
             { "DepartmentGroup", "Department Group" },
@@ -83,13 +82,9 @@ public partial class DataAccess
             { "EditDepartment", "Edit Department" },
             { "EditDepartmentGroup", "Edit Department Group" },
 
-
             // Files
             { "Extension", "Extension" },
             { "Extensions", "Extensions" },
-
-
-
 
             // Plugins
             { "InvalidPlugin", "Invalid Plugin" },
@@ -97,8 +92,6 @@ public partial class DataAccess
             { "PluginNotFound", "The plugin with an Id of {0} could not be found." },
             { "PreCompilingBlazorPlugins", "Pre-Compiling Blazor Plugins..." },
             { "TestPlugin", "Test Plugin" },
-
-
 
             // UDF Labels
             { "FeatureOptInUdf", "Use the User-Defined Fields" },

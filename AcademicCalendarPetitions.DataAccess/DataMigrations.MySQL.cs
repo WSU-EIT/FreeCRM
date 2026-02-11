@@ -50,8 +50,6 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
-
-
         m1.Add(
             """
             CREATE TABLE IF NOT EXISTS `PluginCache` (
@@ -71,7 +69,6 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
-
         m1.Add(
             """
             CREATE TABLE IF NOT EXISTS `Settings` (
@@ -87,7 +84,6 @@ public partial class DataMigrations
                 PRIMARY KEY (`SettingId`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
-
 
         m1.Add(
             """
@@ -139,8 +135,6 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
-
-
         var usersTable =
             """
             CREATE TABLE IF NOT EXISTS `Users` (
@@ -160,7 +154,6 @@ public partial class DataMigrations
                 `LastLoginSource` varchar(50) NULL,
                 `Admin` tinyint(1) NOT NULL,
             """;
-
 
         usersTable +=
             """
@@ -195,7 +188,6 @@ public partial class DataMigrations
 
         m1.Add(usersTable);
 
-
         m1.Add(
             """
             CREATE TABLE IF NOT EXISTS `FileStorage` (
@@ -219,7 +211,6 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
-
         m1.Add(
             """
             CREATE TABLE IF NOT EXISTS `UserInGroups` (
@@ -233,16 +224,10 @@ public partial class DataMigrations
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """);
 
-
-
-
         m1.Add(
             """
             CREATE INDEX `IX_FileStorage_UserId` ON `FileStorage` (`UserId`);
             """);
-
-
-
 
         m1.Add(
             """
@@ -269,7 +254,6 @@ public partial class DataMigrations
             INSERT IGNORE INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
             VALUES ('001', '1.0.0');
             """);
-
 
         output.Add(new DataObjects.DataMigration {
             MigrationId = "001",
