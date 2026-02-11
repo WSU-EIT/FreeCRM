@@ -46,7 +46,6 @@ public static class CustomAuthorization
                 identity.AddClaim(new Claim(ClaimTypes.Role, Policies.AppAdmin));
             }
 
-
             if (user.ManageFiles) {
                 identity.AddClaim(new Claim(ClaimTypes.Role, Policies.ManageFiles));
             }

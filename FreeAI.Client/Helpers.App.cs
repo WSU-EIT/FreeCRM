@@ -19,7 +19,6 @@ public static partial class Helpers
         return true;
     }
 
-
     private static List<string> GetDeletedRecordTypesApp()
     {
         var output = new List<string>();

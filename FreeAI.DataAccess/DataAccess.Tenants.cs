@@ -45,11 +45,6 @@ public partial class DataAccess
 
                 var users = data.Users.Where(x => x.TenantId == TenantId).Select(o => o.UserId).ToList();
 
-
-
-
-
-
                 data.FileStorages.RemoveRange(data.FileStorages.Where(x => x.TenantId == TenantId || users.Contains((Guid)x.UserId!)));
                 await data.SaveChangesAsync();
 
