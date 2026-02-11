@@ -97,11 +97,6 @@ public partial class DataAccess
                 }
             }
 
-
-
-
-
-
             if (Rec is EFModels.EFModels.Tenant) {
                 var rec = Rec as EFModels.EFModels.Tenant;
                 if (rec != null) {
@@ -252,11 +247,6 @@ public partial class DataAccess
                 return;
             }
 
-
-
-
-
-
             if (Rec is EFModels.EFModels.User && DataObject is DataObjects.ActiveUser) {
                 var rec = Rec as EFModels.EFModels.User;
                 var activeUser = DataObject as DataObjects.ActiveUser;
@@ -389,11 +379,6 @@ public partial class DataAccess
 
                 return;
             }
-
-
-
-
-
 
             if (Rec is EFModels.EFModels.User && DataObject is DataObjects.User) {
                 var rec = Rec as EFModels.EFModels.User;

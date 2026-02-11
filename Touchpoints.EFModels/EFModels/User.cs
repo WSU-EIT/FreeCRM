@@ -35,9 +35,7 @@ public partial class User
 
     public bool Admin { get; set; }
 
-
     public bool ManageFiles { get; set; }
-
 
     public string? Password { get; set; }
 
@@ -83,12 +81,9 @@ public partial class User
 
     public string? Preferences { get; set; }
 
-
     public virtual Department? Department { get; set; }
 
     public virtual ICollection<FileStorage> FileStorages { get; set; } = new List<FileStorage>();
-
-
 
     public virtual Tenant Tenant { get; set; } = null!;
 
