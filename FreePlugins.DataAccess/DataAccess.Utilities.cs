@@ -590,7 +590,6 @@ public partial class DataAccess
                 }
             }
 
-
             var fileStorage = await data.FileStorages.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if (fileStorage != null && fileStorage.Any()) {
                 foreach (var rec in fileStorage) {
@@ -601,8 +600,6 @@ public partial class DataAccess
                     }
                 }
             }
-
-
 
             // {{ModuleItemStart:Tags}}
             // For tags, remove any related items first, then delete the tags.
@@ -700,12 +697,9 @@ public partial class DataAccess
                     output = await DeleteDepartment(RecordId, CurrentUser, true);
                     break;
 
-
                 case "filestorage":
                     output = await DeleteFileStorage(RecordId, CurrentUser, true);
                     break;
-
-
 
                 // {{ModuleItemStart:Tags}}
                 case "tag":
@@ -1102,7 +1096,6 @@ public partial class DataAccess
             }
         }
 
-
         List<DataObjects.DeletedRecordItem> fileStorage = new List<DataObjects.DeletedRecordItem>();
         var fileStorageRecord = await data.FileStorages
             .Where(x => x.TenantId == TenantId && x.Deleted == true)
@@ -1118,8 +1111,6 @@ public partial class DataAccess
                 });
             }
         }
-
-
 
         // {{ModuleItemStart:Tags}}
         List<DataObjects.DeletedRecordItem> tags = new List<DataObjects.DeletedRecordItem>();
@@ -2070,7 +2061,6 @@ public partial class DataAccess
                         }
                         break;
 
-
                     case "filestorage":
                         var recFile = await data.FileStorages.FirstOrDefaultAsync(x => x.FileId == RecordId);
                         if (recFile != null) {
@@ -2085,8 +2075,6 @@ public partial class DataAccess
                             output.Messages.Add(Type + " Record '" + RecordId.ToString() + "' Not Found");
                         }
                         break;
-
-
 
                     // {{ModuleItemStart:Tags}}
                     case "tag":
@@ -2283,7 +2271,6 @@ public partial class DataAccess
         if (output.EndsWith("/")) {
             output = output.Substring(0, output.Length - 1);
         }
-
 
         return output;
     }

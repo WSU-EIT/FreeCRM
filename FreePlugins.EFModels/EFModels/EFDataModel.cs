@@ -15,19 +15,13 @@ public partial class EFDataModel : DbContext
     {
     }
 
-
     public virtual DbSet<Department> Departments { get; set; }
 
     public virtual DbSet<DepartmentGroup> DepartmentGroups { get; set; }
 
-
     public virtual DbSet<FileStorage> FileStorages { get; set; }
 
-
-
-
     public virtual DbSet<PluginCache> PluginCaches { get; set; }
-
 
     public virtual DbSet<Setting> Settings { get; set; }
 
@@ -80,7 +74,6 @@ public partial class EFDataModel : DbContext
             entity.Property(e => e.LastModifiedBy).HasMaxLength(100);
         });
 
-
         modelBuilder.Entity<FileStorage>(entity =>
         {
             entity.HasKey(e => e.FileId);
@@ -104,8 +97,6 @@ public partial class EFDataModel : DbContext
                 .HasConstraintName("IX_FileStorage_UserId");
         });
 
-
-
         modelBuilder.Entity<PluginCache>(entity =>
         {
             entity.HasKey(e => e.RecordId);
@@ -120,7 +111,6 @@ public partial class EFDataModel : DbContext
             entity.Property(e => e.Type).HasMaxLength(100);
             entity.Property(e => e.Version).HasMaxLength(100);
         });
-
 
         modelBuilder.Entity<Setting>(entity =>
         {
