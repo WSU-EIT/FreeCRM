@@ -53,10 +53,6 @@ public partial class DataAccess
                 await data.SaveChangesAsync();
                 // {{ModuleItemEnd:Tags}}
 
-
-
-
-
                 data.FileStorages.RemoveRange(data.FileStorages.Where(x => x.TenantId == TenantId || users.Contains((Guid)x.UserId!)));
                 await data.SaveChangesAsync();
 
