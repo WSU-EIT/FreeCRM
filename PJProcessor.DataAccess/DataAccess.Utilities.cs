@@ -590,7 +590,6 @@ public partial class DataAccess
                 }
             }
 
-
             var fileStorage = await data.FileStorages.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if (fileStorage != null && fileStorage.Any()) {
                 foreach (var rec in fileStorage) {
@@ -601,9 +600,6 @@ public partial class DataAccess
                     }
                 }
             }
-
-
-
 
             var userGroups = await data.UserGroups.Where(x => x.TenantId == TenantId && x.Deleted == true && (x.DeletedAt == null || x.DeletedAt < OlderThan)).ToListAsync();
             if(userGroups != null &&  userGroups.Any()) {
@@ -684,13 +680,9 @@ public partial class DataAccess
                     output = await DeleteDepartment(RecordId, CurrentUser, true);
                     break;
 
-
                 case "filestorage":
                     output = await DeleteFileStorage(RecordId, CurrentUser, true);
                     break;
-
-
-
 
                 case "usergroup":
                     output = await DeleteUserGroup(RecordId, CurrentUser, true);
@@ -1075,7 +1067,6 @@ public partial class DataAccess
             }
         }
 
-
         List<DataObjects.DeletedRecordItem> fileStorage = new List<DataObjects.DeletedRecordItem>();
         var fileStorageRecord = await data.FileStorages
             .Where(x => x.TenantId == TenantId && x.Deleted == true)
@@ -1091,9 +1082,6 @@ public partial class DataAccess
                 });
             }
         }
-
-
-
 
         List<DataObjects.DeletedRecordItem> userGroups = new List<DataObjects.DeletedRecordItem>();
         var userGroupRecords = await data.UserGroups
@@ -2023,7 +2011,6 @@ public partial class DataAccess
                         }
                         break;
 
-
                     case "filestorage":
                         var recFile = await data.FileStorages.FirstOrDefaultAsync(x => x.FileId == RecordId);
                         if (recFile != null) {
@@ -2038,9 +2025,6 @@ public partial class DataAccess
                             output.Messages.Add(Type + " Record '" + RecordId.ToString() + "' Not Found");
                         }
                         break;
-
-
-
 
                     case "usergroup":
                         var recUserGroup = await data.UserGroups.FirstOrDefaultAsync(x => x.GroupId == RecordId);
@@ -2220,7 +2204,6 @@ public partial class DataAccess
         if (output.EndsWith("/")) {
             output = output.Substring(0, output.Length - 1);
         }
-
 
         return output;
     }

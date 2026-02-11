@@ -142,20 +142,14 @@ public partial class DataAccess
                     // Update any LastModifiedBy values for this UserId to be the Display Name
                     string displayName = MaxStringLength(rec.FirstName + " " + rec.LastName, 100);
 
-
                     await data.Database.ExecuteSqlRawAsync("UPDATE DepartmentGroups SET LastModifiedBy={0} WHERE LastModifiedBy={1}", displayName, UserId.ToString());
                     await data.Database.ExecuteSqlRawAsync("UPDATE DepartmentGroups SET AddedBy={0} WHERE AddedBy={1}", displayName, UserId.ToString());
 
                     await data.Database.ExecuteSqlRawAsync("UPDATE Departments SET LastModifiedBy={0} WHERE LastModifiedBy={1}", displayName, UserId.ToString());
                     await data.Database.ExecuteSqlRawAsync("UPDATE Departments SET AddedBy={0} WHERE AddedBy={1}", displayName, UserId.ToString());
 
-
                     await data.Database.ExecuteSqlRawAsync("UPDATE FileStorage SET LastModifiedBy={0} WHERE LastModifiedBy={1}", displayName, UserId.ToString());
                     await data.Database.ExecuteSqlRawAsync("UPDATE FileStorage SET UploadedBy={0} WHERE UploadedBy={1}", displayName, UserId.ToString());
-
-
-
-
 
                     await data.Database.ExecuteSqlRawAsync("UPDATE Settings SET LastModifiedBy={0} WHERE LastModifiedBy={1}", displayName, UserId.ToString());
                     data.Settings.RemoveRange(data.Settings.Where(x => x.UserId == UserId));
@@ -186,7 +180,6 @@ public partial class DataAccess
                 }
             }
             
-
             // Now, delete the main user record
             if (ForceDeleteImmediately ||tenantSettings.DeletePreference == DataObjects.DeletePreference.Immediate) {
                 data.Users.Remove(rec);
@@ -1581,7 +1574,6 @@ public partial class DataAccess
                 .OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ToListAsync();
         }
 
-        
         if (recs != null && recs.Count() > 0) {
             foreach (var rec in recs) {
                 var u = await GetUser(rec.UserId, false, CurrentUser);
