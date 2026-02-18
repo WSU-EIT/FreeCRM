@@ -8,9 +8,9 @@
     <File Path="Rename FreeFlexCRM.exe" />
   </Folder>
   <Project Path="FlexCRM.Client/FlexCRM.Client.csproj" />
-  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="CC000310-C351-4291-91B9-D64D95FB9EC6" />
-  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="63B1A064-C827-45F6-BA05-24CAF4B3FB0B" />
-  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="5C470D4F-2EF0-49C1-BB3A-9F73B31F417E" />
-  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="D04620CE-F959-4DE7-92F3-D743B86B551F" />
+  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="A79EEBCC-53BB-41D4-AF63-72FECF7B96D6" />
+  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="1A4C1C84-8D39-458D-BA8B-D7343F853F3D" />
+  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="3F9B6C1A-426C-4ABE-B80F-7070682F5BC8" />
+  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="4331A809-E5A3-43B0-9276-4BCA2538EB56" />
   <Project Path="FlexCRM/FlexCRM.csproj" />
 </Solution>
