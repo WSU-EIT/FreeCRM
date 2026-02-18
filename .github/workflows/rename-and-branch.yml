@@ -85,6 +85,9 @@ jobs:
           - name: FreeSmartsheets
             branch: FreeSmartsheets_base
             selections: 'keep:Tags'
+          - name: FreeTwilio
+            branch: FreeTwilio_base
+            selections: 'keep:Tags'
     env:
       SELECTIONS:  ${{ matrix.project.selections }}
       APP_NAME:    ${{ matrix.project.name }}
