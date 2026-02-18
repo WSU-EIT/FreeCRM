@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeTools.exe" />
   </Folder>
   <Project Path="FreeTools.Client/FreeTools.Client.csproj" />
-  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="9D3FF2BF-BE85-4568-A7E3-F6BF30C096B3" />
-  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="74446D1F-CD7A-41FA-9D94-379EF982BDF8" />
-  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="A87B1D36-E828-4655-8CC9-EA0E1941FABC" />
-  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="8773E15F-06DD-4521-8E92-DB4B54E3621E" />
+  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="8B7892A9-F16B-419F-B7BC-C0C374E36CB4" />
+  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="974A4A11-D57A-45F4-8FBD-D9C8BB1440DE" />
+  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="20D5060A-CFDB-427C-8ABD-69B94C686816" />
+  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="4B1BE850-CE2F-48C2-9748-213760993D3B" />
   <Project Path="FreeTools/FreeTools.csproj" />
 </Solution>
