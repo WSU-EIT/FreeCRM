@@ -380,6 +380,15 @@ public partial class DataAccess
                 return;
             }
 
+            if (Rec is EFModels.EFModels.FileStorage && DataObject is DataObjects.FileStorage) {
+                var rec = Rec as EFModels.EFModels.FileStorage;
+                var fileStorage = DataObject as DataObjects.FileStorage;
+
+                if (rec != null && fileStorage != null) {
+                    //rec.Property = fileStorage.Property;
+                }
+            }
+
             if (Rec is EFModels.EFModels.User && DataObject is DataObjects.User) {
                 var rec = Rec as EFModels.EFModels.User;
                 var user = DataObject as DataObjects.User;
