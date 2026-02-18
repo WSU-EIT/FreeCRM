@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>a383f875-979f-4b6d-99b5-5cbeb7b5e8d7</UserSecretsId>
+    <UserSecretsId>b26476ef-f87b-4f3d-8fdc-6948f9c4a340</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -18,12 +18,12 @@
     <ProjectReference Include="..\FreeManager.Plugins\FreeManager.Plugins.csproj" />
     <ProjectReference Include="..\FreeManager.Client\FreeManager.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.33.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
 
