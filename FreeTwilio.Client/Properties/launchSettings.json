@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FreeTwilio.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
