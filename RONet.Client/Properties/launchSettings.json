@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RONet.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

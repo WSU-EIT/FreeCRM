@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeRONet.exe" />
+    <File Path="Rename FreeRONet.exe" />
+  </Folder>
+  <Project Path="RONet.Client/RONet.Client.csproj" />
+  <Project Path="RONet.DataAccess/RONet.DataAccess.csproj" Id="0E23C6A7-4FB5-4201-B839-D7645D5CD2E6" />
+  <Project Path="RONet.DataObjects/RONet.DataObjects.csproj" Id="CA0907B0-3392-48D0-8366-D486B369EBDB" />
+  <Project Path="RONet.EFModels/RONet.EFModels.csproj" Id="F549C526-1DF2-4373-82C8-AF6D6B921CF0" />
+  <Project Path="RONet.Plugins/RONet.Plugins.csproj" Id="5C0074E9-B2A8-4564-92BA-A1D56EBC6B43" />
+  <Project Path="RONet/RONet.csproj" />
+</Solution>
