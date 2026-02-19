@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>39383071-d220-4962-a190-f63c99e7ac55</UserSecretsId>
+    <UserSecretsId>ffabac5f-c878-4ae1-9b43-e8287ddb554e</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
