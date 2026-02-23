@@ -90,6 +90,9 @@ jobs:
             selections: 'keep:Tags'
           - name: RONet
             branch: RONet_base
+            selections: 'keep:Tags''
+          - name: FreeExamples
+            branch: FreeExamples_base
             selections: 'keep:Tags'
             
     env:
