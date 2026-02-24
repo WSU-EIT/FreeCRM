@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeManager.exe" />
   </Folder>
   <Project Path="FreeManager.Client/FreeManager.Client.csproj" />
-  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="2D0AFEA3-9BBC-4629-A7D8-14337D3908CD" />
-  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="30ECACE3-ACB1-4EF1-9A6B-32751178062C" />
-  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="71522C56-469A-47E4-B40A-B8108948681A" />
-  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="D1470B77-EB6B-4E25-82E0-D9D9F33366AA" />
+  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="1C7BCD96-75E1-4D5F-BFC6-45ED97B57BE1" />
+  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="463EE3D4-FEB9-4813-8509-934C1900B8FE" />
+  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="3DC07D78-9670-45DC-8DDE-E9C7EC587AF3" />
+  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="B7460263-BB4D-4CE6-904B-B3E45E161320" />
   <Project Path="FreeManager/FreeManager.csproj" />
 </Solution>
