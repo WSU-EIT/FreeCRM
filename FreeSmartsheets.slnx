@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeSmartsheets.exe" />
   </Folder>
   <Project Path="FreeSmartsheets.Client/FreeSmartsheets.Client.csproj" />
-  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="05506D70-5B17-4E98-92B3-6C1331E80CE2" />
-  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="78055B05-F052-4F8C-A1BB-08BE4372F921" />
-  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="5BF093AF-4F86-4A6C-BF2C-49246A6E1CBB" />
-  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="57F55F94-FEAB-4B01-B8E1-442CF3559D37" />
+  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="E0282A53-EE4F-4633-8CA1-7F84FE341A3E" />
+  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="04A1D4D2-CD94-419D-BEC0-A4179833D04B" />
+  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="6CCA2CB2-806B-443D-80EE-F15AA30A4FB4" />
+  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="DB6453D2-C5E6-450F-8578-573D8BE03405" />
   <Project Path="FreeSmartsheets/FreeSmartsheets.csproj" />
 </Solution>
