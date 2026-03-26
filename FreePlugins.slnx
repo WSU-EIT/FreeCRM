@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreePlugins.exe" />
   </Folder>
   <Project Path="FreePlugins.Client/FreePlugins.Client.csproj" />
-  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="D91221B3-4F2D-446E-B0A0-7A202FD398F4" />
-  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="84C4D17F-5219-43E3-8FC6-A721716A880E" />
-  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="DF2DCDF7-8217-4EF0-AEB3-9ADF5654C724" />
-  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="1D63F79E-F29D-436C-9E01-7D41653CC1BD" />
+  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="4B53FAC1-3B26-42F2-9F26-D964F6F1B9B0" />
+  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="DEB1F32F-83A8-4835-8EA3-B02B9086D4F2" />
+  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="7C5B0611-923C-4D19-9168-8D4272B58800" />
+  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="62C74785-FC9F-4E34-96A9-17FB0F9489A1" />
   <Project Path="FreePlugins/FreePlugins.csproj" />
 </Solution>
