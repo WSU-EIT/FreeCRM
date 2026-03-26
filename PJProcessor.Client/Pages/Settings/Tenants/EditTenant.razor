@@ -347,6 +347,7 @@ namespace CustomAuthenticationProvider {
     protected bool _newTenant = false;
     protected string _title = "";
     protected DataObjects.Tenant _tenant = new DataObjects.Tenant();
+    protected bool _validatedUrl = false;
 
     protected EditTenant_App AppModule = new EditTenant_App();
 
@@ -355,8 +356,6 @@ namespace CustomAuthenticationProvider {
     public void Dispose()
     {
         Model.OnChange -= OnDataModelUpdated;
-
-        Model.Subscribers_OnChange.Remove(_pageName);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -371,7 +370,10 @@ namespace CustomAuthenticationProvider {
                 return;
             }
 
-            await Helpers.ValidateUrl(TenantCode);
+            if (!_validatedUrl) {
+                _validatedUrl = true;
+                await Helpers.ValidateUrl(TenantCode);
+            }
 
             if (!_loadedData || (tenantid != null && _tenant.TenantId.ToString() != tenantid)) {
                 _loadedData = true;
@@ -382,11 +384,7 @@ namespace CustomAuthenticationProvider {
 
     protected override void OnInitialized()
     {
-        if (!Model.Subscribers_OnChange.Contains(_pageName)){
-            Model.Subscribers_OnChange.Add(_pageName);
-            Model.OnChange += OnDataModelUpdated;
-        }
-
+        Model.OnChange += OnDataModelUpdated;
         Model.View = _pageName;
     }
 

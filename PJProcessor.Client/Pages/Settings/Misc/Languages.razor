@@ -246,12 +246,11 @@
     protected DataObjects.Language _language = new DataObjects.Language();
     protected string _value = "";
     protected string _view = "";
+    protected bool _validatedUrl = false;
 
     public void Dispose()
     {
         Model.OnChange -= StateHasChanged;
-
-        Model.Subscribers_OnChange.Remove("Languages");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -266,17 +265,16 @@
                 return;
             }
 
-            await Helpers.ValidateUrl(TenantCode);
+            if (!_validatedUrl) {
+                _validatedUrl = true;
+                await Helpers.ValidateUrl(TenantCode);
+            }
         }
     }
 
     protected override void OnInitialized()
     {
-        if (!Model.Subscribers_OnChange.Contains("Languages")){
-            Model.Subscribers_OnChange.Add("Languages");
-            Model.OnChange += StateHasChanged;
-        }
-
+        Model.OnChange += StateHasChanged;
         Model.View = "language";
     }
 
