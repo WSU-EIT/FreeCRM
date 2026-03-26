@@ -8,9 +8,9 @@
     <File Path="Rename FreeTouchpoints.exe" />
   </Folder>
   <Project Path="Touchpoints.Client/Touchpoints.Client.csproj" />
-  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="03416E18-216F-412F-A743-E4EB7CD9348F" />
-  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="96E9A0E7-4AB9-4452-A220-536159C2BECE" />
-  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="8715E9F2-0EE9-4D0C-86EA-7AB729C5ED94" />
-  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="010F4074-F503-4B78-8B25-C34102A06AC8" />
+  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="5B3C57B9-0A10-4888-BEC5-E351565D25F4" />
+  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="6987B9D0-DD43-4C13-865B-612319BE17A2" />
+  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="39E46F45-9A73-428A-BAE0-D60F2A02CDE2" />
+  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="6CBE617D-3E16-42DE-A628-51AFA194BB9D" />
   <Project Path="Touchpoints/Touchpoints.csproj" />
 </Solution>
