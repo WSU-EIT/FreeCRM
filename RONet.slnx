@@ -8,9 +8,9 @@
     <File Path="Rename FreeRONet.exe" />
   </Folder>
   <Project Path="RONet.Client/RONet.Client.csproj" />
-  <Project Path="RONet.DataAccess/RONet.DataAccess.csproj" Id="E4C1D939-6B24-4B1D-900E-05B53E1FA424" />
-  <Project Path="RONet.DataObjects/RONet.DataObjects.csproj" Id="58F27104-418B-45D7-9811-699D9422628A" />
-  <Project Path="RONet.EFModels/RONet.EFModels.csproj" Id="55B1CB13-06BE-4346-A8AE-1F5E1E457064" />
-  <Project Path="RONet.Plugins/RONet.Plugins.csproj" Id="B17ECC70-8513-4594-B0AE-8F0D76874DA5" />
+  <Project Path="RONet.DataAccess/RONet.DataAccess.csproj" Id="0890DDFF-07AD-4E71-9DA8-F54EF9BF6343" />
+  <Project Path="RONet.DataObjects/RONet.DataObjects.csproj" Id="AB5452C4-6AAD-4DE7-A253-25A90D207701" />
+  <Project Path="RONet.EFModels/RONet.EFModels.csproj" Id="D60279F2-E8E6-4F1C-A85F-6FABE2AFD35B" />
+  <Project Path="RONet.Plugins/RONet.Plugins.csproj" Id="E82FAF37-74F6-4E31-8EA9-1506C5C0F1DE" />
   <Project Path="RONet/RONet.csproj" />
 </Solution>

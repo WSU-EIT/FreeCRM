@@ -626,14 +626,13 @@
     protected Settings_App AppModule = new Settings_App();
 
     protected string _deletePreference = "";
+    protected bool _validatedUrl = false;
 
     protected string _pageName = "settings";
 
     public void Dispose()
     {
         Model.OnChange -= OnDataModelUpdated;
-
-        Model.Subscribers_OnChange.Remove(_pageName);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -648,7 +647,10 @@
                 return;
             }
 
-            await Helpers.ValidateUrl(TenantCode);
+            if (!_validatedUrl) {
+                _validatedUrl = true;
+                await Helpers.ValidateUrl(TenantCode);
+            }
 
             if (!_loadedData) {
                 _loadedData = true;
@@ -659,11 +661,7 @@
 
     protected override void OnInitialized()
     {
-        if (!Model.Subscribers_OnChange.Contains(_pageName)){
-            Model.Subscribers_OnChange.Add(_pageName);
-            Model.OnChange += OnDataModelUpdated;
-        }
-
+        Model.OnChange += OnDataModelUpdated;
         Model.View = _pageName;
 
     }
