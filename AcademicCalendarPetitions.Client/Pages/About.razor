@@ -29,14 +29,13 @@
 }
 @code {
     [Parameter] public string? TenantCode { get; set; }
+    protected bool _validatedUrl = false;
 
     protected string _pageName = "about";
 
     public void Dispose()
     {
         Model.OnChange -= OnDataModelUpdated;
-
-        Model.Subscribers_OnChange.Remove(_pageName);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -45,18 +44,15 @@
             Model.TenantCodeFromUrl = TenantCode;
         }
 
-        if (Model.Loaded) {
+        if (Model.Loaded && !_validatedUrl) {
+            _validatedUrl = true;
             await Helpers.ValidateUrl(TenantCode);
         }
     }
 
     protected override void OnInitialized()
     {
-        if (!Model.Subscribers_OnChange.Contains(_pageName)){
-            Model.Subscribers_OnChange.Add(_pageName);
-            Model.OnChange += OnDataModelUpdated;
-        }
-
+        Model.OnChange += OnDataModelUpdated;
         Model.View = _pageName;
     }
 
