@@ -1,4 +1,4 @@
-﻿@implements IDisposable
+@implements IDisposable
 @using Humanizer
 @inject BlazorDataModel Model
 
@@ -32,11 +32,6 @@
     /// You can change this by setting RequireLogin to false.
     /// </summary>
     public bool RequireLogin { get; set; } = true;
-
-    /// <summary>
-    /// An option to show the links to the test pages on the home page.
-    /// </summary>
-    public bool ShowTestPageLinks {get; set; } = true;
 
     protected bool _loadedData = false;
     protected bool _loading = true;
