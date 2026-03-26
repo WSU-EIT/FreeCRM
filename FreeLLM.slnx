@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeLLM.exe" />
   </Folder>
   <Project Path="FreeLLM.Client/FreeLLM.Client.csproj" />
-  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="0DE6C800-C803-4F44-BC09-467B7E583D4C" />
-  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="21778560-8D87-405F-9163-78ACAE5C75AA" />
-  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="346C93AA-CAC9-4765-AB7C-CB10EA05A7A9" />
-  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="AB3F0184-0BEB-4F65-8590-32CFCDF22151" />
+  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="79FD017A-B4EB-464A-8DAE-C259BDDBEDB3" />
+  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="64F8755C-1CBC-43A1-891B-649A77F34577" />
+  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="FC6FF30F-7C60-454A-86F5-A05CD9649EF6" />
+  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="04A58E12-6FD6-470D-8A33-70A5971CFC00" />
   <Project Path="FreeLLM/FreeLLM.csproj" />
 </Solution>
