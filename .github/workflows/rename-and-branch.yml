@@ -94,6 +94,9 @@ jobs:
           - name: FreeExamples
             branch: FreeExamples_base
             selections: 'keep:Tags'
+          - name: WebDevExample
+            branch: WebDevExample_base
+            selections: 'remove:all'
             
     env:
       SELECTIONS:  ${{ matrix.project.selections }}
