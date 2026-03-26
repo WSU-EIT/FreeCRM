@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WebDevExample.Client": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

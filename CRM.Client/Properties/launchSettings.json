@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "CRM.Client": {
-      "commandName": "Project",
-      "nativeDebugging": false
-    }
-  }
-}

@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="Remove Modules from FreeWebDevExample.exe" />
+    <File Path="Rename FreeWebDevExample.exe" />
+  </Folder>
+  <Project Path="WebDevExample.Client/WebDevExample.Client.csproj" />
+  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="3D73D9A8-A9AD-47B0-9FA6-152E5DB12F65" />
+  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="641212EF-AB3F-4954-B033-048ED22A93EA" />
+  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="59CF7A82-AA2C-4593-9214-BA9938A265D9" />
+  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="AB2CEC22-87D9-48E3-BF16-94A39631D4D2" />
+  <Project Path="WebDevExample/WebDevExample.csproj" />
+</Solution>
