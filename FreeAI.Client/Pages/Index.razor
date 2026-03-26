@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 @page "/{TenantCode}"
 @inject BlazorDataModel Model
 @implements IDisposable
@@ -17,21 +17,6 @@
     }
 
     <Index_App  />
-
-    @if (AppModule.ShowTestPageLinks) {
-        <h2>Test Pages</h2>
-
-        <div class="mb-2">
-            <ul>
-                <li><a href="@Helpers.BuildUrl("DoubleClick")">Double-Click</a></li>
-                <li><a href="@Helpers.BuildUrl("DynamicComponent")">Dynamic Blazor Components</a></li>
-                <li><a href="@Helpers.BuildUrl("Monaco")">Monaco Code Editor</a></li>
-                <li><a href="@Helpers.BuildUrl("Plugins")">Plugin Testing</a></li>
-                <li><a href="@Helpers.BuildUrl("SortTest")">SortableList</a></li>
-                <li><a href="@Helpers.BuildUrl("TimerTest")">Timer Test</a></li>
-            </ul>
-        </div>
-    }
 
     if (Helpers.HaveBlazorPlugins(_pageName, "Bottom")) {
         <div class="mb-2">
@@ -80,6 +65,6 @@
     protected override void OnInitialized()
     {
         Model.View = _pageName;
-        Model.OnChange += StateHasChanged;
+        Model.OnChange += OnDataModelUpdated;
     }
 }
