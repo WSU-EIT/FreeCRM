@@ -6,11 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>8b3624d9-d121-4302-ab68-17fedfe5d169</UserSecretsId>
+    <UserSecretsId>b06fd951-46c0-4a17-9cd9-b916b3d059ad</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>True</Optimize>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,11 +22,11 @@
     <ProjectReference Include="..\FreeManager.Plugins\FreeManager.Plugins.csproj" />
     <ProjectReference Include="..\FreeManager.Client\FreeManager.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.4" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.33.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
