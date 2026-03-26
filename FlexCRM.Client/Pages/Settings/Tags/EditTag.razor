@@ -124,6 +124,7 @@
     protected bool _newTag = false;
     protected string _title = "";
     protected DataObjects.Tag _tag = new DataObjects.Tag();
+    protected bool _validatedUrl = false;
 
     protected string _pageName = "edittag";
 
@@ -133,9 +134,6 @@
     {
         Model.OnChange -= OnDataModelUpdated;
         Model.OnSignalRUpdate -= SignalRUpdate;
-
-        Model.Subscribers_OnChange.Remove(_pageName);
-        Model.Subscribers_OnSignalRUpdate.Remove(_pageName);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -150,7 +148,10 @@
                 return;
             }
 
-            await Helpers.ValidateUrl(TenantCode);
+            if (!_validatedUrl) {
+                _validatedUrl = true;
+                await Helpers.ValidateUrl(TenantCode);
+            }
 
             if (!_loadedData || Helpers.StringValue(Model.NavigationId) != Helpers.StringValue(id)) {
                 _loadedData = true;
@@ -161,16 +162,8 @@
 
     protected override void OnInitialized()
     {
-        if (!Model.Subscribers_OnChange.Contains(_pageName)){
-            Model.Subscribers_OnChange.Add(_pageName);
-            Model.OnChange += OnDataModelUpdated;
-        }
-
-        if (!Model.Subscribers_OnSignalRUpdate.Contains(_pageName)){
-            Model.Subscribers_OnSignalRUpdate.Add(_pageName);
-            Model.OnSignalRUpdate += SignalRUpdate;
-        }
-
+        Model.OnChange += OnDataModelUpdated;
+        Model.OnSignalRUpdate += SignalRUpdate;
         Model.View = _pageName;
     }
 
