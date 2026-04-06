@@ -8,9 +8,9 @@
     <File Path="Rename FreeWebDevExample.exe" />
   </Folder>
   <Project Path="WebDevExample.Client/WebDevExample.Client.csproj" />
-  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="0280E38F-299E-400B-9607-7C159B287D6F" />
-  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="F893A9C7-E5F0-4FE0-BC84-5409E6171C2B" />
-  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="15C82B6B-363A-4881-BEEC-396AE59C558D" />
-  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="49AD1B1C-93C7-4AB1-B9F5-9E816861DE87" />
+  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="B8CD312E-E4B9-4A42-9C88-90A943A91288" />
+  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="A739140D-AC24-4324-8B04-4D4E731CAAF5" />
+  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="2E8A0412-0A1B-43E7-B3F1-B6B87F64D7C8" />
+  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="F4592E52-CA31-4F71-8E58-75FFE36A89B4" />
   <Project Path="WebDevExample/WebDevExample.csproj" />
 </Solution>
