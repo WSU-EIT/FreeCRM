@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeTwilio.exe" />
   </Folder>
   <Project Path="FreeTwilio.Client/FreeTwilio.Client.csproj" />
-  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="13F4211F-FCEB-4C0D-9688-F731F5827FD5" />
-  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="1ECD4CCD-2332-45B0-A444-3AE08DC02874" />
-  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="4AF5600A-4C0C-42AE-9D95-76A8442F15E0" />
-  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="9A940C5A-F759-4053-9C86-FC2F47727AFB" />
+  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="E031C782-9F05-40A1-98C6-A27073966675" />
+  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="5DA4C1E4-46E5-4701-B98E-2C4490A930DC" />
+  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="DDABB4BB-FF8E-471D-AA58-F4A301CDD73C" />
+  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="7F34E4A2-F47C-4C66-84D2-F813EE2290E5" />
   <Project Path="FreeTwilio/FreeTwilio.csproj" />
 </Solution>
