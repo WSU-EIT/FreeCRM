@@ -8,9 +8,9 @@
     <File Path="Rename FreeFreeExamples.exe" />
   </Folder>
   <Project Path="FreeExamples.Client/FreeExamples.Client.csproj" />
-  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="AD6842CE-73BF-4C35-A4A6-9FC1D950FA16" />
-  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="8372192C-AD8F-42D9-A036-19589C0E3319" />
-  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="525EE979-2E7E-472D-96D5-D1C0DE238AF1" />
-  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="0F586B64-F1BF-4C06-AE32-889BF7DC210A" />
+  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="BA5C32F1-5880-4B21-9EB6-E496B908F29C" />
+  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="52851F0D-1EC9-42ED-A391-80505FA895DC" />
+  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="34E44F29-2749-4DD5-B189-EB2E9253335F" />
+  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="D701C9BE-B5E0-4DE2-949B-A076F9515713" />
   <Project Path="FreeExamples/FreeExamples.csproj" />
 </Solution>
