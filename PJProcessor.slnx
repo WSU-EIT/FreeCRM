@@ -8,9 +8,9 @@
     <File Path="Rename FreePJProcessor.exe" />
   </Folder>
   <Project Path="PJProcessor.Client/PJProcessor.Client.csproj" />
-  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="F76B0578-057D-4AD3-94D0-62BE3AEACF22" />
-  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="1C261805-B39D-46A5-B169-6C3B8447ADCD" />
-  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="D21C8D39-5055-41BF-9969-B2A8F50FD9BC" />
-  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="E08676E9-B02D-43F9-AF75-6664F5F09E3B" />
+  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="DB651EF0-57DF-416E-8346-349E1AC79121" />
+  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="BB750D13-EBC3-4BA8-B935-C09F783DA1FE" />
+  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="4590CB67-B7ED-48F4-BF51-B296CE47C2C8" />
+  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="C4B780BF-261A-4143-B7DC-BA8939D87298" />
   <Project Path="PJProcessor/PJProcessor.csproj" />
 </Solution>
