@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace AcademicCalendarPetitions.Client;
 
-#region Enumerations and Data Objects used by the AcademicCalendarPetitions
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
