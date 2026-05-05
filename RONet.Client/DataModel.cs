@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace RONet.Client;
 
-#region Enumerations and Data Objects used by the RONet
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
