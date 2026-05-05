@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreePlugins.Client;
 
-#region Enumerations and Data Objects used by the FreePlugins
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

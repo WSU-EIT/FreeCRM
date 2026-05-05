@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreePlugins.exe" />
     <File Path="Rename FreeFreePlugins.exe" />
   </Folder>
   <Project Path="FreePlugins.Client/FreePlugins.Client.csproj" />
-  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="6F5444A1-D13F-47A7-95F5-34750DF99252" />
-  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="1646BD30-82BF-4999-BBBA-2DD45AFFBD0B" />
-  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="EC3D433A-2558-4FEF-B8D5-2EC1A4028509" />
-  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="0CE816D8-86AB-4891-8E63-DD9EAF68C241" />
+  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="583C75B7-F686-4D23-8BB1-AF80F41532BF" />
+  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="01614783-B5D0-4713-9056-41242456DF9B" />
+  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="DD62B1F9-6344-46EF-9DD1-621B0A568185" />
+  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="2DDA3EE3-0D6E-4150-A861-25FE4E7AEDA9" />
   <Project Path="FreePlugins/FreePlugins.csproj" />
 </Solution>
