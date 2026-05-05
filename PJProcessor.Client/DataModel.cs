@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace PJProcessor.Client;
 
-#region Enumerations and Data Objects used by the PJProcessor
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
