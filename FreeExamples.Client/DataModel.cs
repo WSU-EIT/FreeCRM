@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeExamples.Client;
 
-#region Enumerations and Data Objects used by the FreeExamples
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
