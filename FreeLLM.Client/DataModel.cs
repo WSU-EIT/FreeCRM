@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeLLM.Client;
 
-#region Enumerations and Data Objects used by the FreeLLM
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
