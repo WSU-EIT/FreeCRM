@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace Touchpoints.Client;
 
-#region Enumerations and Data Objects used by the Touchpoints
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

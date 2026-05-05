@@ -287,6 +287,37 @@ public static partial class Helpers
     }
 
     /// <summary>
+    /// Cleans a filename to be a readable string.
+    /// </summary>
+    /// <param name="filename">Text containing a filename.</param>
+    /// <returns>The cleaned filename.</returns>
+    public static string CleanFileName(string? filename)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(filename)) {
+            output = System.IO.Path.GetFileNameWithoutExtension(filename)
+                .Trim()
+                .Replace(".", " ")
+                .Replace("-", " ")
+                .Replace("_", " ")
+                .Replace("#", " ")
+                .Replace("~", " ")
+                .Replace("$", " ")
+                .Replace("(", " ")
+                .Replace(")", " ")
+                .Replace("[", " ")
+                .Replace("]", " ")
+                .Replace("{", " ")
+                .Replace("}", " ")
+                .Humanize(LetterCasing.Title)
+                .Trim();
+        }
+
+        return output;
+    }
+
+    /// <summary>
     /// Cleans HTML
     /// </summary>
     /// <param name="html">The text that might contain HTML.</param>
@@ -1188,7 +1219,7 @@ public static partial class Helpers
     /// <param name="height">The height of the dialog (defaults to "auto".)</param>
     public static async Task EditUser(Guid UserId, Delegate? OnSaved = null, string width = "auto", string height = "auto")
     {
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("InDialog", true);
         parameters.Add("userid", UserId.ToString());
 
@@ -1991,7 +2022,7 @@ public static partial class Helpers
         string width = "",
         string height = "")
     {
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnInputAccepted", OnInputAccepted);
 
         parameters.Add("UserInputType", UserInputType);
@@ -2090,7 +2121,7 @@ public static partial class Helpers
             Title = Text("GeneratePassword");
         }
 
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnPasswordAccepted", OnPasswordAccepted);
 
         if (String.IsNullOrWhiteSpace(Class)) {
@@ -2983,9 +3014,9 @@ public static partial class Helpers
     /// <typeparam name="T">The type of object to return.</typeparam>
     /// <param name="guid">A Guid that might be in the number format.</param>
     /// <returns>The number or zero as type T.</returns>
-    public static T GuidToNumber<T>(Guid? guid)
+    public static T? GuidToNumber<T>(Guid? guid)
     {
-        T output = default(T);
+        T? output = default(T);
 
         if (guid.HasValue) {
             var g = guid.Value.ToString().Replace("-", "");
@@ -3051,6 +3082,12 @@ public static partial class Helpers
         return output;
     }
 
+    /// <summary>
+    /// Indicates if the selected page has any Blazor plugins for a given position.
+    /// </summary>
+    /// <param name="pageName">The name of the page.</param>
+    /// <param name="position">The position of the plugin on the page.</param>
+    /// <returns>True if any plugins exist for the given page and position.</returns>
     public static bool HaveBlazorPlugins(string pageName, string position)
     {
         bool output = false;
@@ -3085,6 +3122,39 @@ public static partial class Helpers
     }
 
     /// <summary>
+    /// Creates a tooltip for a highcharts chart using labels and values.
+    /// </summary>
+    /// <param name="tooltip">The HighchartsTooltip object.</param>
+    /// <returns>A string with the tooltip.</returns>
+    public static string HighchartsTooltips(DataObjects.HighchartsTooltip tooltip)
+    {
+        StringBuilder output = new StringBuilder();
+
+        if (!String.IsNullOrWhiteSpace(tooltip.Header)) {
+            output.AppendLine("<div class=\"highcharts-tooltips-header\">" + tooltip.Header + "</div>");
+        }
+
+        var total = 0;
+        foreach (var row in tooltip.Rows) {
+            total += row.Value;
+
+            output.AppendLine("<div class=\"highcharts-tooltips-row\">");
+            output.AppendLine("  <div class=\"highcharts-tooltips-left-column\">" + row.Label + "</div>");
+            output.AppendLine("  <div class=\"highcharts-tooltips-right-column\">" + row.Value.ToString() + "</div>");
+            output.AppendLine("</div>");
+        }
+
+        if (tooltip.IncludeTotalRow && tooltip.Rows.Count() > 1) {
+            output.AppendLine("<div class=\"highcharts-tooltips-row total\">");
+            output.AppendLine("  <div class=\"highcharts-tooltips-left-column\">" + Text("Total") + "</div>");
+            output.AppendLine("  <div class=\"highcharts-tooltips-right-column\">" + total.ToString() + "</div>");
+            output.AppendLine("</div>");
+        }
+
+        return output.ToString();
+    }
+
+    /// <summary>
     /// Highlights HTML elements that have a given class name.
     /// </summary>
     /// <param name="className">The class name to find.</param>
@@ -3099,7 +3169,7 @@ public static partial class Helpers
     /// <param name="OnEditCompleted">The required Delegate that will receive the HTML when the OK button is clicked.</param>
     /// <param name="HTML">Optional HTML to set in the editor.</param>
     /// <param name="Title">Optional title to override the default title.</param>
-    /// <param name="config">Optional HtmlEditorConfiguration object to override default editor options.</param>
+    /// <param name="config">Optional Configuration object to override default editor options.</param>
     /// <param name="width">Optional width. Leave empty for the default or set to "auto" for the dialog defaults.</param>
     /// <param name="height">Optional width. Leave empty for the default or set to "auto" for the dialog defaults.</param>
     /// <param name="setFocusOnLoad">Option to set the focus to the editor when it loads.</param>
@@ -3107,7 +3177,7 @@ public static partial class Helpers
     public static async Task HtmlEditor(Delegate OnEditCompleted,
         string? HTML = "",
         string? Title = "",
-        FreeBlazor.HtmlEditor.HtmlEditorConfiguration? config = null,
+        FreeBlazor.HtmlEditor2.Configuration? config = null,
         string width = "",
         string height = "",
         bool setFocusOnLoad = true,
@@ -3117,7 +3187,7 @@ public static partial class Helpers
             Title = Text("EditHTML");
         }
 
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnEditCompleted", OnEditCompleted);
 
         if (!String.IsNullOrWhiteSpace(HTML)) {
@@ -4179,6 +4249,21 @@ public static partial class Helpers
     /// <summary>
     /// Returns the class that marks a field as missing if no value is provided.
     /// </summary>
+    /// <param name="values">A nullable array object.</param>
+    /// <param name="defaultClass">An optional default class to append to the output.</param>
+    /// <returns>The class value.</returns>
+    public static string MissingValue(object[]? values, string? defaultClass = "")
+    {
+        if (String.IsNullOrWhiteSpace(defaultClass)) {
+            return values == null || values.Length == 0 ? MissingValueClass : "";
+        } else {
+            return values == null || values.Length == 0 ? MissingValueClass + " " + defaultClass : defaultClass;
+        }
+    }
+
+    /// <summary>
+    /// Returns the class that marks a field as missing if no value is provided.
+    /// </summary>
     /// <param name="value">A nullable string value.</param>
     /// <param name="defaultClass">An optional default class to append to the output.</param>
     /// <returns>The class value.</returns>
@@ -4218,7 +4303,7 @@ public static partial class Helpers
     /// <param name="height">Optional height for the dialog (defaults to auto-sized.)</param>
     public async static Task ModalMessage(string message, string title = "", bool DisableClose = false, string width = "auto", string height = "auto")
     {
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("Message", message);
 
         if (width == "auto") {
@@ -4621,7 +4706,7 @@ public static partial class Helpers
             Title = Text("PDFViewer");
         }
 
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("AllowDownload", AllowDownload);
         parameters.Add("FileId", FileId);
         parameters.Add("PdfFile", Model.ApplicationUrl + "File/View/" + FileId.ToString() + "?TenantId=" + Model.TenantId.ToString() + "&Token=" + Model.User.AuthToken);
@@ -5114,7 +5199,7 @@ public static partial class Helpers
             Title = Text("SelectFile");
         }
 
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnFileSelected", OnFileSelected);
         parameters.Add("ImagesOnly", ImagesOnly);
         parameters.Add("ShowCancelButton", ShowCancelButton);
@@ -5551,6 +5636,7 @@ public static partial class Helpers
                         if (String.IsNullOrWhiteSpace(column.BooleanIcon)) {
                             column.BooleanIcon = column.Label;
                         }
+                        column.AriaLabel = Text(column.DataElementName);
                     } else {
                         column.Label = label;
                     }
@@ -5570,23 +5656,34 @@ public static partial class Helpers
     /// <param name="SupportedFileTypes">A list of extensions if you wish to limit the upload types allowed.</param>
     /// <param name="AllowMultipleUploads">Option to indicate if the user can upload only a single file or multiple files.</param>
     /// <param name="Height">The height of the upload area in pixels (defaults to 200px.)</param>
+    /// <param name="AriaLabel">The aria-label for the file upload input element. Defaults to "File Upload/File Uploads".</param>
     public static async Task UploadFile(
         Delegate OnUploadComplete,
         string Title = "",
         string UploadInstructions = "",
         List<string>? SupportedFileTypes = null,
         bool AllowMultipleUploads = false,
-        int Height = 200
+        int Height = 200,
+        string AriaLabel = ""
     )
     {
         if (String.IsNullOrWhiteSpace(Title)) {
             Title = Text("UploadFile");
         }
 
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        if (String.IsNullOrWhiteSpace(AriaLabel)) {
+            if (AllowMultipleUploads) {
+                AriaLabel = Text("UploadFiles");
+            } else {
+                AriaLabel = Text("UploadFile");
+            }
+        }
+
+        Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnUploadComplete", OnUploadComplete);
         parameters.Add("InDialog", true);
         parameters.Add("Height", Height);
+        parameters.Add("AriaLabel", AriaLabel);
 
         if (!String.IsNullOrWhiteSpace(UploadInstructions)) {
             parameters.Add("UploadInstructions", UploadInstructions);

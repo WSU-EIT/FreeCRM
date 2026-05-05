@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeTouchpoints.exe" />
     <File Path="Rename FreeTouchpoints.exe" />
   </Folder>
   <Project Path="Touchpoints.Client/Touchpoints.Client.csproj" />
-  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="189BF9E1-0534-44E1-8AAF-4947FA0166C8" />
-  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="4C962919-90D5-4F12-888E-0D5B78A9E503" />
-  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="96465344-979D-4F41-89A4-2DCE33767472" />
-  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="8013FEDC-BE8F-470F-A5A3-5878AAC6E3C9" />
+  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="EFACD264-6BA2-440F-8385-DF08BA5E8BD9" />
+  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="3A7CE755-40F5-4CED-A2E7-B66E718AC1A2" />
+  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="473AD913-EA1E-4C86-96EB-67CD9EA38464" />
+  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="4AC81356-F755-4ACB-AFF9-D25D77872016" />
   <Project Path="Touchpoints/Touchpoints.csproj" />
 </Solution>
