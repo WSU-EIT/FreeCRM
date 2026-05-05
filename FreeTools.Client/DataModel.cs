@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeTools.Client;
 
-#region Enumerations and Data Objects used by the FreeTools
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

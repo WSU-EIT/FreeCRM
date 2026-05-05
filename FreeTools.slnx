@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeTools.exe" />
     <File Path="Rename FreeFreeTools.exe" />
   </Folder>
   <Project Path="FreeTools.Client/FreeTools.Client.csproj" />
-  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="8349D8F7-B4F9-4157-8CCD-7A1ABA648046" />
-  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="EF507BA4-6512-4583-9FDA-B74FABB006B8" />
-  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="A6C9AB22-D314-4B8E-AAB1-E547D37291F5" />
-  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="D8AFAF58-F4D3-4AEA-B93A-0B35C72DF070" />
+  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="58538399-A34D-4618-9E5D-8B819A29BC56" />
+  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="322803ED-73D8-4F5E-A8C8-DDD8CCD9031B" />
+  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="F971A5E4-0830-4F0D-93D7-F05984F028E2" />
+  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="7EB26BFE-8408-403E-A711-3A8025EF49C0" />
   <Project Path="FreeTools/FreeTools.csproj" />
 </Solution>
