@@ -217,7 +217,7 @@ namespace FreeTwilio
             if (openIdForceHttps) {
                 app.Use((context, next) => {
                     context.Request.Scheme = "https";
-                    context.Response.Headers.Append("Content-Security-Policy", "frame-ancestors 'self' login.wsu.edu cms.em.wsu.edu futurecoug.wsu.edu");
+                    //context.Response.Headers.Append("Content-Security-Policy", "frame-ancestors 'self'");
                     return next(context);
                 });
             }

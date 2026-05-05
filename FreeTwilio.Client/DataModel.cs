@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeTwilio.Client;
 
-#region Enumerations and Data Objects used by the FreeTwilio
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
