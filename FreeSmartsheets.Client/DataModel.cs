@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeSmartsheets.Client;
 
-#region Enumerations and Data Objects used by the FreeSmartsheets
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

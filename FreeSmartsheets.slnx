@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeSmartsheets.exe" />
     <File Path="Rename FreeFreeSmartsheets.exe" />
   </Folder>
   <Project Path="FreeSmartsheets.Client/FreeSmartsheets.Client.csproj" />
-  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="08832476-F0CB-4D33-B706-C9524B502D83" />
-  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="82E313FB-460F-47A8-ADF5-B3C6B1545AD6" />
-  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="323D391C-12B8-4D9E-9009-915E89465B10" />
-  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="46010E40-BD2F-41A6-96CB-0CAC1A95E6DC" />
+  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="E2332F93-F60D-4000-8EB7-9CEADEA8742A" />
+  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="E827F104-7C4D-4B6A-B603-02BBF2F918FE" />
+  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="F76E1E8F-BAE1-4D7B-99FA-38F8AD79D44E" />
+  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="850B753D-85D9-4A70-B787-981F726F3D4C" />
   <Project Path="FreeSmartsheets/FreeSmartsheets.csproj" />
 </Solution>
