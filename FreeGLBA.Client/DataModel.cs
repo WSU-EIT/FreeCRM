@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeGLBA.Client;
 
-#region Enumerations and Data Objects used by the FreeGLBA
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

@@ -280,6 +280,7 @@ public partial class DataObjects
         public bool Sortable { get; set; }
         public string? Class { get; set; }
         public string? BooleanIcon { get; set; }
+        public string? AriaLabel { get; set; }
     }
 
     public partial class FilterFileStorage : Filter
@@ -307,6 +308,19 @@ public partial class DataObjects
         public string? udf08 { get; set; }
         public string? udf09 { get; set; }
         public string? udf10 { get; set; }
+    }
+
+    public class HighchartsTooltip
+    {
+        public string? Header { get; set; }
+        public bool IncludeTotalRow { get; set; }
+        public List<HighchartsRow> Rows { get; set; } = new List<HighchartsRow>();
+    }
+
+    public class HighchartsRow
+    {
+        public string Label { get; set; } = String.Empty;
+        public int Value { get; set; }
     }
 
     public partial class Language
@@ -455,7 +469,7 @@ public partial class DataObjects
         public string? DefaultReplyToAddress { get; set; }
         public DeletePreference DeletePreference { get; set; } = DeletePreference.MarkAsDeleted;
         public int DeleteMarkedRecordsAfterDays { get; set; } = 90;
-        public bool HideAbout { get; set; }
+        public bool HideAbout { get; set; } = true;
         [Sensitive]
         public string? LdapLookupRoot { get; set; }
         [Sensitive]
