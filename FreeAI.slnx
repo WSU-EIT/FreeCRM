@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeAI.exe" />
     <File Path="Rename FreeFreeAI.exe" />
   </Folder>
   <Project Path="FreeAI.Client/FreeAI.Client.csproj" />
-  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="3C3B3899-3A9F-44C5-8227-E2F73B9EE8CD" />
-  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="057FC23F-496B-46B5-9D07-105FA05F394D" />
-  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="AC07E955-5CB4-48DC-8ADC-FEC5A966CF51" />
-  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="53B7696D-CC2A-45C1-9B47-0057FD133D45" />
+  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="D4E78113-4326-4051-9BC8-179149E62B14" />
+  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="708A8851-9A5A-4AC3-8F6E-21866610F8FA" />
+  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="21A25DF4-7280-45AC-BFEE-DA007EC78975" />
+  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="08AA3F2D-5F22-4431-9697-808DF4B1779F" />
   <Project Path="FreeAI/FreeAI.csproj" />
 </Solution>

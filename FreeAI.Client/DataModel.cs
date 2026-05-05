@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeAI.Client;
 
-#region Enumerations and Data Objects used by the FreeAI
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
