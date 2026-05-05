@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace WebDevExample.Client;
 
-#region Enumerations and Data Objects used by the WebDevExample
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,

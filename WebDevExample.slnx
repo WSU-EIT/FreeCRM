@@ -2,15 +2,16 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Accessibility.md" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="Remove Modules from FreeWebDevExample.exe" />
     <File Path="Rename FreeWebDevExample.exe" />
   </Folder>
   <Project Path="WebDevExample.Client/WebDevExample.Client.csproj" />
-  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="B8CD312E-E4B9-4A42-9C88-90A943A91288" />
-  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="A739140D-AC24-4324-8B04-4D4E731CAAF5" />
-  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="2E8A0412-0A1B-43E7-B3F1-B6B87F64D7C8" />
-  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="F4592E52-CA31-4F71-8E58-75FFE36A89B4" />
+  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="B08D0525-CADC-469C-8780-9982A21CF232" />
+  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="FA7F6419-CC3B-4D4C-BB60-EDEFBC153BBF" />
+  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="1709925F-0774-469D-9B66-5278044E7B28" />
+  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="2A81301E-91FA-44E4-965E-70734614351B" />
   <Project Path="WebDevExample/WebDevExample.csproj" />
 </Solution>
