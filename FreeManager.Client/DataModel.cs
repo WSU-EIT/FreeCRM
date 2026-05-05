@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace FreeManager.Client;
 
-#region Enumerations and Data Objects used by the FreeManager
+#region Enumerations and Data Objects used by the application
 public enum MessageType
 {
     Primary,
