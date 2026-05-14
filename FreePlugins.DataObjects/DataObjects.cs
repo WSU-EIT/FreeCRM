@@ -619,6 +619,7 @@ public partial class DataObjects
     {
         public DateOnly Released { get; set; }
         public double RunningSince { get; set; }
+        public string? Token { get; set; }
         public string? Version { get; set; }
     }
 
