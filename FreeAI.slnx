@@ -9,9 +9,9 @@
     <File Path="Rename FreeFreeAI.exe" />
   </Folder>
   <Project Path="FreeAI.Client/FreeAI.Client.csproj" />
-  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="A0D7863C-349D-4F0E-9307-4C538E81A025" />
-  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="845E137D-8FBB-4D96-82E7-9166866FF440" />
-  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="C9AA527B-B43F-4FE1-ACE2-2FC4D3A53EC5" />
-  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="5249E7CD-6266-4F08-8FF4-B6BE444705FD" />
+  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="F74A1E6E-9E1F-4D0B-9DB4-B9BB24E79A12" />
+  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="22E4BB8D-187F-468B-8C37-EB66BC16A990" />
+  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="C5B7C348-9BA3-42DA-9D4A-3ACEC51D5718" />
+  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="A74A2A88-DA9A-428D-9634-9E6521813CB2" />
   <Project Path="FreeAI/FreeAI.csproj" />
 </Solution>
