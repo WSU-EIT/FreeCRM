@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeExamples.exe" />
     <File Path="Rename FreeFreeExamples.exe" />
+    <File Path="Upgrade FreeFreeExamples.exe" />
   </Folder>
   <Project Path="FreeExamples.Client/FreeExamples.Client.csproj" />
-  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="6BBCA4C8-DE3B-491F-9D0A-61F120E782D6" />
-  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="27C829DE-78A1-4894-BB49-C777D7258E21" />
-  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="47EF2244-BBA2-4770-A642-BFC90C0536FB" />
-  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="CF6DF030-97DE-4F58-B4B9-79A3C7E70806" />
+  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="83AC08FC-F1E6-4695-88AF-6714AF725F61" />
+  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="7BDA4CD7-8CDD-4D21-B8AA-7AC545C82435" />
+  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="261FCA81-EDBC-4F13-B1A5-79FD76DFD471" />
+  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="B40C5C60-9F76-40FA-A687-A0B1A427D683" />
   <Project Path="FreeExamples/FreeExamples.csproj" />
 </Solution>
