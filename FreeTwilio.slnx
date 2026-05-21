@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeTwilio.exe" />
     <File Path="Rename FreeFreeTwilio.exe" />
+    <File Path="Upgrade FreeFreeTwilio.exe" />
   </Folder>
   <Project Path="FreeTwilio.Client/FreeTwilio.Client.csproj" />
-  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="9C6A62CC-FB85-4836-937E-51C43E1AA94B" />
-  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="BCB0744D-EBF7-4D51-971E-331E08ABE5ED" />
-  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="52068BA6-E062-495F-A5CA-24AAC4D62A25" />
-  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="D51A0936-BCA7-4E52-9F42-DEEA3BC969E6" />
+  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="EB206C9C-F14F-4145-8BC6-A0545EC78AAF" />
+  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="B77D900A-B02B-4FB7-9188-ED3186208D87" />
+  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="580EF1A2-9015-4339-968E-25ECFA50CCFE" />
+  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="2105F312-5181-4354-8D32-C0C69C9ECFCE" />
   <Project Path="FreeTwilio/FreeTwilio.csproj" />
 </Solution>
