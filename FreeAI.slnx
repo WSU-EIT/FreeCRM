@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeAI.exe" />
     <File Path="Rename FreeFreeAI.exe" />
+    <File Path="Upgrade FreeFreeAI.exe" />
   </Folder>
   <Project Path="FreeAI.Client/FreeAI.Client.csproj" />
-  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="F74A1E6E-9E1F-4D0B-9DB4-B9BB24E79A12" />
-  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="22E4BB8D-187F-468B-8C37-EB66BC16A990" />
-  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="C5B7C348-9BA3-42DA-9D4A-3ACEC51D5718" />
-  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="A74A2A88-DA9A-428D-9634-9E6521813CB2" />
+  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="B59646F9-869D-4EE3-B5B4-50134DDF688C" />
+  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="748D84C0-02EE-4E9E-BD5F-113294FF8B25" />
+  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="A28472BE-B10B-44EE-BA02-DEF134EFABBD" />
+  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="6E82E9B2-9661-4151-8D3B-A90F691F897A" />
   <Project Path="FreeAI/FreeAI.csproj" />
 </Solution>
