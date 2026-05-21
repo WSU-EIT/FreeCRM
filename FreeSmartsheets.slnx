@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeSmartsheets.exe" />
     <File Path="Rename FreeFreeSmartsheets.exe" />
+    <File Path="Upgrade FreeFreeSmartsheets.exe" />
   </Folder>
   <Project Path="FreeSmartsheets.Client/FreeSmartsheets.Client.csproj" />
-  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="4AA4191D-755D-4501-AF89-500447C98257" />
-  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="D3F99860-CEAF-401B-AF54-2F1DE632F6FB" />
-  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="D85277B1-221E-486C-88D1-82DB728D4516" />
-  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="D2B1C2B3-A735-4F80-B50D-0654368428D5" />
+  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="2376AD1C-7411-4B95-994B-ACE29234803C" />
+  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="483B2EC1-B854-4F75-BC91-6E14950C95AD" />
+  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="150CFF0B-4A51-4252-A955-23CD3C6EAB42" />
+  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="544E84E7-EF16-4C09-A5EE-6A799B6DFFEB" />
   <Project Path="FreeSmartsheets/FreeSmartsheets.csproj" />
 </Solution>
