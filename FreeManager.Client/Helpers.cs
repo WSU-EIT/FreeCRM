@@ -170,6 +170,37 @@ public static partial class Helpers
     }
 
     /// <summary>
+    /// Updates any data values where the column has the class 'auto-truncate' to auto-hide content.
+    /// </summary>
+    /// <param name="record">The record object to update.</param>
+    /// <param name="columns">The collection of columns.</param>
+    public static void AutoTruncatePagedRecordsetData(object record, List<FreeBlazor.PagedRecordset.Column> columns, string className = "auto-truncate")
+    {
+        if (String.IsNullOrWhiteSpace(className)) {
+            className = "auto-truncate";
+        }
+
+        foreach (var column in columns) {
+            if (StringLower(column.Class).Contains(className)) {
+                // This can only be used for string data types, as other data types can't be updated with string values.
+                // SetObjectPropertyValue will catch the attempt to set a value that the property can't accept, but
+                // it's best to not use this feature on fields that cannot take text, like DateTime fields.
+                var dataValue = GetObjectPropertyValue<string>(record, column.DataElementName);
+
+                if (!String.IsNullOrWhiteSpace(dataValue) && !dataValue.Contains("<span")) {
+                    string el = "<div title=\"" + dataValue + "\" class=\"auto-truncate-overflow\"><span>" + dataValue + "</span></div>";
+
+                    SetObjectPropertyValue(
+                        record,
+                        column.DataElementName,
+                        el
+                    );
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// The BaseUri from the NavigationManager
     /// </summary>
     public static string BaseUri {
@@ -426,7 +457,7 @@ public static partial class Helpers
     /// </summary>
     public static string ConfirmButtonTextCancel {
         get {
-            return Helpers.Text("Cancel");
+            return Text("Cancel");
         }
     }
 
@@ -435,7 +466,7 @@ public static partial class Helpers
     /// </summary>
     public static string ConfirmButtonTextConfirmDelete {
         get {
-            return Helpers.Text("ConfirmDelete");
+            return Text("ConfirmDelete");
         }
     }
 
@@ -444,7 +475,7 @@ public static partial class Helpers
     /// </summary>
     public static string ConfirmButtonTextDelete {
         get {
-            return Helpers.Text("Delete");
+            return Text("Delete");
         }
     }
 
@@ -453,7 +484,7 @@ public static partial class Helpers
     /// </summary>
     public static string ConfirmButtonTextDeleteAll {
         get {
-            return Helpers.Text("DeleteAll");
+            return Text("DeleteAll");
         }
     }
 
@@ -1283,7 +1314,7 @@ public static partial class Helpers
             Objects = objects,
         };
 
-        var result = await Helpers.GetOrPost<PluginExecuteResult>("api/Data/ExecutePlugin", request);
+        var result = await GetOrPost<PluginExecuteResult>("api/Data/ExecutePlugin", request);
         if (result != null) {
             output.Result = result.Result;
 
@@ -1617,10 +1648,29 @@ public static partial class Helpers
         string output = "";
 
         if (!String.IsNullOrWhiteSpace(value)) {
-            if (ReplaceSpaces) {
-                output = "<a href=\"mailto:" + value + "\">" + value.Replace(" ", "&nbsp;") + "</a>";
+            if (value.Contains("<span")) {
+                var start = value.IndexOf("<span>");
+                if (start > -1) {
+                    start = value.IndexOf(">", start + 1);
+
+                    if (start > -1) {
+                        var end = value.IndexOf("</span", start + 1);
+
+                        if (end > -1) {
+                            var before = value.Substring(0, start + 1);
+                            var inside = value.Substring(start + 1, end - start - 1);
+                            var after = value.Substring(end);
+
+                            output = before + "<a href=\"mailto:" + inside + "\">" + (ReplaceSpaces ? inside.Replace(" ", "&nbsp;") : inside) + "</a>" + after;
+                        }
+                    }
+                }
+
+                if (String.IsNullOrWhiteSpace(output)) {
+                    output = value;
+                }
             } else {
-                output = "<a href=\"mailto:" + value + "\">" + value + "</a>";
+                output = "<a href=\"mailto:" + value + "\">" + (ReplaceSpaces ? value.Replace(" ", "&nbsp;") : value) + "</a>";
             }
         }
 
@@ -2290,6 +2340,32 @@ public static partial class Helpers
     /// <summary>
     /// Gets the value of a property from an object.
     /// </summary>
+    /// <param name="obj">The object to check for the property value.</param>
+    /// <param name="property">The name of the property.</param>
+    /// <returns>The value of the property as a string.</returns>
+    public static string GetObjectPropertyValue(object? obj, string? property)
+    {
+        string output = String.Empty;
+
+        if (obj != null && !String.IsNullOrWhiteSpace(property)) {
+            Type type = obj.GetType();
+
+            if (type == typeof(System.Text.Json.JsonElement)) {
+                output = GetObjectPropertyValueJson((System.Text.Json.JsonElement)obj, property);
+            } else {
+                var propertyValue = GetObjectPropertyValueStandard<string>(obj, property);
+                if (!String.IsNullOrWhiteSpace(propertyValue)) {
+                    output = propertyValue;
+                }
+            }
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Gets the value of a property from an object.
+    /// </summary>
     /// <typeparam name="T">The type of the property to return.</typeparam>
     /// <param name="obj">The object to check for the property value.</param>
     /// <param name="property">The name of the property.</param>
@@ -2310,6 +2386,101 @@ public static partial class Helpers
                 }
             }
         }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Gets the value of a property from a JsonElement object.
+    /// </summary>
+    /// <param name="element">The JsonElement object to check for the property value.</param>
+    /// <param name="property">The name of the property.</param>
+    /// <returns>The value of the property as a string.</returns>
+    public static string GetObjectPropertyValueJson(System.Text.Json.JsonElement element, string property)
+    {
+        string output = String.Empty;
+
+        try {
+            // Find the case-sensitive property name
+            var document = System.Text.Json.JsonDocument.Parse(element.ToString());
+            if (document != null) {
+                foreach (var prop in document.RootElement.EnumerateObject()) {
+                    if (prop.Name.ToLower() == property.ToLower()) {
+                        property = prop.Name;
+                        break;
+                    }
+                }
+            }
+
+            var elem = element.GetProperty(property);
+            var type = elem.ValueKind;
+
+            switch (type) {
+                case System.Text.Json.JsonValueKind.Array:
+                    break;
+
+                case System.Text.Json.JsonValueKind.False:
+                    output = "{{boolean:false}}";
+                    break;
+
+                case System.Text.Json.JsonValueKind.Null:
+                    break;
+
+                case System.Text.Json.JsonValueKind.Number:
+                    var numberAsString = elem.GetRawText();
+                    if (!String.IsNullOrWhiteSpace(numberAsString)) {
+                        numberAsString = numberAsString.Trim();
+
+                        if (numberAsString.Contains(".") || numberAsString.Contains(",")) {
+                            // try a decimal value
+                            try {
+                                var numberDecimal = elem.GetDecimal();
+                                output = numberDecimal.ToString();
+                            } catch {
+                                output = numberAsString;
+                            }
+                        } else {
+                            try {
+                                var numberInt32 = elem.GetInt32();
+                                output = numberInt32.ToString();
+                            } catch {
+                                output = numberAsString;
+                            }
+                        }
+                    }
+
+                    try {
+                        var n = elem.GetDecimal();
+                        output = n.ToString();
+                    } catch {
+                        try {
+                            var n2 = elem.GetDouble();
+                            output = n2.ToString();
+                        } catch {
+                            try {
+                                var n3 = elem.GetInt32();
+                                output = n3.ToString();
+                            } catch { }
+                        }
+                    }
+                    break;
+
+                case System.Text.Json.JsonValueKind.Object:
+                    break;
+
+                case System.Text.Json.JsonValueKind.String:
+                    output = StringOrDateValue(elem.GetString());
+                    break;
+
+                case System.Text.Json.JsonValueKind.True:
+                    output = "{{boolean:true}}";
+                    break;
+
+                case System.Text.Json.JsonValueKind.Undefined:
+                    output = "?";
+                    break;
+            }
+        } catch { }
 
         return output;
     }
@@ -2429,23 +2600,45 @@ public static partial class Helpers
         T? output = default(T);
 
         if (o != null) {
-            foreach (String part in property.Split(".")) {
-                Type type = o.GetType();
+            try {
+                foreach (String part in property.Split(".")) {
+                    Type type = o.GetType();
 
-                System.Reflection.BindingFlags bindingAttrs = System.Reflection.BindingFlags.Instance |
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.Public |
-                    System.Reflection.BindingFlags.NonPublic |
-                    System.Reflection.BindingFlags.IgnoreCase;
+                    System.Reflection.BindingFlags bindingAttrs = System.Reflection.BindingFlags.Instance |
+                        System.Reflection.BindingFlags.Static |
+                        System.Reflection.BindingFlags.Public |
+                        System.Reflection.BindingFlags.NonPublic |
+                        System.Reflection.BindingFlags.IgnoreCase;
 
-                var info = type.GetProperty(part, bindingAttrs);
-                if (info != null) {
-                    var obj = info.GetValue(o, null);
-                    if (obj != null) {
-                        return (T)obj;
+                    var info = type.GetProperty(part, bindingAttrs);
+                    if (info != null) {
+                        var obj = info.GetValue(o, null);
+                        if (obj != null) {
+                            //return (T)obj;
+
+                            try {
+                                var tType = typeof(T);
+                                if (tType == typeof(System.String) && typeof(object) != typeof(System.String)) {
+                                    // This is not a string type, but is being requested as a string.
+                                    var castObject = (object)obj;
+
+                                    if (castObject != null) {
+                                        var stringObject = castObject.ToString();
+                                        if (stringObject != null) {
+                                            return (T)(object)stringObject;
+                                        }
+                                    } else {
+                                        return output;
+                                    }
+                                } else {
+                                    return (T)obj;
+                                }
+                            } catch { }
+                        }
+
                     }
                 }
-            }
+            } catch { }
         }
 
         return output;
@@ -3411,7 +3604,7 @@ public static partial class Helpers
                 { "fa:fa-solid fa-magnifying-glass",             new List<string> { "IncludeInSearch", "Preview", "Search", "View" }},
                 { "fa:fa-solid fa-moon",                         new List<string> { "ThemeDark" }},
                 { "fa:fa-solid fa-paper-plane",                  new List<string> { "SendTestEmail" }},
-                { "fa:fa-solid fa-pen-to-square",                new List<string> { "Edit", "EditAll", "Manage" }},
+                { "fa:fa-solid fa-pen-to-square",                new List<string> { "Edit", "EditAll", "EditModified", "Manage" }},
                 { "fa:fa-solid fa-person-digging",               new List<string> { "MaintenanceMode" }},
                 { "fa:fa-solid fa-play",                         new List<string> { "Play", "Process", "Reprocess", "TestCode", "TestPlugin" }},
                 { "fa:fa-solid fa-repeat",                       new List<string> { "SwitchTenant" }},
@@ -3529,7 +3722,7 @@ public static partial class Helpers
     {
         bool output = false;
 
-        switch (Helpers.StringValue(file.Extension).ToUpper()) {
+        switch (StringValue(file.Extension).ToUpper()) {
             case ".GIF":
             case ".JPG":
             case ".JPEG":
@@ -3601,7 +3794,7 @@ public static partial class Helpers
     {
         bool output = false;
 
-        switch (Helpers.StringValue(file.Extension).ToUpper()) {
+        switch (StringValue(file.Extension).ToUpper()) {
             case ".PDF":
                 output = true;
                 break;
@@ -3619,7 +3812,7 @@ public static partial class Helpers
     {
         bool output = false;
 
-        switch (Helpers.StringValue(file.Extension).ToUpper()) {
+        switch (StringValue(file.Extension).ToUpper()) {
             case ".TXT":
                 output = true;
                 break;
@@ -3871,7 +4064,7 @@ public static partial class Helpers
     /// </summary>
     public async static Task LoadDefaultLanguage()
     {
-        var language = await Helpers.GetOrPost<DataObjects.Language>("api/Data/GetDefaultLanguage");
+        var language = await GetOrPost<DataObjects.Language>("api/Data/GetDefaultLanguage");
         if (language != null) {
             Model.DefaultLanguage = language;
         }
@@ -3950,7 +4143,7 @@ public static partial class Helpers
             string output = "";
 
             if (Model.Tenant.TenantSettings.Logo.HasValue && Model.Tenant.TenantSettings.Logo != Guid.Empty) {
-                output = Helpers.BaseUri + "File/View/" + ((Guid)Model.Tenant.TenantSettings.Logo).ToString();
+                output = BaseUri + "File/View/" + ((Guid)Model.Tenant.TenantSettings.Logo).ToString();
             }
 
             return output;
@@ -3989,7 +4182,7 @@ public static partial class Helpers
         get {
             var output = new List<DataObjects.MenuItem> { };
 
-            output.AddRange(Helpers.MenuItemsApp);
+            output.AddRange(MenuItemsApp);
 
             output = output.OrderBy(x => x.SortOrder).ThenBy(x => x.Title).ToList();
 
@@ -4006,10 +4199,10 @@ public static partial class Helpers
 
             if (Model.User.AppAdmin) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("AppSettings"),
+                    Title = Text("AppSettings"),
                     Icon = "AppSettings",
                     PageNames = new List<string> { "appsettings" },
-                    url = Helpers.BuildUrl("Settings/AppSettings"),
+                    url = BuildUrl("Settings/AppSettings"),
                     SortOrder = 1000,
                     AppAdminOnly = true,
                 });
@@ -4018,19 +4211,19 @@ public static partial class Helpers
             // {{ModuleItemStart:Departments}}
             if (Model.User.Admin && Model.FeatureEnabledDepartments) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("DepartmentGroups"),
+                    Title = Text("DepartmentGroups"),
                     Icon = "DepartmentGroups",
                     PageNames = new List<string> { "departmentgroups", "editdepartmentgroup" },
-                    url = Helpers.BuildUrl("Settings/DepartmentGroups"),
+                    url = BuildUrl("Settings/DepartmentGroups"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
 
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Departments"),
+                    Title = Text("Departments"),
                     Icon = "Departments",
                     PageNames = new List<string> { "departments", "editdepartment" },
-                    url = Helpers.BuildUrl("Settings/Departments"),
+                    url = BuildUrl("Settings/Departments"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4039,10 +4232,10 @@ public static partial class Helpers
 
             if (Model.User.Admin && Model.FeatureEnabledFiles) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Files"),
+                    Title = Text("Files"),
                     Icon = "Files",
                     PageNames = new List<string> { "files" },
-                    url = Helpers.BuildUrl("Settings/Files"),
+                    url = BuildUrl("Settings/Files"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4050,10 +4243,10 @@ public static partial class Helpers
 
             if (Model.User.Admin) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Language"),
+                    Title = Text("Language"),
                     Icon = "Language",
                     PageNames = new List<string> { "language" },
-                    url = Helpers.BuildUrl("Settings/Language"),
+                    url = BuildUrl("Settings/Language"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4061,10 +4254,10 @@ public static partial class Helpers
 
             if (Model.User.Admin) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Settings"),
+                    Title = Text("Settings"),
                     Icon = "Settings",
                     PageNames = new List<string> { "settings" },
-                    url = Helpers.BuildUrl("Settings"),
+                    url = BuildUrl("Settings"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4073,10 +4266,10 @@ public static partial class Helpers
             // {{ModuleItemStart:Tags}}
             if (Model.User.Admin && Model.FeatureEnabledTags) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Tags"),
+                    Title = Text("Tags"),
                     Icon = "Tags",
                     PageNames = new List<string> { "edittag", "tags" },
-                    url = Helpers.BuildUrl("Settings/Tags"),
+                    url = BuildUrl("Settings/Tags"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4085,10 +4278,10 @@ public static partial class Helpers
 
             if (Model.User.AppAdmin) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Tenants"),
+                    Title = Text("Tenants"),
                     Icon = "Tenants",
                     PageNames = new List<string> { "edittenant", "tenants" },
-                    url = Helpers.BuildUrl("Settings/Tenants"),
+                    url = BuildUrl("Settings/Tenants"),
                     SortOrder = 1000,
                     AppAdminOnly = true,
                 });
@@ -4096,10 +4289,10 @@ public static partial class Helpers
 
             if (Model.User.Admin && Model.FeatureEnabledUDF) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("UserDefinedFields"),
+                    Title = Text("UserDefinedFields"),
                     Icon = "UserDefinedFields",
                     PageNames = new List<string> { "udf" },
-                    url = Helpers.BuildUrl("Settings/UDF"),
+                    url = BuildUrl("Settings/UDF"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4107,10 +4300,10 @@ public static partial class Helpers
 
             if (Model.User.Admin) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("Users"),
+                    Title = Text("Users"),
                     Icon = "Users",
                     PageNames = new List<string> { "edituser", "users" },
-                    url = Helpers.BuildUrl("Settings/Users"),
+                    url = BuildUrl("Settings/Users"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
@@ -4118,16 +4311,16 @@ public static partial class Helpers
 
             if (Model.User.Admin && Model.FeatureEnabledUserGroups) {
                 output.Add(new DataObjects.MenuItem {
-                    Title = Helpers.Text("UserGroups"),
+                    Title = Text("UserGroups"),
                     Icon = "UserGroups",
                     PageNames = new List<string> { "editusergroup", "usergroups" },
-                    url = Helpers.BuildUrl("Settings/UserGroups"),
+                    url = BuildUrl("Settings/UserGroups"),
                     SortOrder = 1000,
                     AppAdminOnly = false,
                 });
             }
 
-            output.AddRange(Helpers.MenuItemsAdminApp);
+            output.AddRange(MenuItemsAdminApp);
 
             output = output.OrderBy(x => x.SortOrder).ThenBy(x => x.Title).ToList();
 
@@ -4873,8 +5066,8 @@ public static partial class Helpers
     /// <param name="OnComplete">An optional Delegate to be invoked after the action has completed.</param>
     public async static Task QuickAction(string Action, Delegate? OnComplete = null)
     {
-        if (Helpers.StringLower(Action) == "adduser" && Model.FeatureEnabledDepartments && !Model.Departments.Any()) {
-            await Helpers.LoadDepartments();
+        if (StringLower(Action) == "adduser" && Model.FeatureEnabledDepartments && !Model.Departments.Any()) {
+            await LoadDepartments();
         }
 
         Model.QuickActionOnComplete = OnComplete;
@@ -5001,7 +5194,7 @@ public static partial class Helpers
     {
         DataObjects.BlazorDataModelLoader? blazorDataModelLoader = null;
 
-        string currentUrl = Helpers.BaseUri;
+        string currentUrl = BaseUri;
 
         if (Model.User.Enabled && Model.User.UserId != Guid.Empty) {
             blazorDataModelLoader = await GetOrPost<DataObjects.BlazorDataModelLoader>("api/Data/GetBlazorDataModel/" + Model.User.UserId.ToString());
@@ -5428,20 +5621,22 @@ public static partial class Helpers
     /// <param name="PropertyName">The name of the property to set.</param>
     /// <param name="Value">The value to set for the property.</param>
     /// <returns>The updated object.</returns>
-    public static object SetObjectPropertyValue(object o, string PropertyName, object? Value)
+    public static object SetObjectPropertyValue(object o, string? PropertyName, object? Value)
     {
-        try {
-            System.Reflection.BindingFlags bindingAttrs = System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Static |
-                System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.IgnoreCase;
+        if (!String.IsNullOrEmpty(PropertyName)) {
+            try {
+                System.Reflection.BindingFlags bindingAttrs = System.Reflection.BindingFlags.Instance |
+                    System.Reflection.BindingFlags.Static |
+                    System.Reflection.BindingFlags.Public |
+                    System.Reflection.BindingFlags.NonPublic |
+                    System.Reflection.BindingFlags.IgnoreCase;
 
-            var prop = o.GetType().GetProperty(PropertyName, bindingAttrs);
-            if (prop != null) {
-                prop.SetValue(o, Value, null);
-            }
-        } catch { }
+                var prop = o.GetType().GetProperty(PropertyName, bindingAttrs);
+                if (prop != null) {
+                    prop.SetValue(o, Value, null);
+                }
+            } catch { }
+        }
 
         return o;
     }
@@ -5528,6 +5723,32 @@ public static partial class Helpers
             var lines = input.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
             if (lines != null && lines.Any()) {
                 output = lines.ToList();
+            }
+        }
+
+        return output;
+    }
+
+    /// <summary>
+    /// Returns the input string, ensuring that datetime-formatted strings include a UTC indicator ('Z').
+    /// </summary>
+    /// <param name="input">The string to process, which may contain a datetime value.</param>
+    /// <returns>The input string with a UTC indicator appended if it appears to be a datetime format, or an empty string if the
+    /// input is null or whitespace.</returns>
+    public static string StringOrDateValue(string? input)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(input)) {
+            output = input;
+
+            if (output.Length > 25 && output.Substring(10, 1) == "T") {
+                try {
+                    DateTime d = Convert.ToDateTime(output);
+                    if (!output.EndsWith("Z")) {
+                        output += "Z";
+                    }
+                } catch { }
             }
         }
 
@@ -5624,7 +5845,7 @@ public static partial class Helpers
             await CookieWrite("user-token", "");
         }
 
-        await Helpers.CookieWrite("requested-url", "");
+        await CookieWrite("requested-url", "");
 
         //ForceModelUpdates();
 
@@ -6095,7 +6316,7 @@ public static partial class Helpers
             string output = "";
 
             if (Model.User.Photo.HasValue && Model.User.Photo != Guid.Empty) {
-                output = Helpers.BaseUri + "File/View/" + ((Guid)Model.User.Photo).ToString();
+                output = BaseUri + "File/View/" + ((Guid)Model.User.Photo).ToString();
             }
 
             return output;
@@ -6306,7 +6527,7 @@ public static partial class Helpers
                     NavManager.NavigateTo(Model.ApplicationUrl + "InvalidTenantCode");
                 } else {
                     // It's a valid tenant code, so make sure it's the current tenant.
-                    if (Helpers.StringValue(Model.Tenant.TenantCode).ToLower() != TenantCode.ToLower()) {
+                    if (StringValue(Model.Tenant.TenantCode).ToLower() != TenantCode.ToLower()) {
                         await SwitchTenant(tenant.TenantId);
                     }
                 }
@@ -6332,9 +6553,9 @@ public static partial class Helpers
         if (IsImage(file)) {
             await ViewImage(file, title);
         } else if (IsPDF(file)) {
-            await Helpers.PdfViewer(file.FileId, "", "", "", Model.User.Admin);
+            await PdfViewer(file.FileId, "", "", "", Model.User.Admin);
             //} else if (IsOfficeFile(file)) {
-            //    await Helpers.PdfViewer(file.FileId, "", "", "", Model.User.Admin || Model.User.Purchaser);
+            //    await PdfViewer(file.FileId, "", "", "", Model.User.Admin || Model.User.Purchaser);
         } else if (IsTextFile(file)) {
             await ViewTextFile(file, title);
         } else {
@@ -6357,7 +6578,7 @@ public static partial class Helpers
             string image = String.Empty;
 
             if (file.Value != null) {
-                string extension = Helpers.StringValue(file.Extension).Replace(".", "").ToLower();
+                string extension = StringValue(file.Extension).Replace(".", "").ToLower();
                 string imageData = "data:image/" + extension + "; base64," + Convert.ToBase64String(file.Value);
 
                 image = "<img src=\"" + imageData + "\" />";
