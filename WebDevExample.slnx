@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeWebDevExample.exe" />
     <File Path="Rename FreeWebDevExample.exe" />
+    <File Path="Upgrade FreeWebDevExample.exe" />
   </Folder>
   <Project Path="WebDevExample.Client/WebDevExample.Client.csproj" />
-  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="381BB6A1-E436-4241-983A-1F5C7D130BF1" />
-  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="2AC7A4B4-374F-49CA-A6F4-47C15082779E" />
-  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="8B00645D-79DB-471A-AF09-2C390ABB6B7C" />
-  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="967BA279-4BBC-473A-8262-F0DF22F028AE" />
+  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="802EFF7D-77D6-4E29-B58E-BDA09F113772" />
+  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="07D7260C-2115-402D-BB43-6C8243EDAC5A" />
+  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="582A3269-B8B1-4252-9CD2-3632FBD6EC16" />
+  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="0F03C2F9-2430-41E3-BCE7-8CFE7651700A" />
   <Project Path="WebDevExample/WebDevExample.csproj" />
 </Solution>
