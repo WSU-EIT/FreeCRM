@@ -1,5 +1,4 @@
 @using Blazored.LocalStorage
-@using System.Globalization
 @using Microsoft.AspNetCore.SignalR.Client
 @using FluentValidation
 @implements IAsyncDisposable
@@ -776,7 +775,6 @@
                             if (!String.IsNullOrWhiteSpace(pagename)) {
                                 if (!allowAnonymousAccess) {
                                     switch (pagename.ToUpper()) {
-                                        case "ABOUT":
                                         case "DATABASEOFFLINE":
                                         case "LOGIN":
                                         case "LOGOUT":
