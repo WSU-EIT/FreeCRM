@@ -113,7 +113,6 @@ public partial class DataAccess
             { "UsersInGroup", "Users in Group" },
 
             // General Language Tags
-            { "About", "About" },
             { "AccessDenied", "Access Denied" },
             { "Action", "Action" },
             { "Active", "Active" },
@@ -222,6 +221,7 @@ public partial class DataAccess
             { "EditItem", "Edit Item" },
             { "EditLanguage", "Edit Language" },
             { "EditLanguageInfo", "To edit a language item use the lookup field below to find the text you wish to edit. Warning: clicking the Edit All option takes a while to load and is very resource heavy, as there are a lot of language items to load into the editing interface." },
+            { "EditModified", "Edit Modified Items" },
             { "EditNotes", "Edit Notes" },
             { "EditTenant", "Edit Tenant" },
             { "EditUser", "Edit User" },
@@ -281,7 +281,6 @@ public partial class DataAccess
             { "GraphTenantId", "Tenant ID" },
             { "Help", "Help" },
             { "Hide", "Hide" },
-            { "HideAbout", "Hide the About Page" },
             { "HideHelp", "Hide Help" },
             { "HideFilter", "Hide Filter" },
             { "HomeMenuText", "Home" },

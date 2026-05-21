@@ -7,11 +7,12 @@
     <File Path="README.md" />
     <File Path="Remove Modules from FreeFreeLLM.exe" />
     <File Path="Rename FreeFreeLLM.exe" />
+    <File Path="Upgrade FreeFreeLLM.exe" />
   </Folder>
   <Project Path="FreeLLM.Client/FreeLLM.Client.csproj" />
-  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="5CB67F3B-DE34-48A2-989C-8FE33FF229C2" />
-  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="389A4535-9E81-49CA-B385-18E36EE2C478" />
-  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="6B7861B8-6191-40F6-9EB0-865A689923CD" />
-  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="7B560B93-ABDD-4E86-9B64-0D3DAEDB2404" />
+  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="72D3E2BA-356D-4926-A6FB-FAAD968D3324" />
+  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="D40E6498-6048-416B-B051-B91DDEA2393A" />
+  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="6C839423-0C0A-4AAD-8987-D1998331F67F" />
+  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="029DDCAA-FEF8-440F-9290-54C7DBC1999D" />
   <Project Path="FreeLLM/FreeLLM.csproj" />
 </Solution>
