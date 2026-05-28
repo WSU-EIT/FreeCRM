@@ -10,9 +10,9 @@
     <File Path="Upgrade FreePJProcessor.exe" />
   </Folder>
   <Project Path="PJProcessor.Client/PJProcessor.Client.csproj" />
-  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="575B2A9E-724A-4CE3-B3CA-311EBDB2D837" />
-  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="B4AE37F5-EEAC-4DAE-B732-9CE9939F50D3" />
-  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="BDAF58ED-39E5-4588-9CCB-DF405412E409" />
-  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="24764DC2-74F5-403B-A324-EBA46FFDBB26" />
+  <Project Path="PJProcessor.DataAccess/PJProcessor.DataAccess.csproj" Id="4920D5DC-47DC-4268-80DD-49245A6C1F13" />
+  <Project Path="PJProcessor.DataObjects/PJProcessor.DataObjects.csproj" Id="5657DF11-938C-440E-B54B-DBC2B3BBC82C" />
+  <Project Path="PJProcessor.EFModels/PJProcessor.EFModels.csproj" Id="E064229D-74FB-4DF4-A370-8DD607AD6FBC" />
+  <Project Path="PJProcessor.Plugins/PJProcessor.Plugins.csproj" Id="A02204D9-2858-4A92-A5A3-5762C88F3E76" />
   <Project Path="PJProcessor/PJProcessor.csproj" />
 </Solution>
