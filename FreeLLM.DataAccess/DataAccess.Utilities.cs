@@ -559,11 +559,14 @@ public partial class DataAccess
     {
         DataObjects.BooleanResponse output = new DataObjects.BooleanResponse();
 
+        List<string> errors = new List<string>();
+
         // First, try any app-specific deletions.
         var deleteAppRecords = await DeleteAllPendingDeletedRecordsApp(TenantId, OlderThan);
         if (!deleteAppRecords.Result) {
+            errors.AddRange(deleteAppRecords.Messages);
+        } else {
             output.Messages.AddRange(deleteAppRecords.Messages);
-            return output;
         }
 
         try {
@@ -574,8 +577,9 @@ public partial class DataAccess
                 foreach(var rec in departmentGroups) {
                     var result = await DeleteDepartmentGroup(rec.DepartmentGroupId, null, true);
                     if (!result.Result) {
-                        output.Messages = result.Messages;
-                        return output;
+                        errors.AddRange(result.Messages);
+                    } else {
+                        output.Messages.AddRange(result.Messages);
                     }
                 }
             }
@@ -585,8 +589,9 @@ public partial class DataAccess
                 foreach(var rec in departments) {
                     var result = await DeleteDepartment(rec.DepartmentId, null, true);
                     if (!result.Result) {
-                        output.Messages = result.Messages;
-                        return output;
+                        errors.AddRange(result.Messages);
+                    } else {
+                        output.Messages.AddRange(result.Messages);
                     }
                 }
             }
@@ -596,8 +601,9 @@ public partial class DataAccess
                 foreach (var rec in fileStorage) {
                     var result = await DeleteFileStorage(rec.FileId, null, true);
                     if (!result.Result) {
-                        output.Messages = result.Messages;
-                        return output;
+                        errors.AddRange(result.Messages);
+                    } else {
+                        output.Messages.AddRange(result.Messages);
                     }
                 }
             }
@@ -607,8 +613,9 @@ public partial class DataAccess
                 foreach (var rec in userGroups) {
                     var result = await DeleteUserGroup(rec.GroupId, null, true);
                     if (!result.Result) {
-                        output.Messages = result.Messages;
-                        return output;
+                        errors.AddRange(result.Messages);
+                    } else {
+                        output.Messages.AddRange(result.Messages);
                     }
                 }
             }
@@ -618,17 +625,20 @@ public partial class DataAccess
                 foreach(var rec in users) { 
                     var result = await DeleteUser(rec.UserId, null, true);
                     if (!result.Result) {
-                        output.Messages = result.Messages;
-                        return output;
+                        errors.AddRange(result.Messages);
+                    } else {
+                        output.Messages.AddRange(result.Messages);
                     }
                 }
             }
         } catch (Exception ex) {
-            output.Messages.Add("Error Deleting Records:");
-            output.Messages.AddRange(RecurseException(ex));
+            errors.Add("Error Deleting Records:");
+            errors.AddRange(RecurseException(ex));
         }
 
-        output.Result = output.Messages.Count() == 0;
+        output.Messages.AddRange(errors);
+
+        output.Result = errors.Count() == 0;
 
         return output;
     }
