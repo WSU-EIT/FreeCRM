@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeCICD.exe" />
   </Folder>
   <Project Path="FreeCICD.Client/FreeCICD.Client.csproj" />
-  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="01DB565D-D99F-4FD7-9593-6E78D4AB7CC6" />
-  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="FD1ECB57-E40B-4EA1-9A4A-C438576389F6" />
-  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="B18C4365-053F-4937-9792-F274D37D5804" />
-  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="B69003FF-1794-4A38-92A3-9F48A8FEF00B" />
+  <Project Path="FreeCICD.DataAccess/FreeCICD.DataAccess.csproj" Id="FD974487-BCB8-45D1-A769-CF98094A770F" />
+  <Project Path="FreeCICD.DataObjects/FreeCICD.DataObjects.csproj" Id="91311327-0A0F-41F6-92B3-89AF23FBDD1C" />
+  <Project Path="FreeCICD.EFModels/FreeCICD.EFModels.csproj" Id="E4390780-4F72-4F32-808B-772809C6BB27" />
+  <Project Path="FreeCICD.Plugins/FreeCICD.Plugins.csproj" Id="D8000B7E-5E93-4972-9BDB-8C1CFB0E7A04" />
   <Project Path="FreeCICD/FreeCICD.csproj" />
 </Solution>
