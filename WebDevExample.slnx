@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeWebDevExample.exe" />
   </Folder>
   <Project Path="WebDevExample.Client/WebDevExample.Client.csproj" />
-  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="802EFF7D-77D6-4E29-B58E-BDA09F113772" />
-  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="07D7260C-2115-402D-BB43-6C8243EDAC5A" />
-  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="582A3269-B8B1-4252-9CD2-3632FBD6EC16" />
-  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="0F03C2F9-2430-41E3-BCE7-8CFE7651700A" />
+  <Project Path="WebDevExample.DataAccess/WebDevExample.DataAccess.csproj" Id="E175AA22-202B-490C-A4DF-462695D1FF88" />
+  <Project Path="WebDevExample.DataObjects/WebDevExample.DataObjects.csproj" Id="8B52BE11-59C6-4D62-B515-4DEAAFFFFF0D" />
+  <Project Path="WebDevExample.EFModels/WebDevExample.EFModels.csproj" Id="E9AE5B37-77CA-492C-9AB9-78EC42339B69" />
+  <Project Path="WebDevExample.Plugins/WebDevExample.Plugins.csproj" Id="4C58E798-9EA6-4189-B47B-3A0A49ABE2B4" />
   <Project Path="WebDevExample/WebDevExample.csproj" />
 </Solution>
