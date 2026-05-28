@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFlexCRM.exe" />
   </Folder>
   <Project Path="FlexCRM.Client/FlexCRM.Client.csproj" />
-  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="7D078358-2FF3-4EEE-9C39-0C296346C92D" />
-  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="C6E3855C-6B90-48D2-AE62-30C8D79DEDBB" />
-  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="116EA7E6-B1F1-48A6-81DB-4C33A55DFCC6" />
-  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="55D58DE7-F8F0-4982-8702-287F3E884AFB" />
+  <Project Path="FlexCRM.DataAccess/FlexCRM.DataAccess.csproj" Id="860098FC-AE79-41C0-9AD3-4C39E3958B84" />
+  <Project Path="FlexCRM.DataObjects/FlexCRM.DataObjects.csproj" Id="20A58B41-72AC-4DC8-94C0-B33372185302" />
+  <Project Path="FlexCRM.EFModels/FlexCRM.EFModels.csproj" Id="F7A669F2-CF2B-4A5B-9F85-E7D7C17333D3" />
+  <Project Path="FlexCRM.Plugins/FlexCRM.Plugins.csproj" Id="2E63F4C3-99A3-41A3-9FC4-A4298817BB6C" />
   <Project Path="FlexCRM/FlexCRM.csproj" />
 </Solution>
