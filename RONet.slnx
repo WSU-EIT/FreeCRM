@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeRONet.exe" />
   </Folder>
   <Project Path="RONet.Client/RONet.Client.csproj" />
-  <Project Path="RONet.DataAccess/RONet.DataAccess.csproj" Id="5FA81284-DE78-4162-BB19-BB2E58A51A0F" />
-  <Project Path="RONet.DataObjects/RONet.DataObjects.csproj" Id="BCA4CD17-2233-4B10-A5E5-9E92F53B3D8F" />
-  <Project Path="RONet.EFModels/RONet.EFModels.csproj" Id="D626BCCB-A18E-460E-9A64-A308B59D8FE3" />
-  <Project Path="RONet.Plugins/RONet.Plugins.csproj" Id="B0D701CF-61B4-45C0-9C95-B75806169CC6" />
+  <Project Path="RONet.DataAccess/RONet.DataAccess.csproj" Id="7DC5F0CB-8759-4580-B7CA-AE45B9463B61" />
+  <Project Path="RONet.DataObjects/RONet.DataObjects.csproj" Id="5375189F-D87A-4487-ABA5-7DB395CF5C3F" />
+  <Project Path="RONet.EFModels/RONet.EFModels.csproj" Id="3FDB7595-6133-4C6E-A8F2-BA7BF8350769" />
+  <Project Path="RONet.Plugins/RONet.Plugins.csproj" Id="11172EB3-F999-4EDC-87EE-28125705CDB2" />
   <Project Path="RONet/RONet.csproj" />
 </Solution>
