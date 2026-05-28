@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeAI.exe" />
   </Folder>
   <Project Path="FreeAI.Client/FreeAI.Client.csproj" />
-  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="B59646F9-869D-4EE3-B5B4-50134DDF688C" />
-  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="748D84C0-02EE-4E9E-BD5F-113294FF8B25" />
-  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="A28472BE-B10B-44EE-BA02-DEF134EFABBD" />
-  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="6E82E9B2-9661-4151-8D3B-A90F691F897A" />
+  <Project Path="FreeAI.DataAccess/FreeAI.DataAccess.csproj" Id="25D098A7-6AAE-4FC9-A5BD-252F0D751309" />
+  <Project Path="FreeAI.DataObjects/FreeAI.DataObjects.csproj" Id="76FF9B3B-DA55-446C-A766-F5E0EB9C335D" />
+  <Project Path="FreeAI.EFModels/FreeAI.EFModels.csproj" Id="334E3302-B599-45B2-83EE-743E207022DC" />
+  <Project Path="FreeAI.Plugins/FreeAI.Plugins.csproj" Id="91C953A0-3C2B-4F26-9A45-8E52302AE706" />
   <Project Path="FreeAI/FreeAI.csproj" />
 </Solution>
