@@ -6,6 +6,7 @@
 @inject HttpClient Http
 @inject ILocalStorageService LocalStorage
 @inject BlazorDataModel Model
+
 @if (Model.Loaded && Model.View == _pageName) {
     @if (_loading) {
         <h1 class="page-title">
@@ -99,6 +100,7 @@
                                     <div>@item.Display</div>
                                 </div>
                                 <div class="deleted-info">
+                                    <div class="note">Id: @item.ItemId</div>
                                     <Language Tag="Deleted" />
                                     <span>@Helpers.FormatDateTime(item.DeletedAt, false, true)</span>
                                     <Language Tag="DeletedBy" />
@@ -122,6 +124,7 @@
         }
     }
 }
+
 @code {
     [Parameter] public string? TenantCode { get; set; }
 
@@ -144,7 +147,7 @@
             Model.TenantCodeFromUrl = TenantCode;
         }
 
-        if(Model.Loaded && Model.LoggedIn) {
+        if (Model.Loaded && Model.LoggedIn) {
             if (!Model.User.Admin) {
                 Helpers.NavigateToRoot();
                 return;
@@ -184,8 +187,8 @@
 
         Model.ClearMessages();
 
-        if(deleted != null) {
-            if(deleted.Result){
+        if (deleted != null) {
+            if (deleted.Result) {
                 await LoadData();
             } else {
                 Model.ErrorMessages(deleted.Messages);
@@ -223,7 +226,7 @@
         _loading = true;
 
         var deletedRecords = await Helpers.GetDeletedRecords();
-        if(deletedRecords != null) {
+        if (deletedRecords != null) {
             _DeletedRecords = deletedRecords;
 
             _loading = false;

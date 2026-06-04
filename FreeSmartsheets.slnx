@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeSmartsheets.exe" />
   </Folder>
   <Project Path="FreeSmartsheets.Client/FreeSmartsheets.Client.csproj" />
-  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="83ADE3DF-5995-4FAC-8AE0-28B421ED848E" />
-  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="1B7DCBE9-4FF9-4C75-87CA-4848086534E9" />
-  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="5F7480CC-BF7A-46C8-A5DF-E9DBF84C317D" />
-  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="071CF89D-AC16-40D9-A4B6-4480BD32B871" />
+  <Project Path="FreeSmartsheets.DataAccess/FreeSmartsheets.DataAccess.csproj" Id="BF7DA889-78E2-46BD-8133-43D1430C3806" />
+  <Project Path="FreeSmartsheets.DataObjects/FreeSmartsheets.DataObjects.csproj" Id="6D20B5C9-CF6E-4AFA-8FC0-C802493FFFF8" />
+  <Project Path="FreeSmartsheets.EFModels/FreeSmartsheets.EFModels.csproj" Id="09883838-4321-4A2B-8DD9-6DAB8284B350" />
+  <Project Path="FreeSmartsheets.Plugins/FreeSmartsheets.Plugins.csproj" Id="E649A410-B163-462F-990C-ABA17F4F3833" />
   <Project Path="FreeSmartsheets/FreeSmartsheets.csproj" />
 </Solution>
