@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeTools.exe" />
   </Folder>
   <Project Path="FreeTools.Client/FreeTools.Client.csproj" />
-  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="62458710-A2D9-4070-8293-0AB0C34485A3" />
-  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="C352594F-9811-49E6-959D-AE7B9A9C38CA" />
-  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="AB7508C0-C6B6-4BE5-888D-F450282FE9FD" />
-  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="EE00B7F8-A770-47DC-9428-EF6BC59CED8B" />
+  <Project Path="FreeTools.DataAccess/FreeTools.DataAccess.csproj" Id="6A665D0C-BB86-42C0-B9CD-ABD854086D30" />
+  <Project Path="FreeTools.DataObjects/FreeTools.DataObjects.csproj" Id="9D979D89-A435-4617-A2DE-2D4C82FD9045" />
+  <Project Path="FreeTools.EFModels/FreeTools.EFModels.csproj" Id="4B1F4780-7948-47EA-B635-EA614DA3884F" />
+  <Project Path="FreeTools.Plugins/FreeTools.Plugins.csproj" Id="61C14E54-96E6-4B79-AF31-F6BAD9E136E4" />
   <Project Path="FreeTools/FreeTools.csproj" />
 </Solution>
