@@ -3,15 +3,12 @@ namespace FreeTwilio;
 public partial interface IDataAccess
 {
     Task<DataObjects.BooleanResponse> DeleteTenant(Guid TenantId);
-    Task<DataObjects.BooleanResponse> DeleteTenantLogo(Guid TenantId);
     DataObjects.Tenant? GetTenant(Guid TenantId, DataObjects.User? CurrentUser = null);
     Task<DataObjects.Tenant> GetTenantFull(Guid TenantId, DataObjects.User? CurrentUser = null);
     Task<DataObjects.Tenant> GetTenantFromCode(string tenantCode, DataObjects.User? CurrentUser = null);
     Guid GetTenantIdFromCode(string tenantCode);
     DataObjects.Language GetTenantLanguage(Guid TenantId, string Culture = "en-US");
     Task<List<DataObjects.TenantList>> GetTenantList();
-    Task<DataObjects.FileStorage> GetTenantLogo(Guid TenantId);
-    Task<DataObjects.SimpleResponse> GetTenantLogoId(Guid TenantId);
     Task<List<DataObjects.Tenant>> GetTenants();
     Task<DataObjects.LoginTenantListing> GetTenantsForLogin();
     DataObjects.TenantSettings GetTenantSettings(Guid TenantId);
@@ -93,8 +90,8 @@ public partial class DataAccess
             // access to multiple tenants and the SignalR updates only go out per-tenant.
             var tenants = await GetTenants();
             if (tenants != null && tenants.Any()) {
-                foreach(var item in tenants) {
-                    if(item.TenantId != TenantId) {
+                foreach (var item in tenants) {
+                    if (item.TenantId != TenantId) {
                         await SignalRUpdate(new DataObjects.SignalRUpdate {
                             TenantId = item.TenantId,
                             ItemId = TenantId,
@@ -105,28 +102,6 @@ public partial class DataAccess
                 }
             }
         }
-
-        return output;
-    }
-
-    public async Task<DataObjects.BooleanResponse> DeleteTenantLogo(Guid TenantId)
-    {
-        var output = new DataObjects.BooleanResponse();
-
-        var rec = await data.FileStorages.FirstOrDefaultAsync(x => x.TenantId == TenantId && x.SourceFileId == "logo");
-        if(rec != null) {
-            try {
-                data.FileStorages.Remove(rec);
-
-                await data.SaveChangesAsync();
-            }catch(Exception ex) {
-                output.Messages.Add("Error Deleting Logo");
-                output.Messages.AddRange(RecurseException(ex));
-            }
-            
-        }
-
-        output.Result = output.Messages.Count() == 0;
 
         return output;
     }
@@ -190,7 +165,7 @@ public partial class DataAccess
             tenantId = rec.TenantId;
         }
 
-        if(tenantId != Guid.Empty) {
+        if (tenantId != Guid.Empty) {
             output = await GetTenantFull(tenantId, CurrentUser);
         } else {
             output.ActionResponse.Messages.Add("Invalid Tenant Code '" + tenantCode + "'");
@@ -268,58 +243,14 @@ public partial class DataAccess
         var output = new List<DataObjects.TenantList>();
 
         var recs = await data.Tenants.Where(x => x.Enabled == true).ToListAsync();
-        if(recs != null && recs.Any()) {
-            foreach(var rec in recs) {
+        if (recs != null && recs.Any()) {
+            foreach (var rec in recs) {
                 output.Add(new DataObjects.TenantList { 
                     Name = rec.Name,
                     TenantCode = rec.TenantCode,
                     TenantId = rec.TenantId,
                 });
             }
-        }
-
-        return output;
-    }
-
-    public async Task<DataObjects.FileStorage> GetTenantLogo(Guid TenantId)
-    {
-        DataObjects.FileStorage output = new DataObjects.FileStorage();
-
-        var rec = await data.FileStorages.FirstOrDefaultAsync(x => x.ItemId == null && x.TenantId == TenantId && x.SourceFileId == "logo" && x.Deleted != true);
-        if (rec != null) {
-            output = new DataObjects.FileStorage {
-                ActionResponse = GetNewActionResponse(true),
-                TenantId = GuidValue(rec.TenantId),
-                Extension = rec.Extension,
-                Bytes = rec.Bytes.HasValue ? (long)rec.Bytes : (long?)null,
-                Deleted = rec.Deleted,
-                DeletedAt = rec.DeletedAt,
-                FileId = rec.FileId,
-                FileName = rec.FileName,
-                ItemId = rec.ItemId,
-                LastModified = rec.LastModified,
-                LastModifiedBy = LastModifiedDisplayName(rec.LastModifiedBy),
-                SourceFileId = rec.SourceFileId,
-                UploadDate = rec.UploadDate,
-                UploadedBy = LastModifiedDisplayName(rec.UploadedBy),
-                UserId = rec.UserId,
-                Value = rec.Value != null ? rec.Value.ToArray() : null,
-            };
-        }
-
-        return output;
-    }
-
-    public async Task<DataObjects.SimpleResponse> GetTenantLogoId(Guid TenantId)
-    {
-        DataObjects.SimpleResponse output = new DataObjects.SimpleResponse();
-
-        var rec = await data.FileStorages.FirstOrDefaultAsync(x => x.ItemId == null && x.TenantId == TenantId && x.SourceFileId == "logo" && x.Deleted != true);
-        if (rec != null) {
-            output = new DataObjects.SimpleResponse {
-                Result = true,
-                Message = rec.FileId.ToString(),
-            };
         }
 
         return output;
@@ -429,8 +360,8 @@ public partial class DataAccess
 
                     output.Tenants.Add(tenant);
                     var languages = await GetTenantLanguages(tenant.TenantId);
-                    if(languages != null && languages.Any()) {
-                        foreach(var language in languages) {
+                    if (languages != null && languages.Any()) {
+                        foreach (var language in languages) {
                             output.Languages.Add(language);
                         }
                     }
@@ -446,8 +377,8 @@ public partial class DataAccess
         var defaultWorkSchedule = new DataObjects.WorkSchedule {
             Sunday = false,
             SundayAllDay = false,
-            SundayStart = "",
-            SundayEnd = "",
+            SundayStart = String.Empty,
+            SundayEnd = String.Empty,
 
             Monday = true,
             MondayAllDay = false,
@@ -476,8 +407,8 @@ public partial class DataAccess
 
             Saturday = false,
             SaturdayAllDay = false,
-            SaturdayStart = "",
-            SaturdayEnd = ""
+            SaturdayStart = String.Empty,
+            SaturdayEnd = String.Empty
         };
 
         DataObjects.TenantSettings output = new DataObjects.TenantSettings();
@@ -497,23 +428,6 @@ public partial class DataAccess
             if (settings.WorkSchedule == null) {
                 settings.WorkSchedule = defaultWorkSchedule;
             }
-
-        //    if (settings.WorkSchedule == null) {
-        //        settings.WorkSchedule = defaultWorkSchedule;
-        //        saveSettings = true;
-        //    } else if (!settings.WorkSchedule.Sunday && !settings.WorkSchedule.Monday && !settings.WorkSchedule.Tuesday
-        //         && !settings.WorkSchedule.Wednesday && !settings.WorkSchedule.Thursday && !settings.WorkSchedule.Friday && !settings.WorkSchedule.Saturday) {
-        //        settings.WorkSchedule = defaultWorkSchedule;
-        //        saveSettings = true;
-        //    }
-        //} else {
-        //    // Create default settings for this tenant.
-        //    output = new DataObjects.TenantSettings {
-        //        LoginOptions = new List<string>() { "local", "eitsso" },
-        //        WorkSchedule = defaultWorkSchedule
-        //    };
-
-            //    saveSettings = true;
         }
 
         if (output.MaxToastMessages < 0) {
@@ -528,12 +442,6 @@ public partial class DataAccess
             output.JwtRsaPublicKey = rsaKeys.PublicKey;
 
             saveSettings = true;
-        }
-
-        // See if a tenant logo file has been uploaded.
-        var file = data.FileStorages.FirstOrDefault(x => x.TenantId == TenantId && x.SourceFileId == "logo");
-        if(file != null) {
-            output.Logo = file.FileId;
         }
 
         if (loadedSettings && saveSettings) {
@@ -562,7 +470,7 @@ public partial class DataAccess
             }
         }
 
-        if(MaxRecords < 1 || count <= MaxRecords) {
+        if (MaxRecords < 1 || count <= MaxRecords) {
             IQueryable<User>? recs = null;
 
             if (AdminUser(CurrentUser)) {
@@ -578,7 +486,7 @@ public partial class DataAccess
             }
 
             if (recs != null && recs.Any()) {
-                foreach(var rec in recs) {
+                foreach (var rec in recs) {
                     output.Add(new DataObjects.UserListing { 
                         UserId = rec.UserId,
                         FirstName = rec.FirstName,
@@ -649,7 +557,7 @@ public partial class DataAccess
         rec.Enabled = output.Enabled;
         rec.LastModified = now;
 
-        if(CurrentUser != null) {
+        if (CurrentUser != null) {
             rec.LastModifiedBy = CurrentUserIdString(CurrentUser);
         }
 
@@ -665,11 +573,6 @@ public partial class DataAccess
                 SeedTestData();
                 SeedTestData_CreateDefaultTenantData(output.TenantId);
             } else {
-                //if (output.TenantSettings.ExternalUserDataSources != null && output.TenantSettings.ExternalUserDataSources.Any()) {
-                //    output.TenantSettings.ExternalUserDataSources =
-                //        output.TenantSettings.ExternalUserDataSources.OrderBy(x => x.SortOrder).ThenBy(x => x.Name).ToList();
-                //}
-
                 SaveTenantSettings(output.TenantId, output.TenantSettings, CurrentUser);
             }
 

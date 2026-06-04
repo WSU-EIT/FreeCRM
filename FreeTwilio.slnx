@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeTwilio.exe" />
   </Folder>
   <Project Path="FreeTwilio.Client/FreeTwilio.Client.csproj" />
-  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="2A393F6B-A6FD-4350-860B-819821DC8A3B" />
-  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="755DC504-4447-4FE3-8B2D-560267268F34" />
-  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="2CB837C6-034F-4E62-83FF-09994432C2F6" />
-  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="CEC91867-B566-45EF-9AF7-8E6ADE0363FF" />
+  <Project Path="FreeTwilio.DataAccess/FreeTwilio.DataAccess.csproj" Id="3EC5CB91-82BC-42D1-87AE-C5C31113B377" />
+  <Project Path="FreeTwilio.DataObjects/FreeTwilio.DataObjects.csproj" Id="E1DD8B50-4F06-432F-8685-BAF8BDB183A6" />
+  <Project Path="FreeTwilio.EFModels/FreeTwilio.EFModels.csproj" Id="2EDAD9DB-FBC6-4770-B9CB-AA130E66E53B" />
+  <Project Path="FreeTwilio.Plugins/FreeTwilio.Plugins.csproj" Id="96069C8C-19DC-4501-A750-15FA074A2E70" />
   <Project Path="FreeTwilio/FreeTwilio.csproj" />
 </Solution>

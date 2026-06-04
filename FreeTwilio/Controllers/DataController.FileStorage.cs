@@ -75,26 +75,6 @@ public partial class DataController
     }
 
     [HttpPost]
-    [Authorize(Policy = Policies.Admin)]
-    [Route("~/api/Data/SaveTenantLogo")]
-    public async Task<ActionResult<DataObjects.BooleanResponse>> SaveTenantLogo(DataObjects.FileStorage fileStorage)
-    {
-        DataObjects.BooleanResponse output = new DataObjects.BooleanResponse();
-
-        // First, remove any existing logo
-        await da.DeleteTenantLogo(fileStorage.TenantId);
-
-        var saved = await da.SaveFileStorage(fileStorage, CurrentUser);
-        if (saved.ActionResponse.Result) {
-            output.Result = true;
-        } else {
-            output.Messages = saved.ActionResponse.Messages;
-        }
-
-        return Ok(output);
-    }
-
-    [HttpPost]
     [Authorize]
     [Route("~/api/Data/SaveUserPhoto")]
     public async Task<ActionResult<DataObjects.BooleanResponse>> SaveUserPhoto(DataObjects.FileStorage fileStorage)
@@ -139,7 +119,7 @@ public partial class DataController
     {
         string filename = String.Empty;
         byte[]? fileContent = null;
-        string mimeType = "";
+        string mimeType = String.Empty;
 
         if (id != Guid.Empty && context != null) {
             DataObjects.FileStorage file = await da.GetFileStorage(id);
@@ -165,7 +145,7 @@ public partial class DataController
     {
         string filename = String.Empty;
         byte[]? fileContent = null;
-        string mimeType = "";
+        string mimeType = String.Empty;
 
         if (id != Guid.Empty && context != null) {
             DataObjects.FileStorage file = await da.GetFileStorage(id, CurrentUser);
