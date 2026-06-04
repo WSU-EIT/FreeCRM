@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeLLM.exe" />
   </Folder>
   <Project Path="FreeLLM.Client/FreeLLM.Client.csproj" />
-  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="F9AB0A43-10E6-47B4-8C63-F105D197BB1F" />
-  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="C0395E33-623B-460E-83C6-6D9B9B9800B8" />
-  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="62E9A8B9-66F9-4566-B1DB-568A41F35BDB" />
-  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="891951D6-F8F6-4CFD-A39A-326D61634743" />
+  <Project Path="FreeLLM.DataAccess/FreeLLM.DataAccess.csproj" Id="84240A58-F3ED-47BF-97B4-CDA832E67E2A" />
+  <Project Path="FreeLLM.DataObjects/FreeLLM.DataObjects.csproj" Id="7580D789-87F6-4255-8AB1-77E5BDDF91CE" />
+  <Project Path="FreeLLM.EFModels/FreeLLM.EFModels.csproj" Id="4BDCFCC8-216F-475A-80E5-AAFEAA7C0142" />
+  <Project Path="FreeLLM.Plugins/FreeLLM.Plugins.csproj" Id="1108ACCD-80C0-4266-BB54-B119D352DA36" />
   <Project Path="FreeLLM/FreeLLM.csproj" />
 </Solution>

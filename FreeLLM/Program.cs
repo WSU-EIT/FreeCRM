@@ -1,10 +1,8 @@
-using FreeLLM.Client.Pages;
 using FreeLLM.Components;
 using FreeLLM.Server.Hubs;
 using Microsoft.AspNetCore.Components;
 using Radzen;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Security.Claims;
 
 namespace FreeLLM
@@ -22,10 +20,10 @@ namespace FreeLLM
             builder.Services.AddScoped<Radzen.NotificationService>();
             builder.Services.AddScoped<Radzen.ThemeService>();
 
-            var isDevelopment = builder.Environment.IsDevelopment();
-            if (!isDevelopment) {
+            //var isDevelopment = builder.Environment.IsDevelopment();
+            //if (!isDevelopment) {
 
-            }
+            //}
 
             // Try to get the application name.
             string cookiePrefix = String.Empty;
