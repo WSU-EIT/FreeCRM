@@ -72,7 +72,7 @@
                         </label>
                         <select class="form-select" id="quickadd-user-DepartmentId" @bind="Model.QuickAddUser.DepartmentId">
                             <option value=""></option>
-                            @foreach(var item in Model.Departments.OrderBy(x => x.DepartmentName)) {
+                            @foreach (var item in Model.Departments.OrderBy(x => x.DepartmentName)) {
                                 <option value="@item.DepartmentId">@item.DepartmentName</option>
                             }
                         </select>
@@ -146,7 +146,7 @@
                             </span>
                             <select class="form-select language-selector" @onchange="@SetCultureCode">
                                 @foreach (var language in languages.OrderBy(x => x.Description)) {
-                                    @if (language.Culture == Model.CultureCode) {
+                                    @if (language.Culture == Model.User.UserPreferences.CultureCode) {
                                         <option value="@language.Culture" SELECTED>@FormatCultureCode(language)</option>
                                     } else {
                                         <option value="@language.Culture">@FormatCultureCode(language)</option>
@@ -225,16 +225,19 @@
         }
     }
 
-    protected string FormatCultureCode(DataObjects.Language language) {
+    protected string FormatCultureCode(DataObjects.Language language)
+    {
         string output = language.Description + " [" + language.Culture + "]";
         return output;
     }
 
-    protected async Task QuickActionClose() {
+    protected async Task QuickActionClose()
+    {
         await Helpers.HideMenus();
     }
 
-    protected async Task QuickAddUserSave() {
+    protected async Task QuickAddUserSave()
+    {
         string focus = String.Empty;
 
         if (String.IsNullOrWhiteSpace(Model.QuickAddUser.FirstName)) {
@@ -275,7 +278,8 @@
         }
     }
 
-    protected async Task SetCultureCode(ChangeEventArgs e) {
+    protected async Task SetCultureCode(ChangeEventArgs e)
+    {
         string cultureCode = String.Empty;
         try {
             if (e.Value != null) {
@@ -283,18 +287,15 @@
             }
         } catch { }
 
-        if (!String.IsNullOrWhiteSpace(cultureCode)) {
-            await Helpers.SetLocalStorageItem("CultureCode", cultureCode);
-            Model.CultureCode = cultureCode;
+        Model.User.UserPreferences.CultureCode = cultureCode;
 
-            var lang = Model.Languages.FirstOrDefault(x => x.TenantId == Model.TenantId && x.Culture.ToLower() == cultureCode.ToLower());
-            if (lang != null) {
-                Model.Language = lang;
-            } else {
-                Model.Language = Model.DefaultLanguage;
-            }
-
-            Helpers.ForceModelUpdates();
+        var lang = Model.Languages.FirstOrDefault(x => x.TenantId == Model.TenantId && x.Culture.ToLower() == cultureCode.ToLower());
+        if (lang != null) {
+            Model.Language = lang;
+        } else {
+            Model.Language = Model.DefaultLanguage;
         }
+
+        Helpers.ForceModelUpdates();
     }
 }

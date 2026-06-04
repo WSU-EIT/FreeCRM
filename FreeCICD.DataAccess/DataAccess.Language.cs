@@ -28,9 +28,9 @@ public partial class DataAccess
     {
         DataObjects.BooleanResponse output = new DataObjects.BooleanResponse();
 
-        if(!String.IsNullOrWhiteSpace(CultureCode)) {
+        if (!String.IsNullOrWhiteSpace(CultureCode)) {
             var rec = await data.Settings.FirstOrDefaultAsync(x => x.TenantId == TenantId && x.SettingName.ToLower() == "language_" + CultureCode.ToLower());
-            if(rec != null) {
+            if (rec != null) {
                 try {
                     data.Settings.Remove(rec);
                     await data.SaveChangesAsync();
@@ -42,7 +42,7 @@ public partial class DataAccess
                         Message = "Deleted",
                         Object = CultureCode,
                     });
-                }catch(Exception ex) {
+                } catch (Exception ex) {
                     output.Messages.Add("Error Deleting Language '" + CultureCode + "'");
                     output.Messages.AddRange(RecurseException(ex));
                 }
@@ -405,10 +405,6 @@ public partial class DataAccess
             { "LoginWithMicrosoftAccount", "Log in with a Microsoft Account" },
             { "LoginWithOpenId", "Log in with OpenId" },
             { "Log-in", "Log In" },
-            { "Logo", "Logo" },
-            { "LogoIncludedOnHomePage", "Include the Logo on the home page." },
-            { "LogoIncludedOnNavbar", "Include the Logo on the top navigation menu." },
-            { "LogoInfo", "Ideally, your logo should be in the SVG format for best scaling. If you do not have an SVG version then a transparent PNG would be the next-best option." },
             { "Logout", "Logout" },
             { "Log-out", "Log Out" },
             { "MailServer", "Mail Server" },
@@ -628,7 +624,7 @@ public partial class DataAccess
         };
 
         // First, add any items from the app language.
-        foreach(var item in AppLanguage) {
+        foreach (var item in AppLanguage) {
             output.Phrases.Add(new DataObjects.OptionPair {
                 Id = item.Key,
                 Value = item.Value
@@ -720,11 +716,11 @@ public partial class DataAccess
 
         var cultures = await GetLanguageCultures(TenantId);
 
-        if(!cultures.Any()) {
+        if (!cultures.Any()) {
             cultures.Add("en-US");
         }
 
-        foreach(var culture in cultures) {
+        foreach (var culture in cultures) {
             var language = GetTenantLanguage(TenantId, culture);
             output.Add(language);
         }
