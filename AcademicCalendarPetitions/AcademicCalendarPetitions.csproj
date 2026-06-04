@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <UserSecretsId>01fcc6a3-70fe-4d66-b7a2-e82198157ad2</UserSecretsId>
+    <UserSecretsId>b0ca7b17-90cd-4591-a1ae-7c812c0ed3c1</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,11 +22,11 @@
     <ProjectReference Include="..\AcademicCalendarPetitions.Plugins\AcademicCalendarPetitions.Plugins.csproj" />
     <ProjectReference Include="..\AcademicCalendarPetitions.Client\AcademicCalendarPetitions.Client.csproj" />
     <PackageReference Include="AspNet.Security.OAuth.Apple" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="10.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.8" />
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.33.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>

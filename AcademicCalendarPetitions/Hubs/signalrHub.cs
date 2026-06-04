@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using MySqlX.XDevAPI;
 
 namespace AcademicCalendarPetitions.Server.Hubs
 {
