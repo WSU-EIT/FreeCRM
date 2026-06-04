@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeTouchpoints.exe" />
   </Folder>
   <Project Path="Touchpoints.Client/Touchpoints.Client.csproj" />
-  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="2DCECC21-ACB5-46E7-8C35-10A73A13B971" />
-  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="A36BF7D2-5966-423A-90E2-2C370FD2FA15" />
-  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="D64DFBFA-7E16-438F-8C0D-64E5F0030B27" />
-  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="9FE81F68-D198-46C8-8C90-EA0EA765CA05" />
+  <Project Path="Touchpoints.DataAccess/Touchpoints.DataAccess.csproj" Id="A14B420F-EF1F-4684-B5FB-EC0D941E2974" />
+  <Project Path="Touchpoints.DataObjects/Touchpoints.DataObjects.csproj" Id="318F5C41-C226-4A7A-B5D3-0FF00AC473C0" />
+  <Project Path="Touchpoints.EFModels/Touchpoints.EFModels.csproj" Id="858D6DBD-8B8D-4B5A-94FD-41F9559586AF" />
+  <Project Path="Touchpoints.Plugins/Touchpoints.Plugins.csproj" Id="7382AC44-F2BB-425B-916F-DC9D876E860C" />
   <Project Path="Touchpoints/Touchpoints.csproj" />
 </Solution>

@@ -15,15 +15,6 @@ public partial class DataController
     }
 
     [HttpGet]
-    [Authorize(Policy = Policies.Admin)]
-    [Route("~/api/Data/DeleteTenantLogo")]
-    public async Task<ActionResult<DataObjects.BooleanResponse>> DeleteTenantLogo()
-    {
-        var output = await da.DeleteTenantLogo(CurrentUser.TenantId);
-        return Ok(output);
-    }
-
-    [HttpGet]
     [Authorize]
     [Route("~/api/Data/GetTenant/{id}")]
     public ActionResult<DataObjects.Tenant> GetTenant(Guid id)
@@ -42,15 +33,6 @@ public partial class DataController
     public async Task<ActionResult<List<DataObjects.TenantList>>> GetTenantList()
     {
         var output = await da.GetTenantList();
-        return Ok(output);
-    }
-
-    [HttpGet]
-    [Authorize]
-    [Route("~/api/Data/GetTenantLogo")]
-    public async Task<ActionResult<DataObjects.SimpleResponse>> GetTenantLogo()
-    {
-        var output = await da.GetTenantLogoId(CurrentUser.TenantId);
         return Ok(output);
     }
 
