@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeExamples.exe" />
   </Folder>
   <Project Path="FreeExamples.Client/FreeExamples.Client.csproj" />
-  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="9C5F0D59-2844-419E-98B5-CEFCE8C95500" />
-  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="91736DEC-F45D-425E-AB67-8A41E666302F" />
-  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="873F42E5-0328-4FAF-A53C-1BAFD0C60C13" />
-  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="0FAA5A15-9CEB-4459-B006-89544520E98F" />
+  <Project Path="FreeExamples.DataAccess/FreeExamples.DataAccess.csproj" Id="9401A71D-4BD7-42F7-945B-0A6020DCE541" />
+  <Project Path="FreeExamples.DataObjects/FreeExamples.DataObjects.csproj" Id="8C8C720A-D894-4180-95E0-D64E1880F988" />
+  <Project Path="FreeExamples.EFModels/FreeExamples.EFModels.csproj" Id="889BAB01-8310-4F5B-804D-B4D2C0C0FE9B" />
+  <Project Path="FreeExamples.Plugins/FreeExamples.Plugins.csproj" Id="A51EDD36-401C-4D46-8EA0-1F8E2EFC3BC8" />
   <Project Path="FreeExamples/FreeExamples.csproj" />
 </Solution>
