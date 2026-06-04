@@ -1,5 +1,3 @@
-using System.Net.NetworkInformation;
-
 namespace FlexCRM.Client;
 
 public static partial class Helpers
@@ -162,5 +160,4 @@ public static partial class Helpers
     {
         // Model.DeletedRecordCounts.MyValue = deletedRecords.MyValue.Count();
     }
-
 }

@@ -8,30 +8,15 @@ using FlexCRM.Client.Shared;
 using Humanizer;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
-using MudBlazor.Utilities;
 using Plugins;
 using Radzen;
-using Radzen.Blazor;
-using Radzen.Blazor.Markdown;
-using Radzen.Blazor.Rendering;
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Net.Http.Json;
-using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using static FlexCRM.DataObjects;
-using static MudBlazor.Colors;
 
 namespace FlexCRM.Client;
 
@@ -60,7 +45,8 @@ public static partial class Helpers
     /// <param name="dialogService">A reference to the Radzen DialogService.</param>
     /// <param name="tooltipService">A reference to the Radzen TooltipService.</param>
     /// <param name="navigationManager">A reference to the NavigationManager interface.</param>
-    public static void Init(
+    public static void Init
+    (
         IJSRuntime jSRuntime,
         BlazorDataModel model,
         HttpClient httpClient,
@@ -68,8 +54,7 @@ public static partial class Helpers
         Radzen.DialogService dialogService,
         Radzen.TooltipService tooltipService,
         NavigationManager navigationManager
-    )
-    {
+    ){
         DialogService = dialogService;
         Http = httpClient;
         jsRuntime = jSRuntime;
@@ -87,6 +72,7 @@ public static partial class Helpers
     public static bool AdminView {
         get {
             var adminMenuItems = MenuItemsAdmin.Select(x => x.PageNames).SelectMany(x => x).ToList();
+            
             if (adminMenuItems.Contains(Model.View, StringComparer.CurrentCultureIgnoreCase)) {
                 return true;
             }
@@ -218,7 +204,7 @@ public static partial class Helpers
     /// <returns>The HTML of the icon.</returns>
     public static string BooleanToCheckboxIcons(bool? value, string? iconChecked = "", string? iconUnchecked = "")
     {
-        string output = "";
+        string output = String.Empty;
 
         if (value.HasValue && (bool)value == true) {
             if (!String.IsNullOrWhiteSpace(iconChecked)) {
@@ -242,7 +228,7 @@ public static partial class Helpers
             }
         }
 
-        if (output != "") {
+        if (output != String.Empty) {
             if (!output.Contains("<")) {
                 output = "<i class=\"" + output + "\"></i>";
             }
@@ -259,7 +245,7 @@ public static partial class Helpers
     /// <returns>The HTML of the icon.</returns>
     public static string BooleanToIcon(bool? value, string? icon = "")
     {
-        string output = "";
+        string output = String.Empty;
 
         if (value.HasValue && (bool)value == true) {
             if (!String.IsNullOrWhiteSpace(icon)) {
@@ -272,7 +258,7 @@ public static partial class Helpers
                 output = Icon("Checked", true);
             }
 
-            if (output != "") {
+            if (output != String.Empty) {
                 if (!output.Contains("<")) {
                     output = "<i class=\"" + output + "\"></i>";
                 }
@@ -300,7 +286,7 @@ public static partial class Helpers
     /// <returns>A user-friendly file size.</returns>
     public static string BytesToFileSizeLabel(long? bytes, List<string>? labels = null)
     {
-        string output = "";
+        string output = String.Empty;
 
         if (labels == null || labels.Count() < 4) {
             labels = new List<string> { "b", "kb", "m", "gb" };
@@ -359,7 +345,7 @@ public static partial class Helpers
     /// <returns>The cleaned HTML.</returns>
     public static string CleanHtml(string? html)
     {
-        string output = "";
+        string output = String.Empty;
 
         if (!String.IsNullOrWhiteSpace(html)) {
             output = html;
@@ -411,7 +397,7 @@ public static partial class Helpers
                 for (int x = 0; x < validLines.Count(); x++) {
                     var line = validLines[x];
                     var lineLower = line.ToLower();
-                    string nextLine = "";
+                    string nextLine = String.Empty;
                     if (x < validLines.Count() - 1) {
                         nextLine = validLines[x + 1];
                     }
@@ -568,13 +554,13 @@ public static partial class Helpers
                     ClassName = c,
                     Code = code,
                     ContainsSensitiveData = false,
-                    Description = "",
+                    Description = String.Empty,
                     LimitToTenants = new List<Guid>(),
                     Name = "From Code",
                     Namespace = ns,
                     Prompts = new List<PluginPrompt>(),
                     PromptValues = new List<PluginPromptValue>(),
-                    PromptValuesOnUpdate = "",
+                    PromptValuesOnUpdate = String.Empty,
                     Properties = new Dictionary<string, object>(),
                     Type = "Code",
                     Version = "X",
@@ -990,7 +976,6 @@ public static partial class Helpers
                                         var i = Convert.ToInt64(v);
                                         output.Add(key, i);
                                     }
-
                                     break;
 
                                 case System.Text.Json.JsonValueKind.Object:
@@ -1231,12 +1216,12 @@ public static partial class Helpers
                 }
 
                 if (minutes > 0) {
-                    if (output != "") { output += ":"; }
+                    if (output != String.Empty) { output += ":"; }
                     output += (minutes < 10 ? "0" : "") + minutes.ToString() + "m";
                 }
 
                 if (totalSeconds > 0) {
-                    if (output != "") { output += ":"; }
+                    if (output != String.Empty) { output += ":"; }
                     output += (totalSeconds < 10 ? "0" : "") + totalSeconds.ToString() + "s";
                 }
             }
@@ -1267,11 +1252,11 @@ public static partial class Helpers
         string top = String.Empty;
 
         if (width == "auto") {
-            width = "";
+            width = String.Empty;
         }
 
         if (height == "auto") {
-            height = "";
+            height = String.Empty;
         }
 
         if (String.IsNullOrWhiteSpace(width)) {
@@ -1487,7 +1472,7 @@ public static partial class Helpers
     /// <returns>The value formatted as a currency.</returns>
     public static string FormatCurrency(string? value, bool ReplaceSpaces = false)
     {
-        string output = "";
+        string output = String.Empty;
 
         if (!String.IsNullOrWhiteSpace(value)) {
             try {
@@ -1645,7 +1630,7 @@ public static partial class Helpers
     /// <returns>An email link element.</returns>
     public static string FormatEmailAddress(string? value, bool ReplaceSpaces = false)
     {
-        string output = "";
+        string output = String.Empty;
 
         if (!String.IsNullOrWhiteSpace(value)) {
             if (value.Contains("<span")) {
@@ -2069,7 +2054,9 @@ public static partial class Helpers
     /// <param name="width">A width for the dialog.</param>
     /// <param name="height">A height for the dialog.</param>
     /// <returns>The results of the user input. Depending on the input type this will either be a string or a list of string.</returns>
-    public static async Task GetInput(Delegate OnInputAccepted,
+    public static async Task GetInput
+    (
+        Delegate OnInputAccepted,
         FreeBlazor.GetInput.InputType UserInputType = FreeBlazor.GetInput.InputType.Text,
         string Title = "",
         string Id = "",
@@ -2081,8 +2068,8 @@ public static partial class Helpers
         bool SetFocus = false,
         Dictionary<string, string>? UserInputOptions = null,
         string width = "",
-        string height = "")
-    {
+        string height = ""
+    ){
         Dictionary<string, object?> parameters = new Dictionary<string, object?>();
         parameters.Add("OnInputAccepted", OnInputAccepted);
 
@@ -2119,11 +2106,11 @@ public static partial class Helpers
         }
 
         if (width == "auto") {
-            width = "";
+            width = String.Empty;
         }
 
         if (height == "auto") {
-            height = "";
+            height = String.Empty;
         }
 
         await DialogService.OpenAsync<GetInputDialog>(Title, parameters, new DialogOptions() {
@@ -2167,7 +2154,8 @@ public static partial class Helpers
     /// <param name="RequireLowerCase">Option to require lowercase characters in the password.</param>
     /// <param name="RequireNumbers">Option to require numbers in the password.</param>
     /// <param name="RequireSpecialCharacters">Option to require special characters in the password.</param>
-    public static async Task GetNewPassword(
+    public static async Task GetNewPassword
+    (
         Action<string> OnPasswordAccepted,
         string Title = "",
         string Class = "",
@@ -2176,8 +2164,7 @@ public static partial class Helpers
         bool? RequireLowerCase = null,
         bool? RequireNumbers = null,
         bool? RequireSpecialCharacters = null
-    )
-    {
+    ){
         if (String.IsNullOrWhiteSpace(Title)) {
             Title = Text("GeneratePassword");
         }
@@ -3021,8 +3008,8 @@ public static partial class Helpers
             foreach (var part in parts) {
                 if (part.Contains("=")) {
                     var values = part.Split("=");
-                    string key = "";
-                    string value = "";
+                    string key = String.Empty;
+                    string value = String.Empty;
 
                     try {
                         key = values[0];
@@ -3348,7 +3335,7 @@ public static partial class Helpers
     public static async Task HideMenus()
     {
         await jsRuntime.InvokeVoidAsync("HideMenu");
-        Model.QuickAction = "";
+        Model.QuickAction = String.Empty;
     }
 
     /// <summary>
@@ -3404,15 +3391,17 @@ public static partial class Helpers
     /// <param name="height">Optional width. Leave empty for the default or set to "auto" for the dialog defaults.</param>
     /// <param name="setFocusOnLoad">Option to set the focus to the editor when it loads.</param>
     /// <param name="instructions">Optional instructions to show above the editor.</param>
-    public static async Task HtmlEditor(Delegate OnEditCompleted,
+    public static async Task HtmlEditor
+    (
+        Delegate OnEditCompleted,
         string? HTML = "",
         string? Title = "",
         FreeBlazor.HtmlEditor2.Configuration? config = null,
         string width = "",
         string height = "",
         bool setFocusOnLoad = true,
-        string? instructions = "")
-    {
+        string? instructions = ""
+    ){
         if (String.IsNullOrWhiteSpace(Title)) {
             Title = Text("EditHTML");
         }
@@ -3447,11 +3436,11 @@ public static partial class Helpers
         }
 
         if (width == "auto") {
-            width = "";
+            width = String.Empty;
         }
 
         if (height == "auto") {
-            height = "";
+            height = String.Empty;
         }
 
         await DialogService.OpenAsync<HtmlEditorDialog>(Title, parameters, new DialogOptions() {
@@ -3664,16 +3653,7 @@ public static partial class Helpers
     /// <returns>True if the value is a valid DateTime.</returns>
     public static bool IsDate(string value)
     {
-        bool output = false;
-
-        if (!String.IsNullOrWhiteSpace(value)) {
-            try {
-                DateTime d = Convert.ToDateTime(value);
-                output = true;
-            } catch { }
-        }
-
-        return output;
+        return DateTime.TryParse(value, out DateTime tempDate);
     }
 
     /// <summary>
@@ -3700,17 +3680,7 @@ public static partial class Helpers
     /// <returns>True if the value is a valid Guid.</returns>
     public static bool IsGuid(string value)
     {
-        bool output = false;
-
-        if (!String.IsNullOrWhiteSpace(value)) {
-            Guid? g = null;
-            try {
-                g = new Guid(value);
-            } catch { }
-            output = g != null;
-        }
-
-        return output;
+        return Guid.TryParse(value, out _);
     }
 
     /// <summary>
@@ -3742,19 +3712,7 @@ public static partial class Helpers
     /// <returns>True if the value contains a valid integer.</returns>
     public static bool IsInt(string value)
     {
-        bool output = false;
-
-        if (!String.IsNullOrWhiteSpace(value) && !value.Contains(".")) {
-            int? v = null;
-
-            try {
-                v = Convert.ToInt32(value);
-            } catch { }
-
-            output = v != null;
-        }
-
-        return output;
+        return int.TryParse(value, out _);
     }
 
     /// <summary>
@@ -3764,25 +3722,7 @@ public static partial class Helpers
     /// <returns>True if the value contains a valid number.</returns>
     public static bool IsNumeric(string? value)
     {
-        bool output = false;
-
-        if (!String.IsNullOrWhiteSpace(value)) {
-            if (value.Contains(".")) {
-                try {
-                    decimal d = Convert.ToDecimal(value);
-                    output = true;
-                } catch { }
-            }
-
-            if (!output) {
-                try {
-                    int i = Convert.ToInt32(value);
-                    output = true;
-                } catch { }
-            }
-        }
-
-        return output;
+        return double.TryParse(value, out _);
     }
 
     /// <summary>
@@ -4133,21 +4073,6 @@ public static partial class Helpers
     {
         var items = await GetOrPost<List<DataObjects.UserGroup>>("api/Data/GetUserGroups");
         Model.UserGroups = items != null && items.Any() ? items : new List<DataObjects.UserGroup>();
-    }
-
-    /// <summary>
-    /// The URL to the tenant's logo image, if set. Otherwise, returns an empty string.
-    /// </summary>
-    public static string LogoUrl {
-        get {
-            string output = "";
-
-            if (Model.Tenant.TenantSettings.Logo.HasValue && Model.Tenant.TenantSettings.Logo != Guid.Empty) {
-                output = BaseUri + "File/View/" + ((Guid)Model.Tenant.TenantSettings.Logo).ToString();
-            }
-
-            return output;
-        }
     }
 
     /// <summary>
@@ -4561,11 +4486,11 @@ public static partial class Helpers
         parameters.Add("Message", message);
 
         if (width == "auto") {
-            width = "";
+            width = String.Empty;
         }
 
         if (height == "auto") {
-            height = "";
+            height = String.Empty;
         }
 
         await DialogService.OpenAsync<ModalMessage>(title, parameters, new Radzen.DialogOptions() {
@@ -4978,11 +4903,11 @@ public static partial class Helpers
         }
 
         if (width == "auto") {
-            width = "";
+            width = String.Empty;
         }
 
         if (height == "auto") {
-            height = "";
+            height = String.Empty;
         }
 
         await DialogService.OpenAsync<PDF_Viewer>(Title, parameters, new DialogOptions() {
@@ -5022,7 +4947,7 @@ public static partial class Helpers
     /// <returns>The results of the plugin execution formatted as a string.</returns>
     public static string PluginResultToString(Plugins.PluginExecuteResult result, bool includeObjects = false)
     {
-        System.Text.StringBuilder output = new StringBuilder();
+        StringBuilder output = new StringBuilder();
 
         output.AppendLine(Text("Result") + ": " + result.Result.ToString().ToLower());
 
@@ -5152,7 +5077,6 @@ public static partial class Helpers
                 tag.Name +
                 "</div>";
             }
-
         }
 
         return output;
@@ -5212,11 +5136,10 @@ public static partial class Helpers
 
             // Preferred or saved culture code.
             bool cultureCodeSet = false;
-            var savedCultureCode = await LocalStorage.GetItemAsync<string>("CultureCode");
-            if (!String.IsNullOrWhiteSpace(savedCultureCode)) {
+            if (!String.IsNullOrWhiteSpace(Model.User.UserPreferences.CultureCode)) {
                 // Only set to this culture if there is a language for this culture.
                 if (blazorDataModelLoader.Languages.Any()) {
-                    var ccExists = blazorDataModelLoader.Languages.FirstOrDefault(x => x.TenantId == Model.TenantId && x.Culture.ToLower() == savedCultureCode.ToLower());
+                    var ccExists = blazorDataModelLoader.Languages.FirstOrDefault(x => x.TenantId == Model.TenantId && x.Culture.ToLower() == Model.User.UserPreferences.CultureCode.ToLower());
                     if (ccExists != null) {
                         modelLanguage = ccExists;
                         cultureCode = ccExists.Culture;
@@ -5259,8 +5182,8 @@ public static partial class Helpers
             Model.AppSettings = blazorDataModelLoader.AppSettings;
             Model.AuthenticationProviders = blazorDataModelLoader.AuthenticationProviders != null ? blazorDataModelLoader.AuthenticationProviders : new DataObjects.AuthenticationProviders();
 
-            if (Model.CultureCode != cultureCode) {
-                Model.CultureCode = cultureCode;
+            if (Model.User.UserPreferences.CultureCode != cultureCode) {
+                Model.User.UserPreferences.CultureCode = cultureCode;
             }
 
             Model.CultureCodes = blazorDataModelLoader.CultureCodes;
@@ -5451,7 +5374,7 @@ public static partial class Helpers
     /// <returns>A string in a user-readable format.</returns>
     public static string SecondsToTimePassed(double seconds)
     {
-        string output = "";
+        string output = String.Empty;
 
         int totalSeconds = (int)seconds;
 
@@ -5480,17 +5403,17 @@ public static partial class Helpers
             }
 
             if (hours > 0) {
-                if (output != "") { output += ", "; }
+                if (output != String.Empty) { output += ", "; }
                 output += hours.ToString() + " " + (hours > 1 ? Text("Hours") : Text("Hour"));
             }
 
             if (minutes > 0) {
-                if (output != "") { output += ", "; }
+                if (output != String.Empty) { output += ", "; }
                 output += minutes.ToString() + " " + (minutes > 1 ? Text("Minutes") : Text("Minute"));
             }
 
             if (totalSeconds > 0) {
-                if (output != "") { output += ", "; }
+                if (output != String.Empty) { output += ", "; }
                 output += totalSeconds.ToString() + " " + (totalSeconds > 1 ? Text("Seconds") : Text("Second"));
             }
 
@@ -5538,13 +5461,15 @@ public static partial class Helpers
     /// <param name="ExistingTags">An optional collection of any existing selected tags.</param>
     /// <param name="ShowCurrentTags">An option to show the currently-selected tags.</param>
     /// <param name="PreventDeselctingSelectedTags">An option to prevent the user from deselecting existing tags.</param>
-    public static async Task SelectTags(Delegate OnComplete,
+    public static async Task SelectTags
+    (
+        Delegate OnComplete,
         string Title = "",
         DataObjects.TagModule? Module = null,
         List<Guid>? ExistingTags = null,
         bool ShowCurrentTags = true,
-        bool PreventDeselctingSelectedTags = false)
-    {
+        bool PreventDeselctingSelectedTags = false
+    ){
 
         if (String.IsNullOrWhiteSpace(Title)) {
             Title = Text("SelectTags");
@@ -5625,7 +5550,8 @@ public static partial class Helpers
     {
         if (!String.IsNullOrEmpty(PropertyName)) {
             try {
-                System.Reflection.BindingFlags bindingAttrs = System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags bindingAttrs = 
+                    System.Reflection.BindingFlags.Instance |
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.Public |
                     System.Reflection.BindingFlags.NonPublic |
@@ -5647,9 +5573,8 @@ public static partial class Helpers
     /// <param name="theme">The theme to be set.</param>
     public static async void SetTheme(string theme)
     {
-        Model.Theme = theme;
+        Model.User.UserPreferences.Theme = theme;
         await jsRuntime.InvokeVoidAsync("SetPreferredColorScheme", theme);
-        await LocalStorage.SetItemAsync("Theme", theme);
     }
 
     /// <summary>
@@ -5706,7 +5631,7 @@ public static partial class Helpers
     /// <returns>A image element.</returns>
     public static string SpacerImage(int width)
     {
-        string output = "<img src=\"" + Model.ApplicationUrl + "spacer.png\" width=\"" + width.ToString() + "\" height=\"1\" alt=\"\" />";
+        string output = "<img src=\"" + Model.ApplicationUrl + "spacer.png\" width=\"" + width.ToString() + "\" height=\"1\" alt=\"\" aria-label=\"spacer image\" />";
         return output;
     }
 
@@ -5827,7 +5752,7 @@ public static partial class Helpers
         DataObjects.Language? language = null;
 
         if (user != null && Model.Languages.Any()) {
-            language = Model.Languages.FirstOrDefault(x => x.TenantId == user.TenantId && (x.Culture.ToLower() == Model.CultureCode.ToLower() || x.Culture == "en-US"));
+            language = Model.Languages.FirstOrDefault(x => x.TenantId == user.TenantId && (x.Culture.ToLower() == StringLower(Model.User.UserPreferences.CultureCode) || x.Culture == "en-US"));
         }
 
         Model.Language = language != null ? language : Model.DefaultLanguage;
@@ -6004,12 +5929,14 @@ public static partial class Helpers
     /// <param name="MarkUndefinedStrings">An option to mark undefined strings (those not included in your custom language definitions) by converting them to uppercase</param>
     /// <param name="textCase">An option to override the default text case for the text formatting.</param>
     /// <returns>The language item.</returns>
-    public static string Text(string? text,
+    public static string Text
+    (
+        string? text,
         bool ReplaceSpaces = false,
         List<string>? ReplaceValues = null,
         bool MarkUndefinedStrings = true,
-        TextCase textCase = TextCase.Normal)
-    {
+        TextCase textCase = TextCase.Normal
+    ){
         string output = !String.IsNullOrWhiteSpace(text) ? text : "";
 
         bool foundTag = false;
@@ -6084,7 +6011,7 @@ public static partial class Helpers
         switch (output) {
             case "APPTITLE":
             case "APP TITLE":
-                output = ""; // In cases where we don't have the AppTitle, just return an empty string.
+                output = String.Empty; // In cases where we don't have the AppTitle, just return an empty string.
                 break;
 
             case "LOADINGWAIT":
@@ -6197,7 +6124,8 @@ public static partial class Helpers
     /// <param name="AllowMultipleUploads">Option to indicate if the user can upload only a single file or multiple files.</param>
     /// <param name="Height">The height of the upload area in pixels (defaults to 200px.)</param>
     /// <param name="AriaLabel">The aria-label for the file upload input element. Defaults to "File Upload/File Uploads".</param>
-    public static async Task UploadFile(
+    public static async Task UploadFile
+    (
         Delegate OnUploadComplete,
         string Title = "",
         string UploadInstructions = "",
@@ -6205,8 +6133,7 @@ public static partial class Helpers
         bool AllowMultipleUploads = false,
         int Height = 200,
         string AriaLabel = ""
-    )
-    {
+    ){
         if (String.IsNullOrWhiteSpace(Title)) {
             Title = Text("UploadFile");
         }
@@ -6313,7 +6240,7 @@ public static partial class Helpers
     /// </summary>
     public static string UserAvatarUrl {
         get {
-            string output = "";
+            string output = String.Empty;
 
             if (Model.User.Photo.HasValue && Model.User.Photo != Guid.Empty) {
                 output = BaseUri + "File/View/" + ((Guid)Model.User.Photo).ToString();
@@ -6353,7 +6280,7 @@ public static partial class Helpers
     /// <returns>Either the user's photo or the default user icon.</returns>
     public static string UserIcon(Guid? photoId)
     {
-        string output = "";
+        string output = String.Empty;
 
         if (photoId.HasValue && photoId != Guid.Empty) {
             output = "<img class=\"user-menu-icon\" src=\"" + BaseUri + "File/View/" + ((Guid)photoId).ToString() + "\" />";
@@ -6465,7 +6392,7 @@ public static partial class Helpers
                         if (showItem) {
                             string itemValue = !String.IsNullOrWhiteSpace(item.value) ? item.value : "";
                             if (itemValue == guidEmpty) {
-                                itemValue = "";
+                                itemValue = String.Empty;
                             }
 
                             output.Add((

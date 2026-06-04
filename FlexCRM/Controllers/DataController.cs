@@ -18,7 +18,7 @@ public partial class DataController : ControllerBase
 
     private readonly IHubContext<flexcrmHub, IsrHub>? _signalR;
 
-    private string _fingerprint = "";
+    private string _fingerprint = String.Empty;
     private string _returnCodeAccessDenied = "{{AccessDenied}}";
 
     public DataController(IDataAccess daInjection,
