@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeGLBA.exe" />
   </Folder>
   <Project Path="FreeGLBA.Client/FreeGLBA.Client.csproj" />
-  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="BFEF2C21-2FC3-4156-B317-06C7DBF76B7D" />
-  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="92650A8B-53B8-4108-B43B-1C266F78ACDF" />
-  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="E2599097-1CA6-4DF5-B7AF-F0169BA1DA80" />
-  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="C5C32294-84C2-45E4-9E2F-60E5B8866652" />
+  <Project Path="FreeGLBA.DataAccess/FreeGLBA.DataAccess.csproj" Id="DA12DA81-EB25-4660-BDEE-4F6AA1DEFB47" />
+  <Project Path="FreeGLBA.DataObjects/FreeGLBA.DataObjects.csproj" Id="DA1D2B5E-9E56-45B9-973A-723D8A97F247" />
+  <Project Path="FreeGLBA.EFModels/FreeGLBA.EFModels.csproj" Id="1B4B2850-6682-4FA9-B3EE-BFA98C97AE75" />
+  <Project Path="FreeGLBA.Plugins/FreeGLBA.Plugins.csproj" Id="3B8514EA-C490-486E-B825-F45C08036023" />
   <Project Path="FreeGLBA/FreeGLBA.csproj" />
 </Solution>
