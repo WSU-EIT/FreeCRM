@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreePlugins.exe" />
   </Folder>
   <Project Path="FreePlugins.Client/FreePlugins.Client.csproj" />
-  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="C182E172-A0F4-474A-A6F0-1034AE35F8F4" />
-  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="89F09D00-26B9-4391-990F-585014705FD2" />
-  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="718257A7-6D0A-4A4E-BC34-F10D8C69AD61" />
-  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="589B1916-5F73-485A-B4FA-AF912004AB9D" />
+  <Project Path="FreePlugins.DataAccess/FreePlugins.DataAccess.csproj" Id="C69191D5-5B77-4E12-91B5-4066E44AF9F9" />
+  <Project Path="FreePlugins.DataObjects/FreePlugins.DataObjects.csproj" Id="ED331732-5077-44B9-9198-B7325DDF742E" />
+  <Project Path="FreePlugins.EFModels/FreePlugins.EFModels.csproj" Id="6738B5D0-4851-4D6A-82B8-E61C6DEDAF64" />
+  <Project Path="FreePlugins.Plugins/FreePlugins.Plugins.csproj" Id="3A56516D-65B4-4C87-9149-B583DC37AB53" />
   <Project Path="FreePlugins/FreePlugins.csproj" />
 </Solution>
