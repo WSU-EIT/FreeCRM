@@ -10,9 +10,9 @@
     <File Path="Upgrade FreeFreeManager.exe" />
   </Folder>
   <Project Path="FreeManager.Client/FreeManager.Client.csproj" />
-  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="AB98C30D-41F2-4A3C-9FF5-F6D42AD9574D" />
-  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="4B1A7679-3860-4075-90C5-5F14FDB5FCDA" />
-  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="39A8CDA1-89AC-4E26-85E1-91D302FEA9DB" />
-  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="A8900954-9555-465F-A7EE-8538836146FE" />
+  <Project Path="FreeManager.DataAccess/FreeManager.DataAccess.csproj" Id="3368720F-5FCD-4901-B175-D18D6F9B5AB9" />
+  <Project Path="FreeManager.DataObjects/FreeManager.DataObjects.csproj" Id="24E590C1-5583-443F-A67C-B557F70C64E1" />
+  <Project Path="FreeManager.EFModels/FreeManager.EFModels.csproj" Id="C06EDDE6-ECE6-4365-82A7-AE612D4D92AC" />
+  <Project Path="FreeManager.Plugins/FreeManager.Plugins.csproj" Id="FED2FA63-F7F6-422A-923E-69AE233BCF39" />
   <Project Path="FreeManager/FreeManager.csproj" />
 </Solution>
