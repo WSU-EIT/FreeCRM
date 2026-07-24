@@ -276,44 +276,120 @@ public class AuthorizationController : ControllerBase
                         if (claims != null && claims.Claims != null && claims.Claims.Any()) {
                             //Dictionary<string, string> allClaims = new Dictionary<string, string>();
 
-                            //string name = String.Empty;
-                            string preferredUsername = String.Empty;
+                            string email = String.Empty;
+                            string employeeId = String.Empty;
                             string givenName = String.Empty;
                             string familyName = String.Empty;
-                            string employeeId = String.Empty;
+                            string preferredUsername = String.Empty;
 
                             var authProviders = da.GetAuthenticationProviders();
                             string openIdEmployeeIdClaim = da.StringValue(authProviders.OpenIdEmployeeIdClaim).ToLower();
+                            if (String.IsNullOrWhiteSpace(openIdEmployeeIdClaim)) {
+                                openIdEmployeeIdClaim = "employeeid";
+                            }
 
-                            foreach (var claim in claims.Claims) {
+                            var allClaims = claims.Claims.ToList();
+
+                            foreach (var claim in allClaims) {
                                 var claimType = GetClaimType(claim.Type).ToLower();
 
                                 //allClaims.Add(claim.Type, claim.Value);
 
-                                if (!String.IsNullOrWhiteSpace(openIdEmployeeIdClaim) && claimType.ToLower() == openIdEmployeeIdClaim) {
-                                    employeeId += claim.Value;
+                                if (claimType.StartsWith("http:")) {
+                                    // Ignore these
+                                } else if (!String.IsNullOrWhiteSpace(openIdEmployeeIdClaim) && claimType.ToLower() == openIdEmployeeIdClaim) {
+                                    if (String.IsNullOrWhiteSpace(employeeId)) {
+                                        employeeId += claim.Value;
+                                    }
                                 } else {
                                     switch (claimType) {
+                                        case "auth_time":
+                                        case "jti":
                                         case "name":
-                                            //name += claim.Value;
+                                            // Ignore these
                                             break;
 
+                                        case "email":
                                         case "emailaddress":
+                                        case "email_verified":
+                                            if (String.IsNullOrWhiteSpace(email) && claim.Value.Contains("@")) {
+                                                email += claim.Value;
+                                            }
+                                            break;
+
                                         case "preferred_username":
-                                            preferredUsername += claim.Value;
+                                            if (String.IsNullOrWhiteSpace(preferredUsername)) {
+                                                preferredUsername += claim.Value;
+                                            }
                                             break;
 
                                         case "givenname":
                                         case "given_name":
-                                            givenName += claim.Value;
+                                            if (String.IsNullOrWhiteSpace(givenName)) {
+                                                givenName += claim.Value;
+                                            }
                                             break;
 
                                         case "surname":
                                         case "family_name":
-                                            familyName += claim.Value;
+                                            if (String.IsNullOrWhiteSpace(familyName)) {
+                                                familyName += claim.Value;
+                                            }
+                                            break;
+
+                                        default:
+                                            if (claimType.Contains("email")) {
+                                                if (String.IsNullOrWhiteSpace(email)) {
+                                                    email += claim.Value;
+                                                }
+                                            } else if (claimType.Contains("username")) {
+                                                if (String.IsNullOrWhiteSpace(preferredUsername)) {
+                                                    preferredUsername += claim.Value;
+                                                }
+                                            } else if (claimType.Contains("employee")) {
+                                                if (String.IsNullOrWhiteSpace(employeeId)) {
+                                                    employeeId += claim.Value;
+                                                }
+                                            }
+
                                             break;
                                     }
                                 }
+                            }
+
+                            // Now, check for any missing possible matches of claims
+                            if (
+                                String.IsNullOrWhiteSpace(email) || 
+                                String.IsNullOrWhiteSpace(preferredUsername) ||
+                                String.IsNullOrWhiteSpace(employeeId)
+                            ){
+                                foreach (var claim in allClaims) {
+                                    var claimType = GetClaimType(claim.Type).ToLower();
+
+                                    if (!claimType.StartsWith("http:")) {
+                                        if (claimType.Contains("email")) {
+                                            if (String.IsNullOrWhiteSpace(email)) {
+                                                email += claim.Value;
+                                            }
+                                        } else if (claimType.Contains("username")) {
+                                            if (String.IsNullOrWhiteSpace(preferredUsername)) {
+                                                preferredUsername += claim.Value;
+                                            }
+                                        } else if (claimType.Contains("employee")) {
+                                            if (String.IsNullOrWhiteSpace(employeeId)) {
+                                                employeeId += claim.Value;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (String.IsNullOrWhiteSpace(preferredUsername) && !String.IsNullOrWhiteSpace(email)) {
+                                preferredUsername = email;
+                            }
+
+                            if (String.IsNullOrWhiteSpace(email) && !String.IsNullOrWhiteSpace(preferredUsername)) {
+                                preferredUsername = email;
                             }
 
                             if (!String.IsNullOrWhiteSpace(preferredUsername)) {
@@ -338,7 +414,7 @@ public class AuthorizationController : ControllerBase
                                             ManageAppointments = false,
                                             // {{ModuleItemEnd:Appointments}}
                                             Deleted = false,
-                                            Email = preferredUsername,
+                                            Email = email,
                                             EmployeeId = employeeId,
                                             FirstName = givenName,
                                             Enabled = true,
