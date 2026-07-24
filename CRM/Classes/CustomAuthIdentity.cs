@@ -13,6 +13,7 @@ public interface ICustomAuthentication
     public string? OpenIdButtonText { get; }
     public string? OpenIdButtonClass { get; }
     public string? OpenIdButtonIcon { get; }
+    public string? OpenIdEmployeeIdClaim { get; }
 
     bool UseGoogle { get; }
 }
@@ -74,6 +75,12 @@ public class CustomAuthentication : ICustomAuthentication
         }
     }
 
+    public string? OpenIdEmployeeIdClaim {
+        get {
+            return _config.OpenIdEmployeeIdClaim;
+        }
+    }
+
     public bool UseGoogle {
         get {
             return _config.UseGoogle;
@@ -92,6 +99,7 @@ public class CustomAuthenticationConfiguration
     public string? OpenIdButtonClass { get; set; }
     public string? OpenIdButtonIcon { get; set; }
     public bool UseGoogle { get; set; }
+    public string? OpenIdEmployeeIdClaim { get; set; }
 }
 
 public static class CustomAuthenticationProviders
@@ -137,6 +145,7 @@ public static class CustomAuthenticationProviders
         string openIdButtonText = String.Empty;
         string openIdButtonClass = String.Empty;
         string openIdButtonIcon = String.Empty;
+        string openIdEmployeeIdClaim = String.Empty;
 
         try { openIdClientId += applicationBuilder.Configuration["AuthenticationProviders:OpenId:ClientId"]; } catch { }
         try { openIdClientSecret += applicationBuilder.Configuration["AuthenticationProviders:OpenId:ClientSecret"]; } catch { }
@@ -144,6 +153,7 @@ public static class CustomAuthenticationProviders
         try { openIdButtonText += applicationBuilder.Configuration["AuthenticationProviders:OpenId:ButtonText"]; } catch { }
         try { openIdButtonClass += applicationBuilder.Configuration["AuthenticationProviders:OpenId:ButtonClass"]; } catch { }
         try { openIdButtonIcon += applicationBuilder.Configuration["AuthenticationProviders:OpenId:ButtonIcon"]; } catch { }
+        try { openIdEmployeeIdClaim += applicationBuilder.Configuration["AuthenticationProviders:OpenId:EmployeeIdClaim"]; } catch { }
 
         if (!String.IsNullOrEmpty(openIdClientId) && !String.IsNullOrEmpty(openIdClientSecret) && !String.IsNullOrEmpty(openIdAuthority)) {
             output.Enabled = true;
@@ -151,6 +161,7 @@ public static class CustomAuthenticationProviders
             output.OpenIdButtonText = openIdButtonText;
             output.OpenIdButtonClass = openIdButtonClass;
             output.OpenIdButtonIcon = openIdButtonIcon;
+            output.OpenIdEmployeeIdClaim = openIdEmployeeIdClaim;
         }
 
         string googleClientId = String.Empty;

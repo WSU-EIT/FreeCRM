@@ -12,15 +12,33 @@ public class AuthorizationController : ControllerBase
     private string _baseUrl = String.Empty;
     private string _requestedUrl = String.Empty;
     private string _fingerprint = String.Empty;
+    private ICustomAuthentication? authenticationProviders;
 
     public AuthorizationController
     (
         IDataAccess daInjection,
         IHttpContextAccessor httpContextAccessor,
-        IPlugins daPlugins
-    ){
+        IPlugins daPlugins,
+        ICustomAuthentication auth
+    )
+    {
+        authenticationProviders = auth;
         da = daInjection;
         plugins = daPlugins;
+
+        if (authenticationProviders != null) {
+            da.SetAuthenticationProviders(new DataObjects.AuthenticationProviders {
+                UseApple = authenticationProviders.UseApple,
+                UseFacebook = authenticationProviders.UseFacebook,
+                UseGoogle = authenticationProviders.UseGoogle,
+                UseMicrosoftAccount = authenticationProviders.UseMicrosoftAccount,
+                UseOpenId = authenticationProviders.UseOpenId,
+                OpenIdButtonText = authenticationProviders.OpenIdButtonText,
+                OpenIdButtonClass = authenticationProviders.OpenIdButtonClass,
+                OpenIdButtonIcon = authenticationProviders.OpenIdButtonIcon,
+                OpenIdEmployeeIdClaim = authenticationProviders.OpenIdEmployeeIdClaim,
+            });
+        }
 
         if (httpContextAccessor != null && httpContextAccessor.HttpContext != null) {
             context = httpContextAccessor.HttpContext;
@@ -241,6 +259,7 @@ public class AuthorizationController : ControllerBase
     {
         DataObjects.SimpleResponse output = new DataObjects.SimpleResponse();
 
+        bool addedUser = false;
         bool validUser = false;
         bool noLocalAccount = false;
 
@@ -257,35 +276,43 @@ public class AuthorizationController : ControllerBase
                         if (claims != null && claims.Claims != null && claims.Claims.Any()) {
                             //Dictionary<string, string> allClaims = new Dictionary<string, string>();
 
-                            string name = String.Empty;
+                            //string name = String.Empty;
                             string preferredUsername = String.Empty;
                             string givenName = String.Empty;
                             string familyName = String.Empty;
+                            string employeeId = String.Empty;
+
+                            var authProviders = da.GetAuthenticationProviders();
+                            string openIdEmployeeIdClaim = da.StringValue(authProviders.OpenIdEmployeeIdClaim).ToLower();
 
                             foreach (var claim in claims.Claims) {
                                 var claimType = GetClaimType(claim.Type).ToLower();
 
                                 //allClaims.Add(claim.Type, claim.Value);
 
-                                switch (claimType) {
-                                    case "name":
-                                        name += claim.Value;
-                                        break;
+                                if (!String.IsNullOrWhiteSpace(openIdEmployeeIdClaim) && claimType.ToLower() == openIdEmployeeIdClaim) {
+                                    employeeId += claim.Value;
+                                } else {
+                                    switch (claimType) {
+                                        case "name":
+                                            //name += claim.Value;
+                                            break;
 
-                                    case "emailaddress":
-                                    case "preferred_username":
-                                        preferredUsername += claim.Value;
-                                        break;
+                                        case "emailaddress":
+                                        case "preferred_username":
+                                            preferredUsername += claim.Value;
+                                            break;
 
-                                    case "givenname":
-                                    case "given_name":
-                                        givenName += claim.Value;
-                                        break;
+                                        case "givenname":
+                                        case "given_name":
+                                            givenName += claim.Value;
+                                            break;
 
-                                    case "surname":
-                                    case "family_name":
-                                        familyName += claim.Value;
-                                        break;
+                                        case "surname":
+                                        case "family_name":
+                                            familyName += claim.Value;
+                                            break;
+                                    }
                                 }
                             }
 
@@ -306,12 +333,9 @@ public class AuthorizationController : ControllerBase
                                             Added = now,
                                             AddedBy = Source,
                                             Admin = false,
-                                            // {{ModuleItemStart:Appointments}}
-                                            CanBeScheduled = false,
-                                            ManageAppointments = false,
-                                            // {{ModuleItemEnd:Appointments}}
                                             Deleted = false,
                                             Email = preferredUsername,
+                                            EmployeeId = employeeId,
                                             FirstName = givenName,
                                             Enabled = true,
                                             LastModified = now,
@@ -326,12 +350,43 @@ public class AuthorizationController : ControllerBase
                                         };
 
                                         user = await da.SaveUser(addUser);
+
+                                        addedUser = true;
                                     }
                                 }
 
                                 if (user != null && user.ActionResponse.Result && user.Enabled) {
                                     output.Result = true;
                                     noLocalAccount = false;
+
+                                    if (!addedUser) {
+                                        // See if we need to make any updates based on data from the auth provider.
+                                        bool updatesMade = false;
+
+                                        if (user.Email != preferredUsername) {
+                                            user.Email = preferredUsername;
+                                            updatesMade = true;
+                                        }
+
+                                        if (user.FirstName != givenName) {
+                                            user.FirstName = givenName;
+                                            updatesMade = true;
+                                        }
+
+                                        if (user.LastName != familyName) {
+                                            user.LastName = familyName;
+                                            updatesMade = true;
+                                        }
+
+                                        if (user.EmployeeId != employeeId) {
+                                            user.EmployeeId = employeeId;
+                                            updatesMade = true;
+                                        }
+
+                                        if (updatesMade) {
+                                            await da.SaveUser(user);
+                                        }
+                                    }
 
                                     await da.UpdateUserFromPlugins(user.UserId);
 

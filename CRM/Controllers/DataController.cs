@@ -45,7 +45,8 @@ public partial class DataController : ControllerBase
                 UseOpenId = authenticationProviders.UseOpenId,
                 OpenIdButtonText = authenticationProviders.OpenIdButtonText,
                 OpenIdButtonClass = authenticationProviders.OpenIdButtonClass,
-                OpenIdButtonIcon = authenticationProviders.OpenIdButtonIcon
+                OpenIdButtonIcon = authenticationProviders.OpenIdButtonIcon,
+                OpenIdEmployeeIdClaim = authenticationProviders.OpenIdEmployeeIdClaim,
             });
         }
 

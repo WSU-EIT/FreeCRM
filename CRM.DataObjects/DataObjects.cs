@@ -95,6 +95,7 @@ public partial class DataObjects
         public string? OpenIdButtonText { get; set; }
         public string? OpenIdButtonClass { get; set; }
         public string? OpenIdButtonIcon { get; set; }
+        public string? OpenIdEmployeeIdClaim { get; set; }
         public bool UseGoogle { get; set; }
     }
 
