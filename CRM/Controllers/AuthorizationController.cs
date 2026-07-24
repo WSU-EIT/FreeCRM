@@ -333,6 +333,10 @@ public class AuthorizationController : ControllerBase
                                             Added = now,
                                             AddedBy = Source,
                                             Admin = false,
+                                            // {{ModuleItemStart:Appointments}}
+                                            CanBeScheduled = false,
+                                            ManageAppointments = false,
+                                            // {{ModuleItemEnd:Appointments}}
                                             Deleted = false,
                                             Email = preferredUsername,
                                             EmployeeId = employeeId,
