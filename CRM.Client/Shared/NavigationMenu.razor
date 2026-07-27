@@ -38,7 +38,11 @@
 
                                 <li class="nav-item">
                                     @if (item.OnClick != null) {
-                                        <a class="@itemClass" href="javascript:void('0');" @onclick="@(() => item.OnClick.DynamicInvoke())">
+                                        <a class="@itemClass"
+                                                href="javascript:void('0');"
+                                                title="@item.TooltipTitle"
+                                                aria-label="@item.AriaLabel"
+                                                @onclick="@(() => item.OnClick.DynamicInvoke())">
                                             @if (!String.IsNullOrWhiteSpace(item.Icon)) {
                                                 <Icon Name="@item.Icon" />
                                             }
@@ -47,7 +51,10 @@
                                             </span>
                                         </a>
                                     } else {
-                                        <a class="@itemClass" href="@item.url">
+                                        <a class="@itemClass"
+                                                title="@item.TooltipTitle"
+                                                aria-label="@item.AriaLabel"
+                                                href="@item.url">
                                             @if (!String.IsNullOrWhiteSpace(item.Icon)) {
                                                 <Icon Name="@item.Icon" />
                                             }
@@ -78,7 +85,11 @@
 
                                             <li>
                                                 @if (item.OnClick != null) {
-                                                    <a class="@itemClass" href="javascript:void('0');" @onclick="@(() => item.OnClick.DynamicInvoke())">
+                                                    <a class="@itemClass"
+                                                            title="@item.TooltipTitle"
+                                                            aria-label="@item.AriaLabel"
+                                                            href="javascript:void('0');"
+                                                            @onclick="@(() => item.OnClick.DynamicInvoke())">
                                                         @if (!String.IsNullOrWhiteSpace(item.Icon)) {
                                                             <Icon Name="@item.Icon" />
                                                         }
@@ -87,7 +98,10 @@
                                                         </span>
                                                     </a>
                                                 } else {
-                                                    <a class="@itemClass" href="@item.url">
+                                                    <a class="@itemClass"
+                                                            title="@item.TooltipTitle"
+                                                            aria-label="@item.AriaLabel"
+                                                            href="@item.url">
                                                         @if (!String.IsNullOrWhiteSpace(item.Icon)) {
                                                             <Icon Name="@item.Icon" />
                                                         }

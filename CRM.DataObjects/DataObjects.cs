@@ -410,12 +410,14 @@ public partial class DataObjects
 
     public partial class MenuItem
     {
+        public string? AriaLabel { get; set; }
         public string Title { get; set; } = String.Empty;
         public string? Icon { get; set; }
         public string url { get; set; } = String.Empty;
         public List<string> PageNames { get; set; } = new List<string>();
         public bool AppAdminOnly { get; set; }
         public int SortOrder { get; set; }
+        public string? TooltipTitle { get; set; }
         public Delegate? OnClick { get; set; }
     }
 

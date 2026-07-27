@@ -2,7 +2,6 @@
 @page "/{TenantCode}/TimerTest"
 @implements IDisposable
 @inject BlazorDataModel Model
-@using BlazorSortableList
 
 @if (Model.Loaded && Model.LoggedIn && Model.View == _pageName) {
     <h1>Timer Test Page</h1>
