@@ -5851,6 +5851,14 @@ public static partial class Helpers
                 Model.Loaded = true;
             }
 
+            if (!Model.LoggedIn) {
+                // Get the user prefs from local storage
+                var prefsFromStorage = await GetLocalStorageItem<DataObjects.UserPreferences>("UserPreferences-" + Model.TenantId.ToString());
+                if (prefsFromStorage != null) {
+                    Model.User.UserPreferences = prefsFromStorage;
+                }
+            }
+
             // If the current tenant has a specific ApplicationUrl, and we are not in that URL space, then redirect.
             if (Model.User.ActionResponse.Result && tenant != null && !String.IsNullOrWhiteSpace(tenant.TenantSettings.ApplicationUrl)) {
                 string baseUrl = BaseUri.ToLower();
@@ -5977,10 +5985,16 @@ public static partial class Helpers
     {
         var output = new DataObjects.BooleanResponse();
 
-        var saved = await GetOrPost<DataObjects.BooleanResponse>("api/Data/SaveUserPreferences/" + UserId.ToString(), userPreferences);
-        if (saved != null) {
-            output = saved;
+        if (Model.LoggedIn) {
+            var saved = await GetOrPost<DataObjects.BooleanResponse>("api/Data/SaveUserPreferences/" + UserId.ToString(), userPreferences);
+            if (saved != null) {
+                output = saved;
+            }
+        } else {
+            await SetLocalStorageItem("UserPreferences-" + Model.TenantId.ToString(), userPreferences);
+            output.Result = true;
         }
+
 
         return output;
     }

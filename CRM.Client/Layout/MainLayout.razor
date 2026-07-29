@@ -787,17 +787,15 @@
 
     protected async Task SavePendingUserPreferences()
     {
-        if (Model.LoggedIn) {
-            string json = Helpers.SerializeObject(Model.User.UserPreferences);
+        string json = Helpers.SerializeObject(Model.User.UserPreferences);
 
-            if (LastUserPreferencesJson != json) {
-                // Initially, the LastUserPreferencesJson will be empty. Don't save on that initial load of the object.
-                if (!String.IsNullOrEmpty(LastUserPreferencesJson)) {
-                    await Helpers.SaveUserPreferences();
-                }
-
-                LastUserPreferencesJson = json;
+        if (LastUserPreferencesJson != json) {
+            // Initially, the LastUserPreferencesJson will be empty. Don't save on that initial load of the object.
+            if (!String.IsNullOrEmpty(LastUserPreferencesJson)) {
+                await Helpers.SaveUserPreferences();
             }
+
+            LastUserPreferencesJson = json;
         }
     }
 
