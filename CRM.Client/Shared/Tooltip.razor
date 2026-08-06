@@ -1,18 +1,14 @@
 ﻿@implements IDisposable
 
 @if (!String.IsNullOrWhiteSpace(TipText)) {
-    <i @ref="_element" @onclick="ShowTooltip" class="tooltip-item">@((MarkupString)_icon)</i>
+    <i @ref="_element" @onclick="ShowTooltip" class="tooltip-item" aria-label="@AriaLabel">@((MarkupString)_icon)</i>
 }
 
 @code {
-    [Parameter]
-    public string? Icon { get; set; }
-
-    [Parameter]
-    public TooltipOptions? Options { get; set; }
-
-    [Parameter]
-    public string? TipText { get; set; }
+    [Parameter] public string? AriaLabel { get; set; }
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public TooltipOptions? Options { get; set; }
+    [Parameter] public string? TipText { get; set; }
 
     protected string _icon = String.Empty;
     protected ElementReference _element;

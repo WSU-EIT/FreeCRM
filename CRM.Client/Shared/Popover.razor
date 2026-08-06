@@ -2,13 +2,25 @@
 @using Humanizer
 @inject BlazorDataModel Model
 @if (IncludeButton) {
-    <button type="button" class="btn btn-outline-secondary" tabindex="-1" @ref="_element" @onclick="ShowTooltip">
-        <i class="tooltip-item">@((MarkupString)_icon)</i>
+    <button type="button"
+            aria-label="@AriaLabel"
+            class="@ButtonClass"
+            @ref="_element"
+            @onclick="ShowTooltip">
+        <span class="tooltip-item">
+            @((MarkupString)_icon)
+            @if (!String.IsNullOrWhiteSpace(ButtonText)) {
+                <span class="icon-text">@((MarkupString)ButtonText)</span>
+            }
+        </span>
     </button>
 } else {
-    <Tooltip Icon="@Icon" TipText="@Text" Options="DefaultOptions" />
+    <Tooltip AriaLabel="@AriaLabel" Icon="@Icon" TipText="@Text" Options="DefaultOptions" />
 }
 @code {
+    [Parameter] public string? AriaLabel { get; set; }
+    [Parameter] public string ButtonClass { get; set; } = "btn btn-outline-secondary";
+    [Parameter] public string? ButtonText { get; set; }
     [Parameter] public string Icon { get; set; } = Helpers.Icon("Info", true);
     [Parameter] public bool IncludeButton { get; set; } = true;
     /// <summary>

@@ -7225,7 +7225,7 @@ public static partial class Helpers
                 string extension = StringValue(file.Extension).Replace(".", "").ToLower();
                 string imageData = "data:image/" + extension + "; base64," + Convert.ToBase64String(file.Value);
 
-                image = "<img src=\"" + imageData + "\" />";
+                image = "<img src=\"" + imageData + "\" class=\"image-preview\" />";
             } else {
                 image = "<img src=\"" + Model.ApplicationUrl + "File/Embed/" + file.FileId.ToString() + "\" class=\"image-preview\" />";
             }

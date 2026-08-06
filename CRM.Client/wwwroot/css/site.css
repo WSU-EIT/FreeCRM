@@ -1609,3 +1609,7 @@ td.one-percent {
     border:solid 2px #fff;
 }
 /* {{ModuleItemEnd:Workflows}} */
+
+img.image-preview {
+    max-width:100%;
+}
