@@ -31,6 +31,15 @@
                 }
             }
 
+            // If no saved value was found, use the DefaultValue as a fallback
+            if (String.IsNullOrWhiteSpace(elementValue) && !String.IsNullOrWhiteSpace(prompt.DefaultValue)) {
+                elementValue = prompt.DefaultValue;
+
+                if (values.Count == 0) {
+                    values.Add(prompt.DefaultValue);
+                }
+            }
+
             string elementId = "plugin-" + Plugin.Id.ToString() + "-prompt-" + index.ToString();
             string elementName = prompt.Name.ToLower().Replace(" ", "-");
 

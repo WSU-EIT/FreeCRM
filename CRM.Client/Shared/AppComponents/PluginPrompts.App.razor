@@ -22,6 +22,15 @@
                 }
             }
 
+            // If no saved value was found, use the DefaultValue as a fallback
+            if (String.IsNullOrWhiteSpace(elementValue) && !String.IsNullOrWhiteSpace(Prompt.DefaultValue)) {
+                elementValue = Prompt.DefaultValue;
+
+                if (values.Count == 0) {
+                    values.Add(Prompt.DefaultValue);
+                }
+            }
+
             switch (RenderPromptType) {
                 // case PluginPromptType.Button:
                 //     // Render custom buttom prompt here
