@@ -38,8 +38,11 @@
 
                                 <li class="nav-item">
                                     @if (item.OnClick != null) {
+                                        string href = !String.IsNullOrWhiteSpace(item.AriaLabel) ? item.AriaLabel :
+                                            !String.IsNullOrWhiteSpace(item.Title) ? item.Title : Guid.NewGuid().ToString();
+
                                         <a class="@itemClass"
-                                                href="javascript:void('0');"
+                                                href="javascript:void('@href.Replace("'", "")');"
                                                 title="@item.TooltipTitle"
                                                 aria-label="@item.AriaLabel"
                                                 @onclick="@(() => item.OnClick.DynamicInvoke())">
@@ -85,10 +88,13 @@
 
                                             <li>
                                                 @if (item.OnClick != null) {
+                                                    string href = !String.IsNullOrWhiteSpace(item.AriaLabel) ? item.AriaLabel :
+                                                        !String.IsNullOrWhiteSpace(item.Title) ? item.Title : Guid.NewGuid().ToString();
+
                                                     <a class="@itemClass"
                                                             title="@item.TooltipTitle"
                                                             aria-label="@item.AriaLabel"
-                                                            href="javascript:void('0');"
+                                                            href="javascript:void('@href.Replace("'", "")');"
                                                             @onclick="@(() => item.OnClick.DynamicInvoke())">
                                                         @if (!String.IsNullOrWhiteSpace(item.Icon)) {
                                                             <Icon Name="@item.Icon" />
@@ -135,7 +141,7 @@
 
                             @if (String.IsNullOrWhiteSpace(Model.Tenant.TenantSettings.Theme)) {
                                 <li class="nav-item dropdown" title="@Helpers.Text("Theme")">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void('@Helpers.Text("Theme")');" id="themeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="@Helpers.Text("SelectTheme")">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void('@Helpers.Text("Theme").Replace("'", "")');" id="themeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="@Helpers.Text("SelectTheme")">
                                         @switch (Model.User.UserPreferences.Theme) {
                                             case "dark":
                                                 <Icon Name="ThemeDark" />
@@ -161,17 +167,17 @@
                                         <li><hr class="dropdown-divider"></li>
                                         *@
                                         <li>
-                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeAuto")');" @onclick="@(() => Helpers.SetTheme("auto"))">
+                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeAuto").Replace("'", "")');" @onclick="@(() => Helpers.SetTheme("auto"))">
                                                 <Language Tag="ThemeAuto" IncludeIcon="true" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeLight")');" @onclick="@(() => Helpers.SetTheme("light"))">
+                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeLight").Replace("'", "")');" @onclick="@(() => Helpers.SetTheme("light"))">
                                                 <Language Tag="ThemeLight" IncludeIcon="true" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeDark")');" @onclick="@(() => Helpers.SetTheme("dark"))">
+                                            <a class="dropdown-item" href="javascript:void('@Helpers.Text("ThemeDark").Replace("'", "")');" @onclick="@(() => Helpers.SetTheme("dark"))">
                                                 <Language Tag="ThemeDark" IncludeIcon="true" />
                                             </a>
                                         </li>
