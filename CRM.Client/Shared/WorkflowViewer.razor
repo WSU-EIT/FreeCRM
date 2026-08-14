@@ -135,6 +135,16 @@
                         </div>
                     </div>
                 </div>
+
+                @if (ShowExport) {
+                    <div class="@(InDialog ? "btn-group" : "btn-group btn-group-sm")" role="group">
+                        <button type="button"
+                                class="btn btn-dark"
+                                @onclick="ExportSVG">
+                            <Language Tag="ExportAsSVG" IncludeIcon="true" />
+                        </button>
+                    </div>
+                }
             </div>
         </div>
         break;
@@ -162,6 +172,9 @@
 
     [Parameter]
     public Delegate? OnDialogClosed { get; set; }
+
+    [Parameter]
+    public bool ShowExport { get; set; }
 
     [Parameter]
     public List<DataObjects.Workflow> WorkflowOrphans { get; set; } = new List<DataObjects.Workflow>();
@@ -257,6 +270,18 @@
 
             return output;
         }
+    }
+
+    protected async Task ExportSVG()
+    {
+        string fileName = String.Empty;
+        if (_workflow != null && !String.IsNullOrWhiteSpace(_workflow.Name)) {
+            fileName = Helpers.SafeFileName(_workflow.Name) + ".svg";
+        } else {
+            fileName = Helpers.SafeFileDate() + ".svg";
+        }
+
+        await WorkflowEngine.ExportDiagramSVG(_elementId, fileName);
     }
 
     protected async void OnDotNetHelperHandler(List<string> messages)

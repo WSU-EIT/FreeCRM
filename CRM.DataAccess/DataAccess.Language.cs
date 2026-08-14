@@ -297,6 +297,7 @@ public partial class DataAccess
             { "CSharpCodeNotes", "Enter the C# code to execute. Include the namespace and class, as well as any assembly references. Just like developing a custom plugin for working with a form, the function you write needs to be named Execute and will receive the DataAccess library, the current Form object, the FormData object, and the User object for the logged in user (might be null). Your Execute method must return a Tuple of (bool Result, List<string>? Messages, IEnumerable<object>? Objects). Your method can be async or non-async." },
             { "CSharpInvokerFunction", "Invoker Function" },
             { "EditWorkflow", "Edit Workflow" },
+            { "ExportAsSVG", "Export as SVG" },
             { "FormHasNoWorkflows", "This Form Has No Workflows" },
             { "FormHasWorkflows", "Form Has Workflows" },
             { "Process", "Process" },

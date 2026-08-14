@@ -4042,10 +4042,15 @@ public static partial class Helpers
                 { "fa:fa-solid fa-xmark",                        new List<string> { "Cancel", "Close", "CloseDialog", "Hide" }},
 
                 // {{ModuleItemStart:Workflows}}
+                { "fa:fa-solid fa-file-svg",                     new List<string> { "ExportAsSVG" }},
                 { "fa:fa-solid fa-paste",                        new List<string> { "WorkflowPaste" }},
                 { "fa:fa-solid fa-sitemap x1",                   new List<string> { "Workflow", "Workflows" }},
                 { "fa:fa-solid fa-trash x1",                     new List<string> { "RemoveWorkflowOrphans" }},
                 // {{ModuleItemEnd:Workflows}}
+
+                // {{ModuleItemStart:SamplePages}}
+                { "fa:fa-regular fa-file-lines",                 new List<string> { "SamplePages" }},
+                // {{ModuleItemEnd:SamplePages}}
             };
 
             return icons;
@@ -4616,6 +4621,52 @@ public static partial class Helpers
                 });
             }
             // {{ModuleItemEnd:Invoices}}
+
+            // {{ModuleItemStart:SamplePages}}
+            var testPages = new DataObjects.MenuItem {
+                Title = "Test Pages",
+                Icon = "SamplePages",
+                SortOrder = 1000,
+                Children = new List<DataObjects.MenuItem> {
+                    new DataObjects.MenuItem {
+                        Title = "Double-Click",
+                        url = Helpers.BuildUrl("DoubleClick"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "Dynamic Blazor Components",
+                        url = Helpers.BuildUrl("DynamicComponent"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "HTML Editor",
+                        url = Helpers.BuildUrl("HtmlEditor"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "Monaco Code Editor",
+                        url = Helpers.BuildUrl("Monaco"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "Plugin Testing",
+                        url = Helpers.BuildUrl("Plugins"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "SortableList",
+                        url = Helpers.BuildUrl("SortTest"),
+                    },
+                    new DataObjects.MenuItem {
+                        Title = "Timer",
+                        url = Helpers.BuildUrl("TimerTest"),
+                    },
+                },
+            };
+
+            // {{ModuleItemStart:Workflows}}
+            testPages.Children.Add(new DataObjects.MenuItem { 
+                Title = "Workflows",
+                url = Helpers.BuildUrl("WorkflowsTest"),
+            });
+            // {{ModuleItemEnd:Workflows}}
+            output.Add(testPages);
+            // {{ModuleItemEnd:SamplePages}}
 
             output.AddRange(MenuItemsApp);
 
@@ -5956,6 +6007,41 @@ public static partial class Helpers
     {
         DateTime dt = new DateTime(DateTime.Now.Ticks);
         return string.Format("{0:yyyy.MM.dd.HH.mm.ss.ff}", dt);
+    }
+
+    /// <summary>
+    /// Converts a string to a safe file name.
+    /// </summary>
+    /// <param name="FileName">A string containing a potential file name.</param>
+    /// <returns>A file system safe string.</returns>
+    public static string SafeFileName(string? FileName)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrEmpty(FileName)) {
+            output = FileName.Replace(" ", "_")
+                .Replace(",", String.Empty)
+                .Replace("\"", String.Empty)
+                .Replace(@"\", String.Empty)
+                .Replace("/", String.Empty)
+                .Replace("?", String.Empty)
+                .Replace(":", String.Empty)
+                .Replace(";", String.Empty)
+                .Replace("-", String.Empty)
+                .Replace("+", String.Empty)
+                .Replace("!", String.Empty)
+                .Replace("@", String.Empty)
+                .Replace("#", String.Empty)
+                .Replace("$", String.Empty)
+                .Replace("%", String.Empty)
+                .Replace("^", String.Empty)
+                .Replace("&", "and")
+                .Replace("*", String.Empty)
+                .Replace("(", String.Empty)
+                .Replace(")", "_");
+        }
+
+        return output;
     }
 
     /// <summary>

@@ -55,7 +55,7 @@
     <Routes @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />
     <Modules_App Module="bodytop" />
     <!-- {{ModuleItemStart:Workflows}} -->
-    <script src="@(applicationUrl + "js/mermaid/9.4.3/mermaid.min.js")"></script>
+    <script src="@(applicationUrl + "js/mermaid/11.16.1/mermaid.min.js")"></script>
     <script src="@(applicationUrl + "js/panzoom/panzoom.js")"></script>
     <!-- {{ModuleItemEnd:Workflows}} -->
     <script src="https://cdn.jsdelivr.net/npm/@@thumbmarkjs/thumbmarkjs/dist/thumbmark.umd.js"></script>
@@ -350,27 +350,57 @@
         }
 
         // {{ModuleItemStart:Workflows}}
-        function RenderWorkflowDiagram(elementId, data, zoom) {
+        async function RenderWorkflowDiagram(elementId, data, zoom) {
             if (typeof(mermaid) != 'undefined') {
                 var el = document.getElementById(elementId);
 
                 if (el != undefined && el != null) {
-                    let insertSvg = function (svgCode, bindFunctions) {
-                        el.innerHTML = svgCode;
-                    };
+                    if (data == undefined || data == null || data == "") {
+                        el.innerHTML = "";
+                    } else {
+                        try {
+                            const { svg } = await mermaid.render('graphDivId', data);
+                            el.innerHTML = svg;
 
-                    let graph = mermaid.mermaidAPI.render('workflow-graph', data, insertSvg);
+                            HideElementByClass("btn-move-target");
+                            HideElementByClass("reprocess-icon");
 
-                    HideElementByClass("btn-move-target");
-                    HideElementByClass("reprocess-icon");
+                            SetupDotNetHelperButtonHandlers();
 
-                    SetupDotNetHelperButtonHandlers();
-
-                    RenderWorkflowDiagramZoom(elementId, zoom);
+                            RenderWorkflowDiagramZoom(elementId, zoom);
+                        } catch (error) {
+                            console.log(error);
+                            el.innerHTML = "Error Rendering Diagram - See the Console for Details";
+                        }
+                    }
                 }
             } else {
                 console.log("Mermaid is not installed, unable to render workflow diagram.");
             }
+        }
+
+        async function RenderWorkflowDiagramDownloadSvg(elementId, fileName) {
+            var svgElement = document.querySelector('#' + elementId + ' svg');
+
+            if (!svgElement) {
+                console.log("SVG Element '" + elementId + "' Not Found");
+                return;
+            }
+
+            if (!svgElement.getAttribute('xmlns')) {
+                svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            }
+
+            const serializer = new XMLSerializer();
+            const svgString = serializer.serializeToString(svgElement);
+            const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            const anchorElement = document.createElement('a');
+            anchorElement.href = url;
+            anchorElement.download = fileName ?? '';
+            anchorElement.click();
+            anchorElement.remove();
+            URL.revokeObjectURL(url);
         }
 
         function RenderWorkflowDiagramZoom(elementId, zoom){

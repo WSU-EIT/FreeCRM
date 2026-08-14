@@ -1039,11 +1039,11 @@ h1.block {
 }
 
 .appointment-calendar {
-    height:calc(100vh - 125px) !important;
+    height:calc(100dvh - 125px) !important;
 }
 
 .appointment-calendar.full-height {
-    height:calc(100vh - 85px);
+    height:calc(100dvh - 85px);
 }
 
 input.date-picker:not(.full-width) {
@@ -1502,7 +1502,7 @@ td.one-percent {
 .wf-canvas {
     border: solid 1px #888;
     text-align: center;
-    min-height: calc(100vh - 500px);
+    min-height: calc(100dvh - 500px);
 }
 
 .mermaid {
@@ -1612,4 +1612,25 @@ td.one-percent {
 
 img.image-preview {
     max-width:100%;
+}
+
+g.edgeLabel span, 
+.edgeLabel, 
+.labelBkg {
+  background-color: transparent !important;
+  fill: transparent !important;
+}
+
+/* Style the inner label text container */
+.edgeLabel foreignObject {
+  overflow: visible;
+}
+
+.edgeLabel p {
+  background-color: #f8fafc; /* light background color */
+  border: 1px solid #cbd5e1;  /* subtle border */
+  border-radius: 4px;       /* rounded corners */
+  padding: 2px 6px;         /* spacing */
+  font-size: 12px;
+  color: #334155;
 }

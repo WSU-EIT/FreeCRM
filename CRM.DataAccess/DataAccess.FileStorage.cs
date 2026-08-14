@@ -627,14 +627,16 @@ public partial class DataAccess
 
     public bool UserCanViewFile(DataObjects.FileStorage file, DataObjects.User CurrentUser)
     {
-        bool output = false;
+        bool output = UserCanViewFileApp(file, CurrentUser);
 
-        if (CurrentUser.AppAdmin || CurrentUser.Admin || CurrentUser.ManageFiles) {
-            output = true;
-        } else if (file.UserId.HasValue && file.UserId == CurrentUser.UserId) {
-            output = true;
-        } else if (file.ItemId.HasValue) {
-            // See if this is part of a special item and check access.
+        if (!output) {
+            if (CurrentUser.AppAdmin || CurrentUser.Admin || CurrentUser.ManageFiles) {
+                output = true;
+            } else if (file.UserId.HasValue && file.UserId == CurrentUser.UserId) {
+                output = true;
+            } else if (file.ItemId.HasValue) {
+                // See if this is part of a special item and check access.
+            }
         }
 
         return output;

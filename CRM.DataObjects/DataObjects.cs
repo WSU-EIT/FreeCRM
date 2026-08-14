@@ -419,6 +419,7 @@ public partial class DataObjects
         public int SortOrder { get; set; }
         public string? TooltipTitle { get; set; }
         public Delegate? OnClick { get; set; }
+        public List<MenuItem>? Children { get; set; }
     }
 
     public class ModuleAction

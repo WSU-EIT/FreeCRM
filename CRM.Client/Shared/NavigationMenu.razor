@@ -36,37 +36,94 @@
                                     itemClass += " app-admin-only";
                                 }
 
-                                <li class="nav-item">
-                                    @if (item.OnClick != null) {
-                                        string href = !String.IsNullOrWhiteSpace(item.AriaLabel) ? item.AriaLabel :
-                                            !String.IsNullOrWhiteSpace(item.Title) ? item.Title : Guid.NewGuid().ToString();
+                                if (item.Children != null && item.Children.Any()) {
+                                    // At this point only a single level of child items are supports.
+                                    // So, any children added to child objects are ignored.
+                                    // There is no built-in support in Bootstrap for nested submenus.
+                                    // Once a good accessible solution is found that support will be added.
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                                data-bs-toggle="dropdown"
+                                                href="#"
+                                                role="button"
+                                                aria-expanded="false">
+                                            @if (!String.IsNullOrWhiteSpace(item.Icon)) {
+                                                <Icon Name="@item.Icon" />
+                                            }
+                                            <span class="icon-text">
+                                                @((MarkupString)item.Title)
+                                            </span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @foreach (var child in item.Children.OrderBy(x => x.SortOrder).ThenBy(x => x.Title)) {
+                                                if (child.OnClick != null) {
+                                                    string href = !String.IsNullOrWhiteSpace(child.AriaLabel) ? child.AriaLabel :
+                                                        !String.IsNullOrWhiteSpace(child.Title) ? child.Title : Guid.NewGuid().ToString();
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                                href="javascript:void('@href.Replace("'", "")');"
+                                                                title="@child.TooltipTitle"
+                                                                aria-label="@child.AriaLabel"
+                                                                @onclick="@(() => child.OnClick.DynamicInvoke())">
+                                                            @if (!String.IsNullOrWhiteSpace(child.Icon)) {
+                                                                <Icon Name="@child.Icon" />
+                                                            }
+                                                            <span class="icon-text">
+                                                                @((MarkupString)child.Title)
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                } else {
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                                href="@child.url"
+                                                                title="@child.TooltipTitle"
+                                                                aria-label="@child.AriaLabel">
+                                                            @if (!String.IsNullOrWhiteSpace(child.Icon)) {
+                                                                <Icon Name="@child.Icon" />
+                                                            }
+                                                            <span class="icon-text">
+                                                                @((MarkupString)child.Title)
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                } else {
+                                    <li class="nav-item">
+                                        @if (item.OnClick != null) {
+                                            string href = !String.IsNullOrWhiteSpace(item.AriaLabel) ? item.AriaLabel :
+                                                !String.IsNullOrWhiteSpace(item.Title) ? item.Title : Guid.NewGuid().ToString();
 
-                                        <a class="@itemClass"
-                                                href="javascript:void('@href.Replace("'", "")');"
-                                                title="@item.TooltipTitle"
-                                                aria-label="@item.AriaLabel"
-                                                @onclick="@(() => item.OnClick.DynamicInvoke())">
-                                            @if (!String.IsNullOrWhiteSpace(item.Icon)) {
-                                                <Icon Name="@item.Icon" />
-                                            }
-                                            <span class="icon-text">
-                                                @((MarkupString)item.Title)
-                                            </span>
-                                        </a>
-                                    } else {
-                                        <a class="@itemClass"
-                                                title="@item.TooltipTitle"
-                                                aria-label="@item.AriaLabel"
-                                                href="@item.url">
-                                            @if (!String.IsNullOrWhiteSpace(item.Icon)) {
-                                                <Icon Name="@item.Icon" />
-                                            }
-                                            <span class="icon-text">
-                                                @((MarkupString)item.Title)
-                                            </span>
-                                        </a>
-                                    }
-                                </li>
+                                            <a class="@itemClass"
+                                                    href="javascript:void('@href.Replace("'", "")');"
+                                                    title="@item.TooltipTitle"
+                                                    aria-label="@item.AriaLabel"
+                                                    @onclick="@(() => item.OnClick.DynamicInvoke())">
+                                                @if (!String.IsNullOrWhiteSpace(item.Icon)) {
+                                                    <Icon Name="@item.Icon" />
+                                                }
+                                                <span class="icon-text">
+                                                    @((MarkupString)item.Title)
+                                                </span>
+                                            </a>
+                                        } else {
+                                            <a class="@itemClass"
+                                                    title="@item.TooltipTitle"
+                                                    aria-label="@item.AriaLabel"
+                                                    href="@item.url">
+                                                @if (!String.IsNullOrWhiteSpace(item.Icon)) {
+                                                    <Icon Name="@item.Icon" />
+                                                }
+                                                <span class="icon-text">
+                                                    @((MarkupString)item.Title)
+                                                </span>
+                                            </a>
+                                        }
+                                    </li>
+                                }
                             }
 
                             @if (Helpers.MenuItemsAdmin.Any()) {

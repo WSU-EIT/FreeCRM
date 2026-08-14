@@ -15,7 +15,6 @@ public partial class DataController
     }
 
     [HttpGet]
-    [Authorize]
     [Route("~/api/Data/GetFileStorage/{id}")]
     public async Task<ActionResult<DataObjects.FileStorage>> GetFileStorage(Guid id)
     {
