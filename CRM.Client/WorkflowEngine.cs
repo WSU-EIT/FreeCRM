@@ -77,6 +77,16 @@ public static class WorkflowEngine
     }
 
     /// <summary>
+    /// Exports a mermaid diagram as a PNG.
+    /// </summary>
+    /// <param name="elementId">The element id used to render the diagram.</param>
+    /// <param name="fileName">The name to use for saving the png file.</param>
+    public static async Task ExportDiagramPNG(string elementId, string fileName)
+    {
+        await jsRuntime.InvokeVoidAsync("RenderWorkflowDiagramDownloadPng", elementId, fileName);
+    }
+
+    /// <summary>
     /// Exports a mermaid diagram as an SVG.
     /// </summary>
     /// <param name="elementId">The element id used to render the diagram.</param>

@@ -379,12 +379,64 @@
             }
         }
 
+        async function RenderWorkflowDiagramDownloadPng(elementId, fileName) {
+            const svgBlob = RenderWorkflowDiagramDownloadGetSvgBlob(elementId);
+            if (svgBlob != null) {
+                const URL = window.URL || window.webkitURL || window.window;
+                const blobURL = URL.createObjectURL(svgBlob);
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+
+                    var svgElement = document.querySelector('#' + elementId + ' svg');
+                    canvas.width = svgElement.clientWidth || 300;
+                    canvas.height = svgElement.clientHeight || 150;
+        
+                    const context = canvas.getContext('2d');
+                    context.drawImage(img, 0, 0);
+
+                    //URL.revokeObjectURL(blobURL);
+
+                    try {
+                        const pngDataURL = canvas.toDataURL('image/png');
+                        
+                        const anchorElement = document.createElement('a');
+                        anchorElement.href = pngDataURL;
+                        anchorElement.download = fileName ?? '';
+                        anchorElement.click();
+                        anchorElement.remove();
+                        URL.revokeObjectURL(blobURL);
+                    } catch (error) {
+                        console.log("Error exporting canvas to png.");
+                        console.log(error);
+                    }
+                };
+
+                img.src = blobURL;
+            }
+        }
+
         async function RenderWorkflowDiagramDownloadSvg(elementId, fileName) {
+            const svgBlob = RenderWorkflowDiagramDownloadGetSvgBlob(elementId);
+            if (svgBlob != null) {
+                const url = URL.createObjectURL(svgBlob);
+                const anchorElement = document.createElement('a');
+                anchorElement.href = url;
+                anchorElement.download = fileName ?? '';
+                anchorElement.click();
+                anchorElement.remove();
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        function RenderWorkflowDiagramDownloadGetSvgBlob(elementId) {
             var svgElement = document.querySelector('#' + elementId + ' svg');
 
             if (!svgElement) {
                 console.log("SVG Element '" + elementId + "' Not Found");
-                return;
+                return null;
             }
 
             if (!svgElement.getAttribute('xmlns')) {
@@ -394,13 +446,7 @@
             const serializer = new XMLSerializer();
             const svgString = serializer.serializeToString(svgElement);
             const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-            const url = URL.createObjectURL(svgBlob);
-            const anchorElement = document.createElement('a');
-            anchorElement.href = url;
-            anchorElement.download = fileName ?? '';
-            anchorElement.click();
-            anchorElement.remove();
-            URL.revokeObjectURL(url);
+            return svgBlob;
         }
 
         function RenderWorkflowDiagramZoom(elementId, zoom){

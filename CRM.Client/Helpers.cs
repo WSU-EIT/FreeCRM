@@ -4042,7 +4042,8 @@ public static partial class Helpers
                 { "fa:fa-solid fa-xmark",                        new List<string> { "Cancel", "Close", "CloseDialog", "Hide" }},
 
                 // {{ModuleItemStart:Workflows}}
-                { "fa:fa-solid fa-file-svg",                     new List<string> { "ExportAsSVG" }},
+                { "fa:fa-solid fa-file-export",                  new List<string> { "ExportChart" }},
+                { "fa:fa-solid fa-file-image",                   new List<string> { "ExportAsPNG", "ExportAsSVG", "ExportChartPNG", "ExportChartSVG" }},
                 { "fa:fa-solid fa-paste",                        new List<string> { "WorkflowPaste" }},
                 { "fa:fa-solid fa-sitemap x1",                   new List<string> { "Workflow", "Workflows" }},
                 { "fa:fa-solid fa-trash x1",                     new List<string> { "RemoveWorkflowOrphans" }},

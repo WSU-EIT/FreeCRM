@@ -137,12 +137,22 @@
                 </div>
 
                 @if (ShowExport) {
-                    <div class="@(InDialog ? "btn-group" : "btn-group btn-group-sm")" role="group">
-                        <button type="button"
-                                class="btn btn-dark"
-                                @onclick="ExportSVG">
-                            <Language Tag="ExportAsSVG" IncludeIcon="true" />
+                    <div class="@(InDialog ? "btn-group" : "btn-group btn-group-sm") ms-2" role="group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Language Tag="ExportChart" IncludeIcon="true" />
                         </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button type="button" class="dropdown-item" @onclick="ExportSVG">
+                                    <Language Tag="ExportChartSVG" IncludeIcon="true" />
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item" @onclick="ExportPNG">
+                                    <Language Tag="ExportChartPNG" IncludeIcon="true" />
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 }
             </div>
@@ -270,6 +280,18 @@
 
             return output;
         }
+    }
+
+    protected async Task ExportPNG()
+    {
+        string fileName = String.Empty;
+        if (_workflow != null && !String.IsNullOrWhiteSpace(_workflow.Name)) {
+            fileName = Helpers.SafeFileName(_workflow.Name) + ".png";
+        } else {
+            fileName = Helpers.SafeFileDate() + ".png";
+        }
+
+        await WorkflowEngine.ExportDiagramPNG(_elementId, fileName);
     }
 
     protected async Task ExportSVG()
