@@ -606,6 +606,9 @@
 
             if (Model.Tenant.TenantSettings.LoginOptions != null && Model.Tenant.TenantSettings.LoginOptions.Any()) {
                 output = Model.Tenant.TenantSettings.LoginOptions.Contains("local");
+            } else {
+                // If no login options are specified then allow local logins.
+                output = true;
             }
 
             return output;
