@@ -1141,6 +1141,33 @@ public static partial class Helpers
     }
 
     /// <summary>
+    /// Gets the basic domain name from a hostname. Only works for standard domains.
+    /// If your application is going to use a non-standard domain name (eg: yourcompany.co.uk)
+    /// then you will need to handle this parsing differently.
+    /// </summary>
+    /// <param name="hostName"></param>
+    /// <returns></returns>
+    public static string DomainNameFromHostName(string? hostName)
+    {
+        string output = String.Empty;
+
+        if (!String.IsNullOrWhiteSpace(hostName)) {
+            var uri = new Uri(hostName);
+            var host = uri.Host.ToLower();
+
+            string[] tokens = host.Split('.');
+
+            if (tokens.Length < 2) {
+                output = host;
+            } else {
+                output = $"{tokens[^2]}.{tokens[^1]}";
+            }
+        }
+
+        return output;
+    }
+
+    /// <summary>
     /// Builds a button used by the DotNetHelperHandler function.
     /// </summary>
     /// <param name="id">The id for the button element.</param>
@@ -7210,6 +7237,35 @@ public static partial class Helpers
         }
 
         return output;
+    }
+
+    /// <summary>
+    /// Validates that a url is a valid redirection url for your comain.
+    /// </summary>
+    /// <param name="redirectUrl">The url to validate.</param>
+    /// <param name="domain">Your domain name. If left empty it will be parsed from the ApplicationUrl setting.</param>
+    /// <param name="allowLocalhost">Option to allow localhost as a redirect url.</param>
+    /// <returns></returns>
+    public static bool ValidateRedirect(string? redirectUrl, string domain = "", bool allowLocalhost = true)
+    {
+        if (!String.IsNullOrWhiteSpace(redirectUrl)) {
+            var url = redirectUrl.ToLower();
+
+            if (allowLocalhost && (url.StartsWith("http://localhost:") || url.StartsWith("https://localhost:"))) {
+                return true;
+            }
+
+            if (String.IsNullOrWhiteSpace(domain)) {
+                domain = DomainNameFromHostName(Model.ApplicationUrl);
+            }
+
+            if (url.StartsWith("http://") || url.StartsWith("https://")) {
+                var uri = new Uri(url);
+                return uri.Host.EndsWith(domain);
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

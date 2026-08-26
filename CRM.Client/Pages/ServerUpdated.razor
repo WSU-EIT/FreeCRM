@@ -43,8 +43,12 @@
 
         string redirect = System.Web.HttpUtility.UrlDecode(Helpers.GetQuerystringValue("Redirect"));
         if (!String.IsNullOrWhiteSpace(redirect)) {
-            await Helpers.ConsoleLog("Redirecting After Update to '" + redirect + "'");
-            await Helpers.NavigateToViaJavascript(redirect);
+            if (Helpers.ValidateRedirect(redirect)) {
+                await Helpers.ConsoleLog("Redirecting After Update to '" + redirect + "'");
+                await Helpers.NavigateToViaJavascript(redirect);
+            } else {
+                Helpers.NavigateToRoot(true);
+            }
         } else {
             Helpers.NavigateToRoot(true);
         }
