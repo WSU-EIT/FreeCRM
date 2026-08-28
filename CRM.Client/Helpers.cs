@@ -7256,12 +7256,16 @@ public static partial class Helpers
             }
 
             if (String.IsNullOrWhiteSpace(domain)) {
-                domain = DomainNameFromHostName(Model.ApplicationUrl);
+                domain = ApplicationDomain;
+
+                if (String.IsNullOrWhiteSpace(domain)) {
+                    domain = DomainNameFromHostName(Model.ApplicationUrl);
+                }
             }
 
             if (url.StartsWith("http://") || url.StartsWith("https://")) {
                 var uri = new Uri(url);
-                return uri.Host.EndsWith(domain);
+                return uri.Host.EndsWith(domain, StringComparison.InvariantCultureIgnoreCase);
             }
         }
 

@@ -27,6 +27,13 @@ public static partial class Helpers
         return output;
     }
 
+    public static string ApplicationDomain {
+        get {
+            // Use this to return your custom domain name if needed for use in the ValidateRedirect method.
+            return "";
+        }
+    }
+
     public static bool AppMethod()
     {
         return true;
