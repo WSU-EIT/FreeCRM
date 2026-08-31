@@ -42,13 +42,9 @@
         await System.Threading.Tasks.Task.Delay(15000);
 
         string redirect = System.Web.HttpUtility.UrlDecode(Helpers.GetQuerystringValue("Redirect"));
-        if (!String.IsNullOrWhiteSpace(redirect)) {
-            if (Helpers.ValidateRedirect(redirect)) {
-                await Helpers.ConsoleLog("Redirecting After Update to '" + redirect + "'");
-                await Helpers.NavigateToViaJavascript(redirect);
-            } else {
-                Helpers.NavigateToRoot(true);
-            }
+        if (Helpers.ValidateRedirect(redirect)) {
+            await Helpers.ConsoleLog("Redirecting After Update to '" + redirect + "'");
+            await Helpers.NavigateToViaJavascript(redirect);
         } else {
             Helpers.NavigateToRoot(true);
         }
